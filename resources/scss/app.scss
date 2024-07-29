@@ -1,1 +1,26 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+.error_invisible{
+    display: none;
+}
+.error_visible{
+    display: block;
+}
+
+.password_container{
+    display: flex;
+    align-items: center;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding-right: 10px;
+
+    &>input{
+        border: none;
+        outline: none;
+        &:focus .password_container{
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            border-color: #86b7fe;
+        }
+    }
+
+}
