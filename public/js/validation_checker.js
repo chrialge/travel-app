@@ -165,7 +165,7 @@ registerButton.addEventListener('click', function (event) {
     }
 
     // Controllo del cognome
-    if (!check_last_name()) {
+    if (!check_lastname()) {
         event.preventDefault();
     }
 
