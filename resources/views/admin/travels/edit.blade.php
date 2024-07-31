@@ -2,7 +2,17 @@
 
 @section('content')
     <div class="container">
-        <h2>Modifica Viaggio</h2>
+
+        <div class="header d-flex justify-content-between align-items-center py-4">
+            <h2>Modifica Viaggio</h2>
+
+            <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        @include('partials.validate')
+
 
         <form action="{{ route('admin.travels.update', $travel) }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -60,8 +70,8 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">
-                <span>CREA UN VIAGGIO</span>
+            <button type="submit" class="btn btn-warning my-3">
+                <span>MODIFICA VIAGGIO</span>
             </button>
 
         </form>

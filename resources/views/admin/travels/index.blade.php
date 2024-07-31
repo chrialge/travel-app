@@ -8,6 +8,9 @@
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </a>
         </div>
+
+        @include('partials.session')
+
         <div class="table-responsive">
             <table class="table table-primary">
                 <thead>
@@ -31,11 +34,49 @@
                                 <a href="{{ route('admin.travels.edit', $travel) }}" class="btn btn-warning">
                                     <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger">
+
+                                <!-- Modal trigger button -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#modalId-{{ $travel->id }}">
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                                </a>
+                                </button>
+
+                                <!-- Modal Body -->
+                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                <div class="modal fade" id="modalId-{{ $travel->id }}" tabindex="-1"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                    aria-labelledby="modalTitleId-{{ $travel->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitleId-{{ $travel->id }}">
+                                                    Attenzione!
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di cancellare il viaggio, la cancellazione sara irreversibile.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="{{ route('admin.travels.destroy', $travel) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </td>
                         </tr>
+
                     @empty
                         <tr class="">
                             <td scope="row" colspan="4">Non ci sono viaggi programmati</td>
@@ -45,6 +86,7 @@
 
                 </tbody>
             </table>
+            {{ $travels->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection

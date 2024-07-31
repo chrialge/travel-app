@@ -2,7 +2,16 @@
 
 @section('content')
     <div class="container">
-        <h2>Nuovo Viaggio</h2>
+
+        <div class="header d-flex justify-content-between align-items-center py-4">
+            <h2>Nuovo Viaggio</h2>
+
+            <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        @include('partials.validate')
 
         <form action="{{ route('admin.travels.store') }}" method="post" enctype="multipart/form-data">
             @csrf

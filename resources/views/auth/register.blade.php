@@ -13,7 +13,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome *') }}</label>
 
                                 <div class="col-md-6">
                                     <input onkeyup="hide_name_error()" onblur="check_name()" id="name" type="text"
@@ -34,7 +34,7 @@
 
                             <div class="mb-4 row">
                                 <label for="lastname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome *') }}</label>
 
                                 <div class="col-md-6">
                                     <input onkeyup="hide_lastname_error()" onblur="check_lastname()" id="lastname"
@@ -55,7 +55,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail *') }}</label>
 
                                 <div class="col-md-6">
                                     <input onkeyup="hide_email_error()" onblur="check_email()" id="email" type="email"
@@ -75,7 +75,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
 
                                 <div class="col-md-6">
                                     <div class="password_container">
@@ -97,7 +97,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
 
                                 <div class="col-md-6">
                                     <div class="password_container">
