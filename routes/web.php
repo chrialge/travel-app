@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('/travels', TravelController::class);
+        Route::resource('/travels', TravelController::class)->parameters(['travels' => 'travel:slug']);
     });
 
 Route::middleware('auth')->group(function () {

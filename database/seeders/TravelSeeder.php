@@ -15,6 +15,7 @@ class TravelSeeder extends Seeder
     public function run(): void
     {
         $newTravel = new Travel();
+        $newTravel->user_id = 1;
         $newTravel->name = "Road of Japan";
         $newTravel->slug = Str::slug($newTravel->name, '-');
         $newTravel->date_start = "2025-04-20";
