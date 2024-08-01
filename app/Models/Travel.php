@@ -10,7 +10,7 @@ class Travel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'date_start', 'date_finish', 'image', 'content'];
+    protected $fillable = ['name', 'user_id', 'slug', 'date_start', 'date_finish', 'image', 'content'];
 
     /**
      * Get the user that owns the Travel

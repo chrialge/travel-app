@@ -40,7 +40,6 @@ attributes:
 -   time_arrived || DATE | NOTNULL
 -   image|| VARCHAR(255) | NULL
 -   location || VARCHAR(255) || NOTNULL
--   vote || TINYINT || NULL
 -   description|| TEXT | NULL
 
 ## table
@@ -55,3 +54,13 @@ attributes:
 -   customer_lastname || VARCHAR(50) | MIN: 3 | NOTNULL
 -   customer_email || VARCHAR(50) | MIN: 3 | NOTNULL
 -   note|| TEXT | NULL
+
+## table
+
+name: vote
+
+attributes:
+
+-   ID || BIGINT | AI | NOTNULL | UNIQUE | PK | INDEX
+-   step_id || BIGINT | NOTNULL | FK
+-   vote || TINYINT || NOTNULL

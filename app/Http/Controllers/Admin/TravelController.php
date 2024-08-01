@@ -31,7 +31,7 @@ class TravelController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($id)
+    public function create()
     {
         // rispedisce alla pagina creazione di travel
         return view('admin.travels.create');
