@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Travel extends Model
 {
@@ -20,5 +21,15 @@ class Travel extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get all of the steps for the Travel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function steps(): HasMany
+    {
+        return $this->hasMany(Step::class);
     }
 }

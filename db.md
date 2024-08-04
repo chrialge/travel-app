@@ -20,7 +20,8 @@ attributes:
 
 -   ID || BIGINT | AI | NOTNULL | UNIQUE | PK | INDEX
 -   user_id || BIGINT | NOTNULL | FK
--   name || VARCHAR(50) | MIN: 3 | NOTNULL
+-   name || VARCHAR(100) | MIN: 3 | NOTNULL
+-   slug || VARCHAR(100) | MIN: 3 | NOTNULL
 -   data_start || DATE | NOTNULL
 -   date_arrived || DATE | NOTNULL
 -   image|| VARCHAR(255) | NULL
@@ -34,7 +35,8 @@ attributes:
 
 -   ID || BIGINT | AI | NOTNULL | UNIQUE | PK | INDEX
 -   travel_id || BIGINT | NOTNULL | FK
--   name || VARCHAR(50) | MIN: 3 | NOTNULL
+-   name || VARCHAR(100) | MIN: 3 | NOTNULL
+-   slug || VARCHAR(100) | MIN: 3 | NOTNULL
 -   date || DATE | NOTNULL
 -   time_start || DATE | NOTNULL
 -   time_arrived || DATE | NOTNULL

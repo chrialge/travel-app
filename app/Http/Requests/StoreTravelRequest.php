@@ -26,7 +26,7 @@ class StoreTravelRequest extends FormRequest
             'date_start' => 'required|date',
             'date_finish' => 'required|date',
             'image' => 'nullable|image',
-            'content' => 'nullable|text',
+            'content' => 'nullable',
         ];
     }
 }
