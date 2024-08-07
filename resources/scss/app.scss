@@ -24,3 +24,47 @@
     }
 
 }
+.bar_date{
+    padding-left: 15px;
+}
+.date_container{
+    padding: 10px;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+
+.active{
+    background-color: orangered;
+}
+.container_step{
+    border: 5px solid orangered;
+    border-radius: 10px;
+    padding: 10px;
+    &>.step_card{
+        background-color: orange;
+        padding: 10px 10px;
+        border: 1px solid orangered;
+        border: inherit;
+        border-radius: 10px;
+
+        .img_step{
+            width: 100px;
+            &>img{
+                width: 100%;
+            }
+        }
+    }
+    .step_add{
+        background-color: orange;
+        padding: 10px;
+        border-radius: 10px;
+        &>.container{
+            cursor: pointer;
+            text-decoration: none;
+            color: orangered;
+            font-weight: bold;
+        }
+    }
+}

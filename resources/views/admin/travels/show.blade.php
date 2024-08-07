@@ -1,13 +1,25 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <div class="travels_container d-flex justify-content-between py-5">
+    <div class="container py-4">
+        <div class="travels_container d-flex justify-content-between py-5 gap-4">
             <div class="left">
-                <img src="{{ asset('storage/' . $travel->image) }}" alt="">
+                @if ($travel->image)
+                    <img class="w-100" src="{{ asset('storage/' . $travel->image) }}"
+                        alt="Immagine del viaggio {{ $travel->name }}">
+                @else
+                    <img style="width: 80%" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
+                        alt="immagine di default del viaggio">
+                @endif
             </div>
             <div class="right" style="max-width: 500px">
-                <h2>{{ $travel->name }}</h2>
+                <div class="header_travel d-flex justify-content-between align-items-center">
+                    <h2>{{ $travel->name }}</h2>
+                    <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </a>
+                </div>
+
                 <div class="info_travel d-flex flex-column gap-2">
                     <span>
                         <strong>Data di arrivo:</strong>
@@ -27,14 +39,62 @@
         </div>
         <div class="steps_container">
             <h3>Itinerario: </h3>
-            <div class="bar_date">
+            <div class="bar_date d-flex ">
+
+                @foreach ($dateArray as $index => $dates)
+                    @foreach ($dates as $date)
+                        <a href="{{ route('admin.travels.show', [$travel, $date['value']]) }}" id="date-{{ $index }}"
+                            class="date_container text-decoration-none text-dark">
+                            {{ $date['format'] }}
+                        </a>
+                    @endforeach
+                @endforeach
+
+
+
+            </div>
+            <div class="container_step d-flex flex-column gap-3">
+                @foreach ($step as $step)
+                    <div class="step_card d-flex justify-content-between align-items-center">
+                        <div class="left d-flex align-items-center">
+                            <div class="img_step">
+                                <img src="{{ asset('storage/img/no-img.png') }}" alt="immagine di deafult dell'itinerario">
+                            </div>
+                            <div class="info_step">
+                                <div class="name_step">
+                                    {{ $step->name }}
+
+                                </div>
+                                <div class="vote">
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <a href="" class="btn btn-dark">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                @endforeach
+                <div class="step_add">
+                    <a class="container d-flex justify-content-center align-items-center gap-2">
+                        <div class="plus">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">
+                            AGGIUNGI ITINERARIO
+                        </div>
+                    </a>
+                </div>
+
 
             </div>
 
-            @foreach ($travel->steps as $step)
-                {{ $step->name }}
-            @endforeach
         </div>
-
+        <script src="{{ asset('js/bar_date.js') }}"></script>
     </div>
 @endsection

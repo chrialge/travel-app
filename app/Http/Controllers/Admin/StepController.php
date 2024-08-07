@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Step;
 use App\Http\Requests\StoreStepRequest;
 use App\Http\Requests\UpdateStepRequest;
+use App\Http\Controllers\Controller;
 
 class StepController extends Controller
 {
@@ -13,7 +14,7 @@ class StepController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.steps.index');
     }
 
     /**

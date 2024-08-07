@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="header d-flex justify-content-between align-items-center py-4">
-            <h2>Travel</h2>
+            <h2>Viaggi</h2>
             <a href="{{ route('admin.travels.create') }}" class="btn btn-info">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </a>
@@ -15,10 +15,10 @@
             <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Date Start</th>
-                        <th scope="col">Date Finish</th>
-                        <th style="width: 150px; text-align:center;">Action</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Inizio del viaggio</th>
+                        <th scope="col">Fine del viaggio</th>
+                        <th style="width: 150px; text-align:center;">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>

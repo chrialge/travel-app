@@ -55,7 +55,10 @@
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.travels.index') }}">Travels</a>
+                            <a class="nav-link" href="{{ route('admin.travels.index') }}">Viaggi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.steps.index') }}">Itinerario</a>
                         </li>
                     </ul>
 

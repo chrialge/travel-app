@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use DateTime;
+use Illuminate\Http\Request;
+use App\Models\Step;
 
 class TravelController extends Controller
 {
@@ -86,8 +89,32 @@ class TravelController extends Controller
     {
         // se l'id dell'utente e uguale a quello del viaggio
         if (Gate::allows('travel_checker', $travel)) {
+
+
+
+
+            $dateArray = [];
+            $begin = new DateTime($travel->date_start);
+            $varaiable = $begin->format('Y-m-d');
+            if ($_GET) {
+                $varaiable = key($_GET);
+            }
+            $end   = new DateTime($travel->date_finish);
+
+            for ($i = $begin; $i <= $end; $i->modify('+1 day')) {
+                $array = [];
+                $array = [
+                    [
+                        "value" => $i->format('Y-m-d'),
+                        "format" => $i->format('d-m'),
+                    ]
+                ];
+                array_push($dateArray, $array);
+            }
+
+            $step = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();            // dd($dateArray);
             // rispedisce alla pagina singola di un travel
-            return view('admin.travels.show', compact('travel'));
+            return view('admin.travels.show', compact('travel', 'dateArray', 'step'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }
