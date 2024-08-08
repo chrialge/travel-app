@@ -60,6 +60,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.steps.index') }}">Itinerario</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.notes.index') }}">Note</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

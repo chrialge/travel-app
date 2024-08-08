@@ -24,6 +24,7 @@ class StoreStepRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:100',
             'date' => 'required|date',
+            'image' => 'nullable|image',
             'travel_id' => 'required|exists:travel,id',
             'time_start' => 'required|size: 5',
             'time_arrived' => 'nullable|size: 5',

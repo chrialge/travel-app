@@ -331,3 +331,72 @@ createButton.addEventListener('click', function (event) {
         createButton.classList.remove("error_invisible")
     }
 });
+
+
+const editButton = document.getElementById("edit_step_btn")
+createButton.addEventListener('click', function (event) {
+    const btnLoading = document.getElementById("btn_loading");
+    btnLoading.classList.remove("error_invisible")
+    createButton.classList.add("error_invisible")
+    // Controllo del nome
+    if (!check_name()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo della data
+    if (!check_date()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo dell'ora d'inizio
+    if (!check_time_start()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo dell'ora di fine
+    if (!check_time_arrived()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo lo stato
+    if (!check_state()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+    // Controllo lo stato
+    if (!check_region()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo lo stato
+    if (!check_route()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo lo stato
+    if (!check_state()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+
+    // Controllo lo stato
+    if (!check_cap()) {
+        event.preventDefault();
+        btnLoading.classList.add("error_invisible")
+        createButton.classList.remove("error_invisible")
+    }
+});

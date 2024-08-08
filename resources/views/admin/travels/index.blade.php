@@ -25,8 +25,8 @@
                     @forelse ($travels as $travel)
                         <tr class="">
                             <td scope="row">{{ $travel->name }}</td>
-                            <td>{{ $travel->date_start }}</td>
-                            <td>{{ $travel->date_start }}</td>
+                            <td>{{ date_format(date_create($travel->date_start), 'd/m/Y') }}</td>
+                            <td>{{ date_format(date_create($travel->date_finish), 'd/m/Y') }}</td>
                             <td class="justify-content-center">
                                 <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-dark">
                                     <i class="fa-solid fa-eye" aria-hidden="true"></i>

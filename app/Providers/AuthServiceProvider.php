@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Travel;
 use App\Models\User;
+use App\Models\Step;
 
 
 // use Illuminate\Support\Facades\Gate;
@@ -29,6 +30,13 @@ class AuthServiceProvider extends ServiceProvider
         // $this->registerPolicies();
 
         Gate::define('travel_checker', function (User $user, Travel $travel) {
+
+            return $user->id === $travel->user_id;
+        });
+
+        Gate::define('step_checker', function (User $user, Step $step) {
+            $travel = Travel::where('id', $step->travel_id)->first();
+
             return $user->id === $travel->user_id;
         });
     }

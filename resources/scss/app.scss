@@ -68,3 +68,22 @@
         }
     }
 }
+
+.card_note{
+    padding: 10px;
+    border-radius: 10px;
+    border: 4px solid orangered;
+    
+    background-color: orange;
+
+    .top_note{
+        .left{
+            .container_img{
+
+                &>img{
+                    width: 80px;
+                }
+            }
+        }
+    }
+}

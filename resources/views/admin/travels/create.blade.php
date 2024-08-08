@@ -81,7 +81,7 @@
             <div class="mb-3">
                 <label for="image" class="form-label">scegli l'immagine</label>
                 <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                    id="image" value="{{ old('imahe') }}" placeholder="" aria-describedby="imageHelper" />
+                    id="image" value="{{ old('image') }}" placeholder="" aria-describedby="imageHelper" />
 
                 {{-- errore lato back --}}
                 @error('image')

@@ -20,8 +20,8 @@ class TravelSeeder extends Seeder
         $newTravel->user_id = 1;
         $newTravel->name = "Road of Japan";
         $newTravel->slug = Str::slug($newTravel->name, '-');
-        $newTravel->date_start = "2025-04-20";
-        $newTravel->date_finish = "2025-04-27";
+        $newTravel->date_start = "2024-08-12";
+        $newTravel->date_finish = "2024-08-18";
         $newTravel->save();
     }
 }

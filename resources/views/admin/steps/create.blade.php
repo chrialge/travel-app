@@ -8,7 +8,11 @@
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
         </div>
-        <form action="{{ route('admin.steps.store') }}" method="post">
+
+        {{-- parziale per la lista di errori lato back --}}
+        @include('partials.validate')
+
+        <form action="{{ route('admin.steps.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
 
@@ -32,19 +36,26 @@
             </div>
 
             <div class="mb-3">
-                <label for="travel_id" class="form-label">Viaggi</label>
-                <select class="form-select form-select-lg" name="travel_id" id=" travel_id">
+                <label for="travel_id" class="form-label">Viaggi *</label>
+                <select class="form-select form-select-lg @error('travel_id') is-invalid @enderror" name="travel_id"
+                    id=" travel_id">
                     <option selected disabled>Select one</option>
                     @foreach ($travels as $travel)
-                        <option value="{{ $travel->id }}">{{ $travel->name }}</option>
+                        <option value="{{ $travel->id }}" {{ $travel->id === old('travel_id') ? 'selected' : '' }}>
+                            {{ $travel->name }}</option>
                     @endforeach
                 </select>
+                {{-- errore lato back --}}
+                @error('travel_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+                <small id="nameHelper" class="form-text text-muted">Inserisci il Viaggio per l'itinerario</small>
             </div>
 
 
             {{-- campo date di step --}}
             <div class="mb-3">
-                <label for="date" class="form-label">Data*</label>
+                <label for="date" class="form-label">Data *</label>
                 <input onkeyup="hide_date_error()" onblur="check_date()" type="date"
                     class="form-control @error('date') is-invalid @enderror" name="date" id="date"
                     aria-describedby="dateHelper" value="{{ old('date') }}" placeholder="" required />
@@ -104,7 +115,7 @@
             <div class="mb-3">
                 <label for="image" class="form-label">scegli l'immagine</label>
                 <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                    id="image" value="{{ old('imahe') }}" placeholder="" aria-describedby="imageHelper" />
+                    id="image" value="{{ old('image') }}" placeholder="" aria-describedby="imageHelper" />
 
                 {{-- errore lato back --}}
                 @error('image')

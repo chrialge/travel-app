@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\TravelSeeder;
 use Database\Seeders\StepSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\NoteSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TravelSeeder::class,
             StepSeeder::class,
+            NoteSeeder::class,
         ]);
     }
 }

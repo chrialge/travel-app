@@ -11,7 +11,7 @@ class UpdateStepRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class UpdateStepRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:3|max:100',
+            'date' => 'required|date',
+            'image' => 'nullable|image',
+            'travel_id' => 'required|exists:travel,id',
+            'time_start' => 'required|',
+            'time_arrived' => 'required|',
+            'state' => 'required',
+            'region' => 'required',
+            'route' => 'required',
+            'cap' => 'required|integer',
+            'description' => 'nullable',
         ];
     }
 }
