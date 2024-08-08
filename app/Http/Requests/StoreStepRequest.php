@@ -11,7 +11,7 @@ class StoreStepRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreStepRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:3|max:100',
+            'date' => 'required|date',
+            'travel_id' => 'required|exists:travel,id',
+            'time_start' => 'required|size: 5',
+            'time_arrived' => 'nullable|size: 5',
+            'state' => 'required',
+            'region' => 'required',
+            'route' => 'required',
+            'cap' => 'required|integer',
+            'description' => 'nullable',
         ];
     }
 }

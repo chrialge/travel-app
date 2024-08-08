@@ -15,7 +15,7 @@ class Step extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function travels(): BelongsTo
+    public function travel(): BelongsTo
     {
         return $this->belongsTo(Travel::class);
     }

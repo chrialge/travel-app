@@ -95,11 +95,13 @@ class TravelController extends Controller
 
             $dateArray = [];
             $begin = new DateTime($travel->date_start);
+            $travel->date_start =  $begin->format('d/m/Y');
             $varaiable = $begin->format('Y-m-d');
             if ($_GET) {
                 $varaiable = key($_GET);
             }
             $end   = new DateTime($travel->date_finish);
+            $travel->date_finish = $end->format('d/m/Y');
 
             for ($i = $begin; $i <= $end; $i->modify('+1 day')) {
                 $array = [];

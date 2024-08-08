@@ -6,6 +6,9 @@ use App\Models\Step;
 use App\Http\Requests\StoreStepRequest;
 use App\Http\Requests\UpdateStepRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Travel;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class StepController extends Controller
 {
@@ -14,7 +17,14 @@ class StepController extends Controller
      */
     public function index()
     {
-        return view('admin.steps.index');
+        $id = Auth::id();
+        $travels = Travel::where('user_id', $id)->get();
+        $range = [];
+        foreach ($travels as $travel) {
+            array_push($range, $travel->id);
+        }
+        $steps = Step::whereIn('travel_id', $range)->orderByDesc('id')->paginate(6);
+        return view('admin.steps.index', compact('steps'));
     }
 
     /**
@@ -22,7 +32,9 @@ class StepController extends Controller
      */
     public function create()
     {
-        //
+        $id = Auth::id();
+        $travels = Travel::where('user_id', $id)->get();
+        return view('admin.steps.create', compact('travels'));
     }
 
     /**
@@ -30,7 +42,8 @@ class StepController extends Controller
      */
     public function store(StoreStepRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        dd($val_data);
     }
 
     /**
@@ -38,7 +51,7 @@ class StepController extends Controller
      */
     public function show(Step $step)
     {
-        //
+        return view('admin.steps.show', compact('step'));
     }
 
     /**
