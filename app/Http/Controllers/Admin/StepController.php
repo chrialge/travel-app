@@ -35,9 +35,10 @@ class StepController extends Controller
      */
     public function create()
     {
+        $travel_id = key($_GET);
         $id = Auth::id();
         $travels = Travel::where('user_id', $id)->get();
-        return view('admin.steps.create', compact('travels'));
+        return view('admin.steps.create', compact('travels', 'travel_id'));
     }
 
     /**

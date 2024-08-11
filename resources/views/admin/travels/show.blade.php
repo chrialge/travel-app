@@ -1,50 +1,54 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-4 h-100">
         <div class="travels_container d-flex justify-content-between py-5 gap-4">
             <div class="left">
                 @if ($travel->image)
                     <img class="w-100" src="{{ asset('storage/' . $travel->image) }}"
                         alt="Immagine del viaggio {{ $travel->name }}">
                 @else
-                    <img style="width: 80%" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
+                    <img style="width: 95%" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
                         alt="immagine di default del viaggio">
                 @endif
             </div>
-            <div class="right" style="max-width: 500px">
+            <div class="right_show_travel" style="width: 500px">
                 <div class="header_travel d-flex justify-content-between align-items-center">
-                    <h2>{{ $travel->name }}</h2>
-                    <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+                    <h2 class="color_orange">{{ $travel->name }}</h2>
+                    <a href="{{ route('admin.travels.index') }}" class="btn btn-dark btn_return">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     </a>
                 </div>
 
                 <div class="info_travel d-flex flex-column gap-2">
-                    <span>
-                        <strong>Data di arrivo:</strong>
+                    <span class="text-white">
+                        <strong class="color_orange">Data di arrivo:</strong>
                         {{ $travel->date_start }}
                     </span>
-                    <span>
-                        <strong>Data di partenza:</strong>
+                    <span class="text-white">
+                        <strong class="color_orange">Data di partenza:</strong>
                         {{ $travel->date_finish }}
                     </span>
-                    <p>
-                        <strong>Descrizione: </strong> <br>
-                        {{ $travel->content }}
+                    <p class="text-white">
+                        <strong class="color_orange">Descrizione: </strong> <br>
+                        @if ($travel->content)
+                            {{ $travel->content }}
+                        @else
+                            N/A
+                        @endif
 
                     </p>
                 </div>
             </div>
         </div>
         <div class="steps_container">
-            <h3>Itinerario: </h3>
+            <h3 class="text-white">Itinerario: </h3>
             <div class="bar_date d-flex ">
 
                 @foreach ($dateArray as $index => $dates)
                     @foreach ($dates as $date)
                         <a href="{{ route('admin.travels.show', [$travel, $date['value']]) }}" id="date-{{ $index }}"
-                            class="date_container text-decoration-none text-dark">
+                            class="date_container text-decoration-none text-white">
                             {{ $date['format'] }}
                         </a>
                     @endforeach
@@ -73,7 +77,7 @@
                             </div>
                         </div>
                         <div class="right">
-                            <a href="" class="btn btn-dark">
+                            <a href="{{ route('admin.steps.show', $step) }}" class="btn btn-dark btn_return">
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -81,7 +85,8 @@
                     </div>
                 @endforeach
                 <div class="step_add">
-                    <a class="container d-flex justify-content-center align-items-center gap-2">
+                    <a class="container d-flex justify-content-center align-items-center gap-2"
+                        href="{{ route('admin.steps.create', $travel->id) }}">
                         <div class="plus">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </div>

@@ -10,13 +10,13 @@ function check_name() {
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_name").style.borderBottom = "";
 
         return true;
     } else {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        document.getElementById("input_group_name").style.borderBottom = "3px solid red";
 
         return false;
     }
@@ -34,13 +34,13 @@ function check_lastname() {
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_lastname").style.borderBottom = "";
 
         return true;
     } else {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        document.getElementById("input_group_lastname").style.borderBottom = "3px solid red";
 
         return false;
     }
@@ -58,13 +58,13 @@ function check_email() {
     if (input.value.length >= 3 && input.value.includes('@')) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_email").style.borderBottom = "";
 
         return true;
     } else {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        document.getElementById("input_group_email").style.borderBottom = "3px solid red";
 
         return false;
     }
@@ -86,17 +86,17 @@ let check_pw = function check_pw() {
     if (confirmPassword === "") {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_password_confirm").style.borderBottom = "";
         return true;
     } else if (password !== "" && password === confirmPassword) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_password_confirm").style.borderBottom = "";
         return true;
     } else {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        document.getElementById("input_group_password_confirm").style.borderBottom = "3px solid red";
         return false;
     }
 };
@@ -111,7 +111,7 @@ function hide_name_error() {
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_name").style.borderBottom = "";
     }
 }
 
@@ -123,7 +123,8 @@ function hide_lastname_error() {
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_lastname").style.borderBottom = "";
+
     }
 }
 
@@ -135,7 +136,8 @@ function hide_email_error() {
     if (input.value.length >= 3 && input.value.includes('@')) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_email").style.borderBottom = "";
+
     }
 }
 
@@ -149,7 +151,8 @@ function hide_password_error() {
     if (password !== "" && password === confirmPassword) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_password_confirm").style.borderBottom = "";
+
     }
 }
 
@@ -183,12 +186,14 @@ registerButton.addEventListener('click', function (event) {
     if (password === "" || confirmPassword === "" || password !== confirmPassword) {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        document.getElementById("input_group_password_confirm").style.borderBottom = "3px solid red";
+
         event.preventDefault();
     } else {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        document.getElementById("input_group_password_confirm").style.borderBottom = "";
+
     }
 });
 
@@ -207,6 +212,7 @@ visibilityBtn_confirm.addEventListener("click", function (e) {
     e.preventDefault();
     toggleVisibility(passwordInputConfirm, visibilityBtn_confirm);
 });
+
 
 function toggleVisibility(password, visibility) {
     console.log('ciao', password)

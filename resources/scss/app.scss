@@ -1,4 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
+// Import all of CoreUI's CSS
+@import "@coreui/coreui/scss/coreui";
+
+
 
 .error_invisible{
     display: none;
@@ -25,6 +29,7 @@
 
 }
 .bar_date{
+    color: white;
     padding-left: 15px;
 }
 .date_container{
@@ -36,16 +41,16 @@
 }
 
 .active{
-    background-color: orangered;
+    background-color: #1E1E1E;
 }
 .container_step{
-    border: 5px solid orangered;
+    border: 5px solid #1E1E1E;
     border-radius: 10px;
     padding: 10px;
     &>.step_card{
-        background-color: orange;
+        background-color: white;
         padding: 10px 10px;
-        border: 1px solid orangered;
+        border: 1px solid #1E1E1E;
         border: inherit;
         border-radius: 10px;
 
@@ -57,13 +62,13 @@
         }
     }
     .step_add{
-        background-color: orange;
+        background-color: white;
         padding: 10px;
         border-radius: 10px;
         &>.container{
             cursor: pointer;
             text-decoration: none;
-            color: orangered;
+            color: #1E1E1E;
             font-weight: bold;
         }
     }
@@ -86,4 +91,192 @@
             }
         }
     }
+}
+
+.sidebar{
+    height: 100vh;
+    background-color: #1E1E1E;
+
+    .nav-item{
+        &>a .nav-link{
+            color: #E25B07!important;
+            &>i{
+            color: #E25B07!important;
+
+            }
+        }
+    }
+
+}
+
+@media (max-width: 991.98px) {
+    .sidebar:not(.sidebar-end) {
+        left: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .container_admin{
+        width: calc(100% - 4rem);
+    }
+    .sidebar-narrow-unfoldable:not(:hover) .nav-icon, .sidebar-narrow .nav-icon {
+        flex: 0 0 calc(4rem - 0.5rem * 2 - 0.5rem * 2);
+    }
+    .sidebar-narrow-unfoldable:not(:hover) .sidebar-nav, .sidebar-narrow .sidebar-nav {
+        --bs-sidebar-nav-link-padding-x: 0.5rem;
+        --bs-sidebar-nav-link-padding-y: 0.75rem;
+    }
+    .sidebar-narrow-unfoldable:not(:hover) .sidebar-header, .sidebar-narrow .sidebar-header {
+        justify-content: center;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .nav-link a{
+        padding: 8px 12px;
+    }
+    .sidebar:not(.sidebar-end):not(.show) {
+        margin-left: 0rem;
+    }
+    .sidebar-narrow-unfoldable:not(:hover), .sidebar-narrow {
+        flex: 0 0 4rem;
+        width: 4rem;
+
+        overflow: visible;
+    }
+}
+
+/*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=e25b07&c2=eda353&gt=l&gd=dbl
+*/
+
+// background: #E25B07;
+// background: linear-gradient(45deg, #E25B07, #EDA353);
+
+.account_container{
+    padding-bottom: 50px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E25B07;
+    background: linear-gradient(45deg, #E25B07, #EDA353);
+    .button_return{
+        width: 50px;
+        aspect-ratio: 1;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border-radius: 50%;
+        border: 0;
+        background-color: #1E1E1E;
+        font-size: 20px;
+        color: white;
+        box-shadow: 5px 5px 10px #E25B07;
+
+        &:hover{
+            transition: all 0.5s ease-in-out ;
+            background-color: white;
+            color: #E25B07;
+        }
+    }
+    
+    .card_register, .card_login{
+        border-radius: 15px;
+        width: 90%;
+        max-width: 500px;
+        padding: 20px;
+        background-color: #1E1E1E;
+        color:#E25B07;
+        .card_header{
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        .card_body{
+
+            &>form{
+
+                &>.mb-3{
+
+                    .input-group, .input-group-text, input{
+                        background-color: transparent;
+                        border: 0;
+                        color: #E25B07;
+                        
+
+                    }
+                    .input-group{
+                        border-bottom: 3px solid #E25B07;
+                    }
+                    input{
+
+
+                        &:focus{
+                            box-shadow: 0 0 0 0.25rem #e25b0796;
+
+                        }
+
+
+                    }
+
+                    #register-submit-button, #login-submit-button{
+                        background: #E25B07;
+                        border: 0;
+                        transition: background-color 0.5s ease-in-out ;
+                     &:hover{
+                        background-color: #a13f02!important;
+                        transition: background-color 0.5s ease-in-out ;
+                     }
+
+                        
+                    }
+
+                    
+                }
+            }
+
+        }
+
+    }
+
+}
+
+.container_admin{
+    background: linear-gradient(45deg, #E25B07, #EDA353);
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    .container{
+        background: trasparent;
+
+    }
+}
+
+.right_show_travel{
+    background-color: #1E1E1E;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px #E25B07;
+
+    .color_orange{
+        color: #E25B07;
+    }
+
+}
+
+.btn_return{
+    border: 0;
+    background-color: #E25B07;
+    
+    &:hover{
+        transition: all ease-in-out 0.5s;
+        background-color: #a13f02;
+    }
+}
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.25rem #1e1e1e80;
+    border-color: #a13f02;
 }

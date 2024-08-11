@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="background-color: transparent; ">
 
         {{-- INTESTAZIONE  --}}
-        <div class="header d-flex justify-content-between align-items-center py-4">
+        <div class="header d-flex justify-content-between align-items-center py-4" style="background-color: transparent">
             <h2>Nuovo Viaggio</h2>
 
             {{-- bottone che porta alla pagina index di travel --}}
@@ -21,11 +21,13 @@
             @csrf
 
             {{-- campo name di travel --}}
-            <div class="mb-3">
-                <label for="name" class="form-label">Name *</label>
+            <div class="mb-3 form-floating">
+
                 <input onkeyup="hide_name_error()" onblur="check_name()" type="text"
                     class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                     aria-describedby="nameHelper" value="{{ old('name') }}" placeholder="" required />
+                <label for="name" class="form-label">Name *</label>
+                <small id="nameHelper" class="form-text text-muted">Inserisci il nome del viaggio</small>
 
                 {{-- span di errore lato front  --}}
                 <span id="name_error" class="text-danger error_invisible" role="alert">
@@ -36,7 +38,7 @@
                 @error('name')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                <small id="nameHelper" class="form-text text-muted">Inserisci il nome del viaggio</small>
+
             </div>
 
             {{-- campo date start di travel --}}
@@ -92,11 +94,10 @@
             </div>
 
             {{-- campo content di travel --}}
-            <div class="mb-3">
-                <label for="content" class="form-label">Descrizione</label>
-                <textarea class="form-control" name="content" id="content" rows="3">{{ old('content') }}</textarea>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Leave a comment here" id="content" style="height: 100px">{{ old('content') }}</textarea>
+                <label for="content">Descrizione</label>
 
-                {{-- errore lato back --}}
                 @error('content')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

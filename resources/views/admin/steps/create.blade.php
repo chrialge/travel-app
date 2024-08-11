@@ -17,11 +17,11 @@
 
 
             {{-- campo name di step --}}
-            <div class="mb-3">
-                <label for="name" class="form-label">Name *</label>
+            <div class="my-3 form-floating">
                 <input onkeyup="hide_name_error()" onblur="check_name()" type="text"
                     class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                     aria-describedby="nameHelper" value="{{ old('name') }}" placeholder="" required />
+                <label for="name" class="form-label">Name *</label>
 
                 {{-- span di errore lato front  --}}
                 <span id="name_error" class="text-danger error_invisible" role="alert">
@@ -41,7 +41,8 @@
                     id=" travel_id">
                     <option selected disabled>Select one</option>
                     @foreach ($travels as $travel)
-                        <option value="{{ $travel->id }}" {{ $travel->id === old('travel_id') ? 'selected' : '' }}>
+                        <option value="{{ $travel->id }}"
+                            {{ $travel->id === old('travel_id', $travel_id) ? 'selected' : '' }}>
                             {{ $travel->name }}</option>
                     @endforeach
                 </select>
@@ -166,6 +167,7 @@
                     <small id="regiionHelper" class="form-text text-muted">Inserisci la regione dell'itinerario</small>
                 </div>
 
+
                 {{-- campo di route per location of step --}}
                 <div class="route">
                     <label for="route" class="form-label">Via *</label>
@@ -206,12 +208,12 @@
 
             </div>
 
-            {{-- campo description di step --}}
-            <div class="mb-3">
-                <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control" name="description" id="description" rows="3">{{ old('description') }}</textarea>
 
-                {{-- errore lato back --}}
+            {{-- campo description di travel --}}
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Leave a comment here" id="description" style="height: 100px">{{ old('description') }}</textarea>
+                <label for="description">Descrizione</label>
+
                 @error('description')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

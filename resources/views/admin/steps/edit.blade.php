@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-4">
         <div class="header_create_step d-flex justify-content-between align-items-center">
-            <h2>Modifica l' Itinerario {{ Ucwords($step->name) }}</h2>
+            <h2>Modifica l'Itinerario {{ Ucwords($step->name) }}</h2>
             <a href="{{ route('admin.steps.index') }}" class="btn btn-dark">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
@@ -18,11 +18,11 @@
 
 
             {{-- campo name di step --}}
-            <div class="mb-3">
-                <label for="name" class="form-label">Name *</label>
+            <div class="my-3 form-floating">
                 <input onkeyup="hide_name_error()" onblur="check_name()" type="text"
                     class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                     aria-describedby="nameHelper" value="{{ old('name', $step->name) }}" placeholder="" required />
+                <label for="name" class="form-label">Name *</label>
 
                 {{-- span di errore lato front  --}}
                 <span id="name_error" class="text-danger error_invisible" role="alert">
@@ -75,45 +75,49 @@
             </div>
 
             {{-- campo time_start di step --}}
-            <div class="mb-3">
-                <label for="time_start" class="form-label">Ora d'inizio *</label>
-                <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time"
-                    class="form-control @error('time_start') is-invalid @enderror" name="time_start" id="time_start"
-                    aria-describedby="time_startHelper" value="{{ old('time_start', $step->time_start) }}" placeholder=""
-                    required />
+            <div class="d-flex row-cols-2 gap-2">
+                <div class="mb-3">
+                    <label for="time_start" class="form-label">Ora d'inizio *</label>
+                    <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time"
+                        class="form-control @error('time_start') is-invalid @enderror" name="time_start" id="time_start"
+                        aria-describedby="time_startHelper" value="{{ old('time_start', $step->time_start) }}"
+                        placeholder="" required />
 
-                {{-- span di errore lato front  --}}
-                <span id="time_start_error" class="text-danger error_invisible" role="alert">
-                    L'ora d'inizio e obbligatoria
-                </span>
+                    {{-- span di errore lato front  --}}
+                    <span id="time_start_error" class="text-danger error_invisible" role="alert">
+                        L'ora d'inizio e obbligatoria
+                    </span>
 
-                {{-- errore lato back --}}
-                @error('time_start')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                <small id="time_startHelper" class="form-text text-muted">Inserisci l'ora d'inizio dell'itinerario</small>
+                    {{-- errore lato back --}}
+                    @error('time_start')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <small id="time_startHelper" class="form-text text-muted">Inserisci l'ora d'inizio
+                        dell'itinerario</small>
+                </div>
+
+
+                {{-- campo time_end di step --}}
+                <div class="mb-3">
+                    <label for="time_arrived" class="form-label">Ora di fine *</label>
+                    <input onkeyup="hide_time_arrived_error()" onblur="check_time_arrived()" type="time"
+                        class="form-control @error('time_arrived') is-invalid @enderror" name="time_arrived"
+                        id="time_arrived" aria-describedby="dateHelper"
+                        value="{{ old('time_arrived', $step->time_arrived) }}" placeholder="" required />
+
+                    {{-- span di errore lato front  --}}
+                    <span id="time_arrived_error" class="text-danger error_invisible" role="alert">
+                        L'ora di fine e obbligatoria
+                    </span>
+
+                    {{-- errore lato back --}}
+                    @error('time_arrived')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <small id="dateHelper" class="form-text text-muted">Inserisci l'ora di fine dell'itinerario</small>
+                </div>
             </div>
 
-
-            {{-- campo time_end di step --}}
-            <div class="mb-3">
-                <label for="time_arrived" class="form-label">Ora di fine *</label>
-                <input onkeyup="hide_time_arrived_error()" onblur="check_time_arrived()" type="time"
-                    class="form-control @error('time_arrived') is-invalid @enderror" name="time_arrived" id="time_arrived"
-                    aria-describedby="dateHelper" value="{{ old('time_arrived', $step->time_arrived) }}" placeholder=""
-                    required />
-
-                {{-- span di errore lato front  --}}
-                <span id="time_arrived_error" class="text-danger error_invisible" role="alert">
-                    L'ora di fine e obbligatoria
-                </span>
-
-                {{-- errore lato back --}}
-                @error('time_arrived')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                <small id="dateHelper" class="form-text text-muted">Inserisci l'ora di fine dell'itinerario</small>
-            </div>
 
             {{-- campo image di step --}}
             <div class="mb-3">
@@ -212,11 +216,10 @@
             </div>
 
             {{-- campo description di step --}}
-            <div class="mb-3">
-                <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control" name="description" id="description" rows="3">{{ old('description', $step->description) }}</textarea>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Leave a comment here" id="description" style="height: 100px">{{ old('description', $step->description) }}</textarea>
+                <label for="description">Descrizione</label>
 
-                {{-- errore lato back --}}
                 @error('description')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

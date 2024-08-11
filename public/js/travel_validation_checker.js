@@ -9,13 +9,13 @@ function check_name() {
     if (input.value.length >= 3 || input.value.length >= 50) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        input.style.border = "";
 
         return true;
     } else {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        input.style.border = "2px solid red";
 
         return false;
     }
@@ -34,7 +34,7 @@ function check_date_start() {
     } else {
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        input.style.border = "2px solid red";
 
         return false;
     }
@@ -48,14 +48,14 @@ function check_date_finish() {
         console.log('ciao')
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        input.style.border = "";
 
         return true;
     } else {
         console.log('addio')
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
+        input.style.border = "2px solid red";
 
         return false;
     }
@@ -69,7 +69,7 @@ function hide_name_error() {
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        input.style.border = "";
     }
 }
 
@@ -81,7 +81,7 @@ function hide_date_start_error() {
     if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        input.style.border = "";
     }
 }
 
@@ -93,7 +93,7 @@ function hide_date_finish_error() {
     if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
+        input.style.border = "";
     }
 }
 const createButton = document.getElementById("create_travel_btn")
