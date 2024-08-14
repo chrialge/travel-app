@@ -24,7 +24,17 @@
 </head>
 
 <body>
+    <div id="loading">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div id="app">
+
+
+
 
         <main class="d-flex">
             <div class="sidebar sidebar-narrow-unfoldable ">
@@ -40,7 +50,7 @@
                                 <img class="avatar-img" src="{{ asset('storage/img/user.png') }}" alt="user@email.com">
                                 <span class="avatar-status bg-success"></span>
                             </div>
-                            <span>{{ Auth::user()->name }}</span>
+                            <span style="color: #E25B07">{{ Auth::user()->name }}</span>
                         </a>
 
                     </li>

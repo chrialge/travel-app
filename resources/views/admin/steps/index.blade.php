@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-4" style="padding-left: 50px">
+    <div class="container py-4">
         <div class="header_step d-flex justify-content-between align-items-center py-3">
             <h2>Itinerari</h2>
             <a href="{{ route('admin.steps.create') }}" class="btn" style="color: white; background-color:#E25B07">
@@ -26,7 +26,7 @@
                         <tr class="">
                             <td scope="row">{{ $step->name }}</td>
                             <td>{{ $step->travel->name }}</td>
-                            <td>{{ $step->date }}</td>
+                            <td>{{ date_format(new DateTime($step->date), 'd/m/Y') }}</td>
                             <td class="">
                                 <div class="d-flex justify-content-center flex-wrap gap-1">
                                     <a href="{{ route('admin.steps.show', $step) }}" class="btn btn-dark">

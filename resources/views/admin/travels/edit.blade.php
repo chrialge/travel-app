@@ -4,7 +4,7 @@
     <div class="container">
 
         {{-- Intestazione --}}
-        <div class="header d-flex justify-content-between align-items-center py-4" style="background-color: transparent">
+        <div class="header_travels d-flex justify-content-between align-items-center py-4">
             <h2>Modifica Viaggio</h2>
 
             {{-- bottone che ti rispedisce alla pagina index di travel --}}

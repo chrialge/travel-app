@@ -4,7 +4,8 @@
     <div class="container" style="background-color: transparent; ">
 
         {{-- INTESTAZIONE  --}}
-        <div class="header d-flex justify-content-between align-items-center py-4" style="background-color: transparent">
+        <div class="header_travels d-flex justify-content-between align-items-center py-4"
+            style="background-color: transparent">
             <h2>Nuovo Viaggio</h2>
 
             {{-- bottone che porta alla pagina index di travel --}}

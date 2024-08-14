@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container" style="padding-left: 50px">
-        <div class="header d-flex justify-content-between align-items-center py-4" style="background: transparent">
+    <div class="container-xl">
+        <div class="header_travels d-flex justify-content-between align-items-center py-4">
             <h2>Viaggi</h2>
             <a href="{{ route('admin.travels.create') }}" class="btn" style="color: white; background-color:#E25B07">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
@@ -16,8 +16,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Nome</th>
-                        <th scope="col">Inizio del viaggio</th>
-                        <th scope="col">Fine del viaggio</th>
+                        <th scope="col">
+                            <span class="text-center">Durata</span>
+                        </th>
+
                         <th style="width: 150px; text-align:center;">Azioni</th>
                     </tr>
                 </thead>
@@ -25,8 +27,9 @@
                     @forelse ($travels as $travel)
                         <tr class="">
                             <td scope="row">{{ $travel->name }}</td>
-                            <td>{{ date_format(date_create($travel->date_start), 'd/m/Y') }}</td>
-                            <td>{{ date_format(date_create($travel->date_finish), 'd/m/Y') }}</td>
+                            <td>{{ date_format(date_create($travel->date_start), 'd/m/Y') }}
+                                {{ date_format(date_create($travel->date_finish), 'd/m/Y') }}</td>
+
                             <td class="" style="min-height: 100%">
                                 <div class="justify-content-center d-flex gap-1 flex-wrap">
                                     <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-dark">
@@ -92,5 +95,6 @@
             </table>
             {{ $travels->links('pagination::bootstrap-5') }}
         </div>
+
     </div>
 @endsection

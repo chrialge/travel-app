@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\TravelController;
 use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowTravelController;
+use App\Models\Travel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +21,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $travels = Travel::all();
+    return view('welcome', compact('travels'));
 });
 
-
+Route::get('/travels/{travel}', [ShowTravelController::class, 'show'])->name('travel');
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')

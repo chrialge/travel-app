@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-4 h-100">
+    <div class="container-xl py-4 h-100">
         <div class="travels_container d-flex justify-content-between py-5 gap-4">
             <div class="left">
                 @if ($travel->image)
                     <img class="w-100" src="{{ asset('storage/' . $travel->image) }}"
                         alt="Immagine del viaggio {{ $travel->name }}">
                 @else
-                    <img style="width: 95%" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
+                    <img class="w-100" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
                         alt="immagine di default del viaggio">
                 @endif
             </div>
-            <div class="right_show_travel" style="width: 500px">
+            <div class="right_show_travel">
                 <div class="header_travel d-flex justify-content-between align-items-center">
                     <h2 class="color_orange">{{ $travel->name }}</h2>
                     <a href="{{ route('admin.travels.index') }}" class="btn btn-dark btn_return">
@@ -57,6 +57,33 @@
 
 
             </div>
+            <div id="bar_date_mobile">
+                <div class="d-flex align-items-center gap-1">
+
+                    @if (date_format(DateTime::createFromFormat('d/m/Y', $travel->date_start), 'Y-m-d') == $dateActive['value'])
+                    @else
+                        <a class=" text-decoration-none"
+                            href="{{ route('admin.travels.show', [$travel, date_format((new DateTime($dateActive['value']))->modify('-1 day'), 'Y-m-d')]) }}">
+                            <i class="fa-solid fa-caret-left" style="font-size: 23px; color:#1E1E1E"></i>
+                        </a>
+                    @endif
+
+
+                    <a href="" id="date-new" class="date_container text-decoration-none text-white active">
+                        {{ $dateActive['format'] }}
+                    </a>
+                    @if (date_format(DateTime::createFromFormat('d/m/Y', $travel->date_finish), 'Y-m-d') == $dateActive['value'])
+                    @else
+                        <a class=" text-decoration-none"
+                            href="{{ route('admin.travels.show', [$travel, date_format((new DateTime($dateActive['value']))->modify('+1 day'), 'Y-m-d')]) }}">
+                            <i class="fa-solid fa-caret-right" style="font-size: 23px; color:#1E1E1E"></i>
+                        </a>
+                    @endif
+
+                </div>
+            </div>
+
+
             <div class="container_step d-flex flex-column gap-3">
                 @foreach ($step as $step)
                     <div class="step_card d-flex justify-content-between align-items-center">

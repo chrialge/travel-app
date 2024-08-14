@@ -116,7 +116,15 @@ class TravelController extends Controller
 
             $step = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();            // dd($dateArray);
             // rispedisce alla pagina singola di un travel
-            return view('admin.travels.show', compact('travel', 'dateArray', 'step'));
+            $format = new DateTime($varaiable);
+            $format = $format->format('d-m');
+            $dateActive = [
+                'value' => $varaiable,
+                'format' => $format
+            ];
+            // dd($varaiable, $format, $dateActive);
+
+            return view('admin.travels.show', compact('travel', 'dateArray', 'step', 'dateActive'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }
