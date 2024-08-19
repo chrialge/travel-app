@@ -32,4 +32,14 @@ class Step extends Model
     {
         return $this->hasMany(Note::class);
     }
+
+    /**
+     * Get all of the votes for the Step
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class);
+    }
 }

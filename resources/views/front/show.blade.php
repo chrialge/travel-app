@@ -63,12 +63,34 @@
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div id="rating1" class="star-rating" role="rating">
+                            @if (count($step->votes) > 0)
+                                <li class="list-group-item">
+                                    rating {{ $step->votes->avg('vote') }}
+                                </li>
+                            @endif
 
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
+                            <li class="list-group-item d-flex gap-1">
+                                @for ($i = 1; $i < 6; $i++)
+                                    <div onclick="rating({{ $i }}, {{ $step->id }})"
+                                        id="rating{{ $i }}" class="star-rating-{{ $step->id }}"
+                                        role="rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+
+                                    </div>
+                                @endfor
+
+                                <form action="{{ route('vote', $step) }}" method="post">
+                                    @csrf
+                                    <input class="d-none" type="number" name="vote" id="vote-{{ $step->id }}">
+                                    <button type="submit" class="border-0 ">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </button>
+
+                                </form>
                             </li>
+
                         </ul>
                         <div class="card-body">
                             <a href="#" class="btn btn-primary">Aggiungi nota</a>
@@ -86,6 +108,6 @@
         </div>
 
 
-
+        <script src="{{ asset('js/rating_star.js') }}"></script>
     </section>
 @endsection

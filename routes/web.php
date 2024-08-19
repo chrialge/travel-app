@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\TravelController;
 use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowTravelController;
+use App\Http\Controllers\VoteController;
 use App\Models\Travel;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::get('/', function () {
 });
 
 Route::get('/travels/{travel}', [ShowTravelController::class, 'show'])->name('travel');
+
+Route::post('/{step}/vote', [VoteController::class, 'addVote'])->name('vote');
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
