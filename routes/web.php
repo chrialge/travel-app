@@ -9,6 +9,7 @@ use App\Http\Controllers\ShowTravelController;
 use App\Http\Controllers\VoteController;
 use App\Models\Travel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShowStepController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,12 @@ Route::get('/', function () {
     return view('welcome', compact('travels'));
 });
 
-Route::get('/travels/{travel}', [ShowTravelController::class, 'show'])->name('travel');
+Route::get('/travels/{travel:slug}', [ShowTravelController::class, 'show'])->name('travel');
 
 Route::post('/{step}/vote', [VoteController::class, 'addVote'])->name('vote');
+
+Route::get('/steps/{step:slug}', [ShowStepController::class, 'show'])->name('step');
+
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
@@ -36,8 +40,8 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/travels', TravelController::class)->parameters(['travels' => 'travel:slug']);
-        Route::resource('/steps', StepController::class);
-        Route::resource('/notes', NoteController::class);
+        Route::resource('/steps', StepController::class)->parameters(['steps' => 'step:slug']);
+        Route::resource('/notes', NoteController::class)->parameters(['notes' => 'note:slug']);
     });
 
 Route::middleware('auth')->group(function () {

@@ -20,3 +20,4 @@ function remove(stars) {
         i++;
     }
 }
+

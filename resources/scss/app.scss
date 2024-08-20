@@ -359,6 +359,64 @@
     margin-bottom: 10px;
 }
 
-.star-rating:hover{
+.stars{
+    cursor: pointer;
+}
+.stars:hover{
     scale: 1.2;
+}
+
+.toast{
+    display: block !important;
+}
+.toast:not(.show) {
+    display: none !important;
+}
+.card_step{
+    box-shadow: 2px 2px 5px black;
+
+}
+
+#step_front{
+    background: linear-gradient(45deg, #E25B07, #EDA353);
+
+    .container{
+        background-color: white;
+        
+
+    }
+}
+
+.right_note{
+    background-color: #dee2e6;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.modal_note{
+    background-color: #1E1E1E;
+    color: #E25B07;
+    .close_modal{
+        color: #E25B07;
+        border: none;
+        background-color: transparent;
+    }
+    .modal-body{
+        .form-floating>input, .form-floating>textarea{
+            background-color: transparent;
+            color: #E25B07;
+            border-color: #E25B07;
+
+        }
+        .form-floating>label{
+            background-color: transparent;
+            border: 0;
+            color: #E25B07;
+        }
+
+        .create_note_btn{
+            background-color: #E25B07;
+            color: white;
+        }
+    }
 }

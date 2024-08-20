@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+    @include('partials.session')
     <section id="jumbotron">
         <div class="p-5 text-center">
             <div class="container-md py-5 bg-white">
@@ -44,10 +46,11 @@
             </div>
             <div class="row gap-2 justify-content-between px-1">
                 @forelse ($steps as $step)
-                    <div class="card p-0" style="width: 18rem;">
-                        <img class="card-image-top" src="{{ asset('storage/img/no-img.png') }}"
-                            alt="immagine di deafult dell'itinerario">
-
+                    <div class="card card_step p-0" style="width: 18rem;">
+                        <a href="{{ route('step', $step) }}" class=" text-decoration-none text-dark">
+                            <img class="card-image-top p-2 w-100" src="{{ asset('storage/img/no-img.png') }}"
+                                alt="immagine di deafult dell'itinerario">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $step->name }}</h5>
                             <span class=" card-text">
@@ -65,26 +68,29 @@
                         <ul class="list-group list-group-flush">
                             @if (count($step->votes) > 0)
                                 <li class="list-group-item">
-                                    rating {{ $step->votes->avg('vote') }}
+                                    voto {{ round($step->votes->avg('vote'), 2) }}
                                 </li>
                             @endif
 
-                            <li class="list-group-item d-flex gap-1">
-                                @for ($i = 1; $i < 6; $i++)
-                                    <div onclick="rating({{ $i }}, {{ $step->id }})"
-                                        id="rating{{ $i }}" class="star-rating-{{ $step->id }}"
-                                        role="rating">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div class="conatiner_stars d-flex gap-1">
+                                    @for ($i = 1; $i < 6; $i++)
+                                        <div onclick="rating({{ $i }}, {{ $step->id }})"
+                                            id="rating{{ $i }}" class="star-rating-{{ $step->id }} stars"
+                                            role="rating">
 
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
 
 
-                                    </div>
-                                @endfor
+                                        </div>
+                                    @endfor
+                                </div>
 
-                                <form action="{{ route('vote', $step) }}" method="post">
+
+                                <form action="{{ route('vote', $step) }}" method="post" class="">
                                     @csrf
                                     <input class="d-none" type="number" name="vote" id="vote-{{ $step->id }}">
-                                    <button type="submit" class="border-0 ">
+                                    <button type="submit" class="border-0 bg-white">
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                     </button>
 
@@ -92,9 +98,7 @@
                             </li>
 
                         </ul>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Aggiungi nota</a>
-                        </div>
+
                     </div>
                 @empty
                 @endforelse

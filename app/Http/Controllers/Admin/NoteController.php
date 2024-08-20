@@ -31,7 +31,7 @@ class NoteController extends Controller
      */
     public function store(StoreNoteRequest $request)
     {
-        //
+        dd($request->validated());
     }
 
     /**
