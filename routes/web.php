@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\TravelController;
 use App\Http\Controllers\Admin\NoteController;
+use App\Http\Controllers\CreateNoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowTravelController;
 use App\Http\Controllers\VoteController;
@@ -32,6 +33,8 @@ Route::get('/travels/{travel:slug}', [ShowTravelController::class, 'show'])->nam
 Route::post('/{step}/vote', [VoteController::class, 'addVote'])->name('vote');
 
 Route::get('/steps/{step:slug}', [ShowStepController::class, 'show'])->name('step');
+
+Route::post('/steps/notes', [CreateNoteController::class, 'index'])->name('note');
 
 
 Route::middleware(['auth', 'verified'])

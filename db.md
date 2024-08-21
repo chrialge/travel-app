@@ -54,8 +54,8 @@ attributes:
 -   step_id || BIGINT | NOTNULL | FK
 -   customer_name || VARCHAR(50) | MIN: 3 | NOTNULL
 -   customer_lastname || VARCHAR(50) | MIN: 3 | NOTNULL
--   customer_email || VARCHAR(50) | MIN: 3 | NOTNULL
--   note|| TEXT | NULL
+-   customer_email || VARCHAR(250) | MIN: 3 | NOTNULL
+-   note|| TEXT | NOTNULL
 
 ## table
 

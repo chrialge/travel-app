@@ -22,7 +22,10 @@ class StoreNoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'customer_name' => 'required|min:3|max:50',
+            'customer_lastname' => 'required|min:3|max:50',
+            'customer_email' => 'required|email',
+            'note' => 'required',
         ];
     }
 }

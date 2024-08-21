@@ -20,9 +20,47 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+    <style>
+        #app {
+            display: none;
+        }
+
+        #loading {
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            height: 100%;
+            display: block;
+            filter: blur(50%);
+            background-color: rgba(245, 245, 245, 0.679);
+        }
+
+        #btn_load_page {
+            background-color: #E25B07;
+            color: white;
+            border: none;
+            font-size: 20px;
+            box-shadow: 2px 2px 5px black
+        }
+    </style>
 </head>
 
 <body>
+
+
+    <div id="loading">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <button id="btn_load_page" class="btn" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Loading...</span>
+            </button>
+        </div>
+    </div>
+
     <div id="app">
 
 

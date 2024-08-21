@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Note extends Model
 {
-    protected $fillable = ['step_id', 'customer_name', 'customer_lastname', 'customer_email', 'note'];
+    protected $fillable = ['step_id', 'slug', 'customer_name', 'customer_lastname', 'customer_email', 'note'];
     use HasFactory;
 
     /**

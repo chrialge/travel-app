@@ -2,6 +2,9 @@
 // Import all of CoreUI's CSS
 @import "@coreui/coreui/scss/coreui";
 
+*{
+    font-family: "Lilita One", sans-serif;
+}
 
 
 .error_invisible{
@@ -334,9 +337,7 @@
     margin-left: 20px;
 }
 
-#loading{
-    display: none;
-}
+
 .navbar{
     color: #E25B07;
     background-color: #1E1E1E;

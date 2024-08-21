@@ -2,6 +2,7 @@
 @section('content')
     @include('partials.session')
 
+
     <section id="jumbotron">
         <div class="p-5 text-center">
             <div class="container-md py-5 bg-white">
@@ -72,13 +73,40 @@
             <span class="separeted my-3"></span>
             <div class="notes w-50 ps-3">
                 @forelse ($step->notes as $note)
-                    <div class="left">
-                        <img src="{{ asset('storage/img/user.png') }}" alt="" width="40">
-                    </div>
-                    <div class="right">
-                        {{ date_format(new DateTime($note->created_at), 'd/m') }}
+                    <div class="note_container d-flex gap-2 mb-2">
+                        <div class="left_note">
+                            <img src="{{ asset('storage/img/user.png') }}" alt="" width="40">
+                        </div>
+                        <div class="right_note flex-grow-1">
+                            <div class="header_note d-flex justify-content-between">
+                                <div class="name_customer">
+                                    <strong>{{ $note->customer_name }} {{ $note->customer_lastname }}</strong>
+                                </div>
+                                <div class="date_note">
+                                    <span>
+                                        {{ date_format(new DateTime($note->created_at), 'd/m') }}
+                                    </span>
 
-                        {{ date_format(new DateTime($note->created_at), 'H:m') }}
+                                </div>
+                            </div>
+
+
+                            <div class="content_note">
+                                {{ $note->note }}
+                            </div>
+                            <div class="time_note text-end">
+                                <span>
+                                    {{ date_format(new DateTime($note->created_at), 'H:m') }}
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="right">
+
+
+
                     </div>
                 @empty
                     <div class="note_container d-flex gap-2">
@@ -132,13 +160,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('admin.notes.store') }}" method="post">
+                        <form action="{{ route('note', $step->id) }}" method="post">
                             @csrf
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control @error('customer_name') is-invalid @enderror"
-                                    name="customer_name" id="customer_name" placeholder="Password"
-                                    value="{{ old('customer_name') }}">
+                                <input type="text" onkeyup="hide_name_error()" onblur="check_name()"
+                                    class="form-control @error('customer_name') is-invalid @enderror" name="customer_name"
+                                    id="customer_name" placeholder="Password" value="{{ old('customer_name') }}">
                                 <label for="name">Nome</label>
 
                                 <span id="name_error" class="text-danger error_invisible" role="alert">
@@ -151,7 +179,24 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control @error('customer_email') is-invalid @enderror"
+                                <input type="text" onkeyup="hide_lastname_error()" onblur="check_lastname()"
+                                    class="form-control @error('customer_lastname') is-invalid @enderror"
+                                    name="customer_lastname" id="customer_lastname" placeholder="Password"
+                                    value="{{ old('customer_lastname') }}">
+                                <label for="name">Cognome</label>
+
+                                <span id="lastname_error" class="text-danger error_invisible" role="alert">
+                                    Il cognome deve essere almeno di 3 caratteri e massimo 50 caratteri
+                                </span>
+
+                                @error('customer_lastname')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="email" onkeyup="hide_email_error()" onblur="check_email()"
+                                    class="form-control @error('customer_email') is-invalid @enderror"
                                     name="customer_email" id="customer_email" placeholder="name@example.com"
                                     value="{{ old('customer_email') }}">
                                 <label for="customer_email">Email address</label>
@@ -168,9 +213,10 @@
 
 
                             <div class="form-floating">
-                                <textarea class="form-control @error('note') is-invalid @enderror" placeholder="Leave a comment here"
-                                    id="floatingTextarea2" style="height: 100px">{{ old('note') }}</textarea>
-                                <label for="floatingTextarea2">Nota</label>
+                                <textarea name="note" onkeyup="hide_note_error()" onblur="check_note()"
+                                    class="form-control @error('note') is-invalid @enderror" placeholder="Leave a comment here" id="note"
+                                    style="height: 100px">{{ old('note') }}</textarea>
+                                <label for="note">Nota</label>
 
                                 <span id="note_error" class="text-danger error_invisible">
                                     deve contenere minimo 5 caratteri
@@ -182,8 +228,12 @@
                             </div>
 
 
-                            <button type="submit" class="btn my-3 create_note_btn">
+                            <button id="create_note_btn" type="submit" class="btn my-3 create_note_btn">
                                 crea nuova nota
+                            </button>
+
+                            <button id="btn_loading" class="btn my-3 create_note_btn error_invisible" disabled>
+                                Attendi...
                             </button>
                         </form>
                     </div>
@@ -192,7 +242,7 @@
         </div>
 
 
-
+        <script src="{{ asset('js/note_validation.js') }}"></script>
 
     </section>
 @endsection

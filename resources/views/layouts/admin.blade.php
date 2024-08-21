@@ -16,27 +16,59 @@
 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
+
+    <style>
+        #app {
+            display: none;
+        }
+
+        #loading {
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            height: 100%;
+            display: block;
+            filter: blur(50%);
+            background-color: rgba(245, 245, 245, 0.679);
+        }
+
+        #btn_load_page {
+            background-color: #E25B07;
+            color: white;
+            border: none;
+            font-size: 20px;
+            box-shadow: 2px 2px 5px black
+        }
+    </style>
 </head>
 
 <body>
+
     <div id="loading">
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <button id="btn_load_page" class="btn" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Loading...</span>
+            </button>
         </div>
     </div>
+
     <div id="app">
 
 
 
 
         <main class="d-flex">
+
             <div class="sidebar sidebar-narrow-unfoldable ">
                 <div class="sidebar-header border-bottom">
                     <img class="logo" src="{{ asset('storage/img/logo.png') }}" alt="" width="100%"
@@ -92,12 +124,15 @@
 
                 </div>
             </div>
+
             <div class="container_admin">
                 @yield('content')
             </div>
 
         </main>
     </div>
+
+
 </body>
 
 </html>
