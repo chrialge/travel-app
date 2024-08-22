@@ -36,6 +36,7 @@
                 <small id="nameHelper" class="form-text text-muted">Inserisci il nome dell'itinerario</small>
             </div>
 
+            {{-- campo di selezione del viaggio --}}
             <div class="mb-3">
                 <label for="travel_id" class="form-label">Viaggi *</label>
                 <select class="form-select form-select-lg @error('travel_id') is-invalid @enderror" name="travel_id"
@@ -47,6 +48,7 @@
                             {{ $travel->name }}</option>
                     @endforeach
                 </select>
+
                 {{-- errore lato back --}}
                 @error('travel_id')
                     <div class="text-danger">{{ $message }}</div>

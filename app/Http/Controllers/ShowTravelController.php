@@ -11,8 +11,10 @@ class ShowTravelController extends Controller
 {
     public function show(Travel $travel)
     {
+        // salvo in una variabile gl'itinerari del viaggio
         $steps = Step::where('travel_id', $travel->id)->orderByDesc('date')->get();
-        $rate = Vote::avg('vote');
-        return view('front.show', compact('travel', 'steps', 'rate'));
+
+        // renderizza alla pagina show del viaggio e passa il viaggio con i suoi itinerari
+        return view('travel.show', compact('travel', 'steps'));
     }
 }

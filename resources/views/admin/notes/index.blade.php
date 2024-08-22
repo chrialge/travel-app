@@ -2,14 +2,20 @@
 
 @section('content')
     <div class="container py-4">
+
+        {{-- header of notes --}}
         <div class="header_step d-flex justify-content-between align-items-center py-3">
-            <h2>Note</h2>
+            <h2>Note {{ count($notes) }}</h2>
         </div>
 
+        {{-- partial for message of session --}}
         @include('partials.session')
 
+        {{-- table with notes  --}}
         <div class="table-responsive">
             <table class="table table-primary">
+
+                {{-- header of table --}}
                 <thead>
                     <tr>
                         <th scope="col">Nome e Cognome</th>
@@ -18,6 +24,8 @@
                         <th scope="col" style="width: 110px; text-align: center;">Azioni</th>
                     </tr>
                 </thead>
+
+                {{-- body of table --}}
                 <tbody>
                     @forelse ($notes as $note)
                         <tr class="">
@@ -30,10 +38,13 @@
                             @endif
 
                             <td class="">
+
+                                {{-- se clicci ci mostra il singolo itinerario --}}
                                 <a href="{{ route('admin.notes.show', $note) }}" class="btn btn-dark">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </a>
 
+                                {{-- se cliccli apre la modale --}}
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#modalId-{{ $note->id }}">
                                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
@@ -46,7 +57,9 @@
                                     aria-labelledby="modalTitleId-{{ $note->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                         role="document">
+
                                         <div class="modal-content">
+
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="modalTitleId-{{ $note->id }}">
                                                     Attenzione!
@@ -54,18 +67,21 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
+
                                             <div class="modal-body">
                                                 Sei sicuro di cancellare il viaggio, la cancellazione sara irreversibile.
                                             </div>
+
                                             <div class="modal-footer">
                                                 <form action="{{ route('admin.notes.destroy', $note) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
+
+                                                    {{-- clicco che cancella l'itinerio --}}
                                                     <button type="submit" class="btn btn-danger">Cancella</button>
                                                 </form>
-
-
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

@@ -20,13 +20,26 @@ class StepController extends Controller
      */
     public function index()
     {
+        // salvo in una variabilel'id dell'utente attualmente collegato
         $id = Auth::id();
+
+        //salva in una variabile i viaggi in base all'id dell'utente attualmente collegato
         $travels = Travel::where('user_id', $id)->get();
+
+        // creo una variabile con un array vuoto
         $range = [];
+
+        // itero i viaggi
         foreach ($travels as $travel) {
+
+            // pusho tutti gli id dei viaggi in range
             array_push($range, $travel->id);
         }
+
+        // salvo in una variabile tutti gli itinerari che hanno gli id dei viaggi, vengo ordinati in ordine decrescente
         $steps = Step::whereIn('travel_id', $range)->orderByDesc('id')->paginate(6);
+
+        // renderizza alla pagina index degl'itenerari e passa gl'itenerari
         return view('admin.steps.index', compact('steps'));
     }
 
@@ -35,9 +48,16 @@ class StepController extends Controller
      */
     public function create()
     {
+        //salvo in una variabile l'id del viaggio
         $travel_id = key($_GET);
+
+        // salvo in una variabile l'id dell'utente attualmente collegato
         $id = Auth::id();
+
+        // salvo in una varibile tutti i viaggi dell'utente attaulmente collegato
         $travels = Travel::where('user_id', $id)->get();
+
+        // renderizzo alla pagina di creazione degl'itinerari e passo i viaggi 
         return view('admin.steps.create', compact('travels', 'travel_id'));
     }
 
@@ -46,8 +66,8 @@ class StepController extends Controller
      */
     public function store(StoreStepRequest $request)
     {
+        // salvo i dati validati
         $val_data = $request->validated();
-
 
         // se nella richiesta ce image
         if ($request->has('image')) {
@@ -67,18 +87,20 @@ class StepController extends Controller
             // variabile che salva lo slug
             $slug = Str::slug($val_data['name'], '-') . '-' . $slug_checker + 1;
         } else {
-
             // variabile che salva lo slug
             $slug = Str::slug($val_data['name'], '-');
         }
 
+        // salvo nella chiave location lo stato, la regione, la via e il cap
         $val_data['location'] =  $val_data['state'] . ', ' . $val_data['region'] . ', Via' . $val_data['route'] . ', ' . $val_data['cap'];
 
         //salva lo slug nella nella key slug 
         $val_data['slug'] = $slug;
 
+        // salvo nella variabile l'itinerario creato
         $newStep = Step::create($val_data);
 
+        // renderizzo alla pagina index dell'itinerario con un messaggio per la session
         return to_route('admin.steps.index')->with('message', "Hai creato l'itineraio $newStep->name");
     }
 
@@ -87,10 +109,13 @@ class StepController extends Controller
      */
     public function show(Step $step)
     {
-        // dd($step);
-        $travel = Travel::where('id', $step->travel_id)->get();
+        // // salvo il viaggio dell'itinerario
+        // $travel = Travel::where('id', $step->travel_id)->get();
 
+        // se l'itinerario e quello creato dall'utente attualmente collegato
         if (Gate::allows('step_checker', $step)) {
+
+            // renderizza alla pagina show dell'itinerario e passo il singolo itinerario
             return view('admin.steps.show', compact('step'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
@@ -101,12 +126,19 @@ class StepController extends Controller
      */
     public function edit(Step $step)
     {
-        // dd($step);
-        $travel = Travel::where('id', $step->travel_id)->get();
+        // // salvo il viaggio dell'itinerario
+        // $travel = Travel::where('id', $step->travel_id)->get();
 
+        // se l'itinerario e quello creato dall'utente attualmente collegato
         if (Gate::allows('step_checker', $step)) {
+
+            // salvo in una variabile l'id dell'utente attualmente collegato
             $id = Auth::id();
+
+            // salvo in una varibile tutti i viaggi dell'utente attaulmente collegato
             $travels = Travel::where('user_id', $id)->get();
+
+            // renderizzo alla pagina di modifica dell'itinerario e passo gl'itinerari e viaggi
             return view('admin.steps.edit', compact('step', 'travels'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
@@ -117,10 +149,13 @@ class StepController extends Controller
      */
     public function update(UpdateStepRequest $request, Step $step)
     {
-
+        // se l'itinerario e quello creato dall'utente attualmente collegato
         if (Gate::allows('step_checker', $step)) {
+
+            // salvo i dati validati
             $val_data = $request->validated();
 
+            // se nella richiesta ce image
             if ($request->has('image')) {
 
                 // se esiste l'immagine di travel
@@ -150,12 +185,13 @@ class StepController extends Controller
             //salva lo slug nella nella key slug 
             $val_data['slug'] = $slug;
 
+            // salvo nella chiave location lo stato, la regione, la via e il cap
             $val_data['location'] =  $val_data['state'] . ', ' . $val_data['region'] . ', Via' . $val_data['route'] . ', ' . $val_data['cap'];
 
             // modifica travel con i nuovi dati
             $step->update($val_data);
 
-            // rispedisce alla pagina index di travels
+            // renderizzo alla pagina index dell'itinerario con un messaggio per la session
             return to_route('admin.steps.index')->with('message', "Hai modificato l'itinerario: $step->name");
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
@@ -166,7 +202,7 @@ class StepController extends Controller
      */
     public function destroy(Step $step)
     {
-
+        // se l'itinerario e quello creato dall'utente attualmente collegato
         if (Gate::allows('step_checker', $step)) {
 
             // se esiste l'immagine di travel
@@ -182,7 +218,7 @@ class StepController extends Controller
             // cancello step
             $step->delete();
 
-            // ritorna alla pagina index
+            // renderizzo alla pagina precedente con un messaggio per la session
             return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+    {{-- jumbotron section --}}
     <section id="jumbotron">
         <div class="p-5 text-center">
             <div class="container-md py-5 bg-white">
@@ -11,17 +13,27 @@
             </div>
         </div>
     </section>
+
+    {{-- section travels front --}}
     <section id="travels_front" style="padding-left: 10px">
 
         <div class="container py-5">
+
+            {{-- haeder travels front --}}
             <h2 style="color: #1e1e1e;">
                 Travels
             </h2>
+
+            {{-- separatore --}}
             <span class="separeted"></span>
+
             <div class="row gap-2 justify-content-between">
                 @for ($i = 0; $i < 4; $i++)
                     @foreach ($travels as $travel)
+                        {{-- card --}}
                         <div class="card p-0" style="width: 18rem;">
+
+                            {{-- se esiste l'immagine del viaggio --}}
                             @if ($travel->image)
                                 <img class="card-img-top" src="{{ asset('storage/' . $travel->image) }}"
                                     alt="Immagine del viaggio {{ $travel->name }}">
@@ -30,6 +42,7 @@
                                     alt="immagine di default del viaggio">
                             @endif
 
+                            {{-- card body --}}
                             <div class="card-body">
                                 <h5 class="card-title">{{ $travel->name }}</h5>
                                 <p class="card-text">
@@ -37,6 +50,8 @@
                                     {{ date_format(new DateTime($travel->date_start), 'd/m/Y') }} a
                                     {{ date_format(new DateTime($travel->date_finish), 'd/m/Y') }}
                                 </p>
+
+                                {{-- se clicci ti renderizza alla pagina del singolo viaggio --}}
                                 <a href="{{ route('travel', $travel) }}" class="btn btn-primary">Itinerari</a>
                             </div>
                         </div>

@@ -2,21 +2,30 @@
 
 @section('content')
     <div class="container-fluid mt-4 flex-column d-flex align-items-center gap-4">
+
+        {{-- header --}}
         <h1>TRAVELBOO</h1>
         <div class="row justify-content-center w-100">
+
+            {{-- bottone che renderizza alla pagina precedente --}}
             <button class="button_return" onclick="history.back()">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>
 
+            {{-- card register --}}
             <div class="card_register">
+
+                {{-- card header --}}
                 <div class="card_header">
                     <h2>{{ __('Registrazione') }}</h2>
                 </div>
 
+                {{-- card body --}}
                 <div class="card_body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        {{-- campo name --}}
                         <div class="mb-3">
                             <label for="name" class="col-form-label text-md-right">{{ __('Nome *') }}</label>
 
@@ -30,10 +39,12 @@
 
                             </div>
 
+                            {{-- errore lato front --}}
                             <span id="name_error" class="text-danger error_invisible">
                                 Il nome deve essere almeno di 3 caratteri
                             </span>
 
+                            {{-- errore lato back --}}
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -41,7 +52,7 @@
                             @enderror
                         </div>
 
-
+                        {{-- campo lastname --}}
                         <div class="mb-3">
                             <label for="lastname" class="col-form-label text-md-right">{{ __('Cognome *') }}</label>
 
@@ -56,10 +67,12 @@
 
                             </div>
 
-
+                            {{-- errore lato front --}}
                             <span id="lastname_error" class="text-danger error_invisible">
                                 Il cognome deve essere almeno di 3 caratteri
                             </span>
+
+                            {{-- errore lato back --}}
                             @error('lastname')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -67,6 +80,7 @@
                             @enderror
                         </div>
 
+                        {{-- campo email --}}
                         <div class="mb-3">
                             <label for="email" class="col-form-label text-md-right">{{ __('E-Mail *') }}</label>
 
@@ -80,10 +94,12 @@
 
                             </div>
 
-
+                            {{-- errore lato front --}}
                             <span id="email_error" class="text-danger error_invisible">
                                 L'email deve essere almeno di 3 caratteri e contenere un @
                             </span>
+
+                            {{-- errore lato back --}}
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -91,6 +107,7 @@
                             @enderror
                         </div>
 
+                        {{-- campo password --}}
                         <div class="mb-3">
                             <label for="password" class="col-form-label text-md-right">{{ __('Password *') }}</label>
 
@@ -107,7 +124,7 @@
                                     <i class="fa-solid fa-eye" id="visibilityBtn"></i>
                                 </div>
 
-
+                                {{-- errore lato back --}}
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -116,6 +133,7 @@
                             </div>
                         </div>
 
+                        {{-- campo password confirm --}}
                         <div class="mb-3">
                             <label for="password-confirm"
                                 class="col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
@@ -131,15 +149,21 @@
                                     <i class="fa-solid fa-eye" id="visibilityBtn_confirm"></i>
                                 </div>
 
+                                {{-- errore lato front --}}
                                 <small id="password_error" class="text-danger error_invisible">
                                     La password non coincide.
                                 </small>
                             </div>
                         </div>
+
+
                         <span class="d-flex gap-1 pb-3">
-                            Hai gia un account? <a class="text-white" href="{{ route('login') }}">Accedi</a>
+                            Hai gia un account?
+                            {{-- se clicci ti renderizza alla pagina di accesso --}}
+                            <a class="text-white" href="{{ route('login') }}">Accedi</a>
                         </span>
 
+                        {{-- bottone di registrazione --}}
                         <div class="mb-3 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary" id="register-submit-button">
@@ -148,6 +172,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
 

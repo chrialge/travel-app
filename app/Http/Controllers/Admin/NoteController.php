@@ -15,6 +15,7 @@ class NoteController extends Controller
      */
     public function index()
     {
+        // renderizza alla pagina index delle note e passo le note
         return view('admin.notes.index', ['notes' => Note::OrderByDesc('id')->paginate(7)]);
     }
 
@@ -29,21 +30,23 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreNoteRequest $request)
-    {
-        dd($request->validated());
-    }
+    public function store(StoreNoteRequest $request) {}
 
     /**
      * Display the specified resource.
      */
     public function show(Note $note)
     {
+        // trasformo la data (dato di tipo stringa) in un dato dateTime con la classe DateTime
         $dateTime = new DateTime($note->created_at);
-        $date = $dateTime->format('d/m/Y');
-        $time = $dateTime->format('h:i');
-        // dd($dateTime, $date, $time);
 
+        // formato la data come quella italiana
+        $date = $dateTime->format('d/m/Y');
+
+        // formato per prendere l'ora e i minuti
+        $time = $dateTime->format('h:i');
+
+        // renderizzo alla pagina show delle notte e passo la singola nota con la data e l'ora
         return view('admin.notes.show', compact('note', 'date', 'time'));
     }
 

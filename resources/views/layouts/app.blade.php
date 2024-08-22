@@ -15,8 +15,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -47,11 +48,11 @@
             box-shadow: 2px 2px 5px black
         }
     </style>
-</head>
+
 
 <body>
 
-
+    {{-- loading for app --}}
     <div id="loading">
         <div class="d-flex justify-content-center align-items-center h-100">
             <button id="btn_load_page" class="btn" type="button" disabled>
@@ -61,20 +62,26 @@
         </div>
     </div>
 
+    {{-- app --}}
     <div id="app">
 
-
+        {{-- navbar --}}
         <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
+
+                {{-- se clicci indirizza alla pagina welcome del sito --}}
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+
+                    {{-- logo --}}
                     <div class="logo_app">
                         <img class="logo" src="{{ asset('storage/img/logo.png') }}" alt="" width="100%"
                             style="width: 50px;">
                         <span style="color: #E25B07;">TravelBoo</span>
                     </div>
-                    {{-- config('app.name', 'Laravel') --}}
+
                 </a>
 
+                {{-- se clicci fa comparire tutta la navbar-collapse quando si usa uno schermo piccolo --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}" style="color: #E25B07;">
@@ -84,6 +91,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -94,7 +102,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+
+                        {{-- se sei un'ospite --}}
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}"
@@ -107,6 +116,8 @@
                                 </li>
                             @endif
                         @else
+                            {{-- altrimenti --}}
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -116,16 +127,23 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
                                     style="background-color: #1E1E1E; border-color:  #E25B07;">
+
+                                    {{-- se clicci vai alla alla dasboard  --}}
                                     <a class="dropdown-item" href="{{ route('admin.dashboard') }}"
                                         style="color: #E25B07;">{{ __('Dashboard') }}</a>
+
+                                    {{-- se clicci va alla sezione del tuo profilo --}}
                                     <a class="dropdown-item" href="{{ url('profile') }}"
                                         style="color: #E25B07;">{{ __('Profile') }}</a>
+
+                                    {{-- se clicci logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                         style="color: #E25B07;">
                                         {{ __('Logout') }}
                                     </a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -138,6 +156,7 @@
             </div>
         </nav>
 
+        {{-- dove viene inserito il contenuto --}}
         <main class="">
             @yield('content')
         </main>

@@ -78,7 +78,7 @@ class TravelController extends Controller
         // crea un nuovo viaggio e lo inserisce nel db
         $travel = Travel::create($val_data);
 
-        // rimanda nella pagina index di travel
+        // renderizzo alla pagina index del viaggio con un messaggio per la session
         return to_route('admin.travels.index')->with('message', "Hai creato il viaggio: $travel->name");
     }
 
@@ -90,40 +90,65 @@ class TravelController extends Controller
         // se l'id dell'utente e uguale a quello del viaggio
         if (Gate::allows('travel_checker', $travel)) {
 
-
-
-
+            // creo una varibile con un array vuoto
             $dateArray = [];
+
+            // salvo nella variabile la data d'inizio del viaggio trasformato in datetime 
             $begin = new DateTime($travel->date_start);
+
+            // formato la data come quella italiana
             $travel->date_start =  $begin->format('d/m/Y');
+
+            // salvo nella variabile la data formattata
             $varaiable = $begin->format('Y-m-d');
+
+            // se la data viene passata
             if ($_GET) {
+
+                // salvo nella variabile il dato passato
                 $varaiable = key($_GET);
             }
+
+            // salvo nella variabile la dat di fine del viaggio trasformato in dateTime
             $end   = new DateTime($travel->date_finish);
+
+            // formato la data come quella italiana
             $travel->date_finish = $end->format('d/m/Y');
 
+            // itero per la durata del viaggio
             for ($i = $begin; $i <= $end; $i->modify('+1 day')) {
+
+                // creo una variabile con un array vuota
                 $array = [];
+
+                // setto l'array
                 $array = [
                     [
                         "value" => $i->format('Y-m-d'),
                         "format" => $i->format('d-m'),
                     ]
                 ];
+
+                // pusho l'array in dateArray
                 array_push($dateArray, $array);
             }
 
-            $step = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();            // dd($dateArray);
-            // rispedisce alla pagina singola di un travel
+            // salvo nella variabile gl'itinerari che hanno la data ugule a varaible e con l'id del viaggio selezionato
+            $step = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();
+
+            //salvo in una variabile il dato trasformato in datTime
             $format = new DateTime($varaiable);
+
+            // salvo la data formata
             $format = $format->format('d-m');
+
+            // creo un array inserendo i dati
             $dateActive = [
                 'value' => $varaiable,
                 'format' => $format
             ];
-            // dd($varaiable, $format, $dateActive);
 
+            // renderizzo alla pagina show del viaggio passando il viaggio, le date del viaggio, l'itineraio della data selezionat e la data selezionata
             return view('admin.travels.show', compact('travel', 'dateArray', 'step', 'dateActive'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
@@ -136,7 +161,8 @@ class TravelController extends Controller
     {
         // se l'id dell'utente e uguale a quello del viaggio
         if (Gate::allows('travel_checker', $travel)) {
-            // rispedisce alla pagina di modifica
+
+            // renderizzo alla pagina di modifica del viaggio passando il viaggio
             return view('admin.travels.edit', compact('travel'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
@@ -185,7 +211,7 @@ class TravelController extends Controller
             // modifica travel con i nuovi dati
             $travel->update($val_data);
 
-            // rispedisce alla pagina index di travels
+            // renderizzo alla pagina show del viaggio passando un messaggio di sesion
             return to_route('admin.travels.index')->with('message', "Hai modificato il viaggio: $travel->name");
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
@@ -212,7 +238,7 @@ class TravelController extends Controller
             // cancello travel
             $travel->delete();
 
-            // ritorna alla pagina index
+            // renderizzo alla pagina precedente con un messaggio per la session
             return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");

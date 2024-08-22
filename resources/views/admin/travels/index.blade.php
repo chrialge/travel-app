@@ -2,17 +2,25 @@
 
 @section('content')
     <div class="container-xl">
+
+        {{-- header --}}
         <div class="header_travels d-flex justify-content-between align-items-center py-4">
             <h2>Viaggi</h2>
+
+            {{-- se clicci ti renderizza alla pagina di creazione del viaggio --}}
             <a href="{{ route('admin.travels.create') }}" class="btn" style="color: white; background-color:#E25B07">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </a>
         </div>
 
+        {{-- partial for message of session --}}
         @include('partials.session')
 
+        {{-- table travel --}}
         <div class="table-responsive m-0" style="background-color: transparent">
             <table class="table table-striped table-hover">
+
+                {{-- header of table --}}
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Nome</th>
@@ -23,6 +31,8 @@
                         <th style="width: 150px; text-align:center;">Azioni</th>
                     </tr>
                 </thead>
+
+                {{-- body of table --}}
                 <tbody>
                     @forelse ($travels as $travel)
                         <tr class="">
@@ -32,14 +42,18 @@
 
                             <td class="" style="min-height: 100%">
                                 <div class="justify-content-center d-flex gap-1 flex-wrap">
+
+                                    {{-- se clicci mostra il singolo viaggio --}}
                                     <a href="{{ route('admin.travels.show', $travel) }}" class="btn btn-dark">
                                         <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                     </a>
+
+                                    {{-- se clicci renderizza alla pagina di modifica del viaggio --}}
                                     <a href="{{ route('admin.travels.edit', $travel) }}" class="btn btn-warning">
                                         <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                                     </a>
 
-                                    <!-- Modal trigger button -->
+                                    {{-- se clicci compare la modale di cancellazione del viaggio --}}
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#modalId-{{ $travel->id }}">
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
@@ -53,6 +67,8 @@
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                             role="document">
                                             <div class="modal-content">
+
+                                                {{-- header of modal --}}
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="modalTitleId-{{ $travel->id }}">
                                                         Attenzione!
@@ -60,23 +76,29 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
+
+                                                {{-- body of modal  --}}
                                                 <div class="modal-body">
                                                     Sei sicuro di cancellare il viaggio, la cancellazione sara
                                                     irreversibile.
                                                 </div>
+
+                                                {{-- footer of modal --}}
                                                 <div class="modal-footer">
                                                     <form action="{{ route('admin.travels.destroy', $travel) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
+
+                                                        {{-- se clicci cancella il viaggio --}}
                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
-
-
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
 
@@ -93,8 +115,8 @@
 
                 </tbody>
             </table>
-            {{ $travels->links('pagination::bootstrap-5') }}
+            {{ $travels->links('pagination::semantic-ui') }}
         </div>
-
+        {{-- C:\MAMP\htdocs\lavarel\travel-app\resources\views\vendor\pagination\.blade.php --}}
     </div>
 @endsection

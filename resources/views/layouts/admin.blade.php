@@ -53,6 +53,7 @@
 
 <body>
 
+    {{-- loading for app --}}
     <div id="loading">
         <div class="d-flex justify-content-center align-items-center h-100">
             <button id="btn_load_page" class="btn" type="button" disabled>
@@ -62,41 +63,51 @@
         </div>
     </div>
 
+    {{-- app --}}
     <div id="app">
-
-
-
 
         <main class="d-flex">
 
+            {{-- siderbar --}}
             <div class="sidebar sidebar-narrow-unfoldable ">
+
+                {{-- header of siderbar --}}
                 <div class="sidebar-header border-bottom">
                     <img class="logo" src="{{ asset('storage/img/logo.png') }}" alt="" width="100%"
                         style="width: 50px;">
-
                 </div>
+
+                {{-- body of siderbar  --}}
                 <ul class="sidebar-nav">
+
                     <li class="nav-item">
+                        {{-- se clicco va alla sezione del profilo --}}
                         <a class="nav-link" href="{{ url('profile') }}">
                             <div class="avatar me-2 nav-icon">
                                 <img class="avatar-img" src="{{ asset('storage/img/user.png') }}" alt="user@email.com">
                                 <span class="avatar-status bg-success"></span>
                             </div>
+
                             <span style="color: #E25B07">{{ Auth::user()->name }}</span>
                         </a>
 
                     </li>
                     <li class="nav-item">
+                        {{-- se clicco valla alla pagina welcome --}}
                         <a class="nav-link" href="{{ url('/') }}" style="color: #E25B07">
                             <i class="fa-solid fa-house nav-icon" style="color: #E25B07"></i> HOME
                         </a>
                     </li>
+
                     <li class="nav-item">
+                        {{-- se clicci va ai viaggi --}}
                         <a class="nav-link" href="{{ route('admin.travels.index') }}" style="color: #E25B07">
                             <i class="fa-solid fa-plane nav-icon" style="color: #E25B07"></i> VIAGGI
                         </a>
                     </li>
+
                     <li class="nav-item">
+                        {{-- se clicco va ai itinerari --}}
                         <a class="nav-link" href="{{ route('admin.steps.index') }}" style="color: #E25B07">
                             <i class="fa-solid fa-location-dot nav-icon" style="color: #E25B07"></i> ITINERARI
                         </a>
@@ -104,6 +115,8 @@
 
 
                     <li class="nav-item">
+
+                        {{-- se clicco va alla sezione dello profilo --}}
                         <a class="nav-link" href="{{ url('profile') }}" style="color: #E25B07">
                             <i class="fa-solid fa-user nav-icon" style="color: #E25B07"></i>
                             PROFILO
@@ -111,7 +124,11 @@
                         </a>
                     </li>
                 </ul>
+
+                {{-- footer of siderbar --}}
                 <div class="sidebar-footer border-top d-flex justify-content-start">
+
+                    {{-- se clicco scollega l'utente --}}
                     <a class=" nav-icon" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
@@ -125,6 +142,7 @@
                 </div>
             </div>
 
+            {{-- contenuto della pagina --}}
             <div class="container_admin">
                 @yield('content')
             </div>

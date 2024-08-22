@@ -16,7 +16,7 @@ class Note extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function steps(): BelongsTo
+    public function step(): BelongsTo
     {
         return $this->belongsTo(Step::class, 'foreign_key', 'other_key');
     }

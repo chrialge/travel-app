@@ -2,8 +2,12 @@
 
 @section('content')
     <div class="container py-4">
+
+        {{-- header  --}}
         <div class="header_create_step d-flex justify-content-between align-items-center">
             <h2>Crea un nuovo Itinerario</h2>
+
+            {{-- se clicco mi renderizza alla pigina index dell'itinerario --}}
             <a href="{{ route('admin.steps.index') }}" class="btn btn-dark">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
@@ -35,6 +39,7 @@
                 <small id="nameHelper" class="form-text text-muted">Inserisci il nome dell'itinerario</small>
             </div>
 
+            {{-- campo per selezionare il viaggio --}}
             <div class="mb-3">
                 <label for="travel_id" class="form-label">Viaggi *</label>
                 <select class="form-select form-select-lg @error('travel_id') is-invalid @enderror" name="travel_id"
@@ -46,10 +51,12 @@
                             {{ $travel->name }}</option>
                     @endforeach
                 </select>
+
                 {{-- errore lato back --}}
                 @error('travel_id')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
+
                 <small id="nameHelper" class="form-text text-muted">Inserisci il Viaggio per l'itinerario</small>
             </div>
 

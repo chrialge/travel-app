@@ -1,7 +1,6 @@
 let index = localStorage.getItem('date')
 
 
-console.log('index')
 if (index) {
     let dateId = 'date-' + index;
     let dateActive = document.getElementById(dateId);

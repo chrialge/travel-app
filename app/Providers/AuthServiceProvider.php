@@ -29,11 +29,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
 
+        //Gate per le restrizione per il singolo utente per i viaggi
         Gate::define('travel_checker', function (User $user, Travel $travel) {
 
             return $user->id === $travel->user_id;
         });
 
+        //Gate per le restrizione per il singolo utente per gl'itinerari
         Gate::define('step_checker', function (User $user, Step $step) {
             $travel = Travel::where('id', $step->travel_id)->first();
 
