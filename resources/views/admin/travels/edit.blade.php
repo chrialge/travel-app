@@ -106,7 +106,7 @@
             </div>
 
             {{-- bottone di modifica --}}
-            <button id="create_travel_btn" type="submit" class="btn btn-warning my-3">
+            <button id="travel_btn" type="submit" class="btn btn-warning my-3">
                 <span>MODIFICA VIAGGIO</span>
             </button>
             {{-- bottone di caricamento --}}

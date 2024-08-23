@@ -105,7 +105,7 @@
             </div>
 
             {{-- bottone di creazione --}}
-            <button id="create_travel_btn" type="submit" class="btn btn-primary">
+            <button id="travel_btn" type="submit" class="btn btn-primary">
                 <span>CREA UN VIAGGIO</span>
             </button>
             {{-- bottone di attesa --}}

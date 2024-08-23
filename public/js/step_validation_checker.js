@@ -1,8 +1,8 @@
 function check_name() {
-    // Prendo l'elemento dell'errore
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("name_error");
 
-    // Prendo l'elemento input per dargli o togliergli stile
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("name");
 
     // Verifico se la lunghezza del nome è di almeno 3 caratteri
@@ -22,9 +22,14 @@ function check_name() {
 }
 
 function check_date() {
+
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("date_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date");
 
+    // Verifico se la lunghezza e uguale a 10
     if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -41,9 +46,14 @@ function check_date() {
 }
 
 function check_time_start() {
+
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("time_start_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("time_start");
 
+    // Verifico se la lunghezza e uguale a 5
     if (input.value.length === 5) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -60,9 +70,15 @@ function check_time_start() {
 }
 
 function check_time_arrived() {
+
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("time_arrived_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("time_arrived");
 
+
+    // Verifico se la lunghezza e uguale a 5
     if (input.value.length === 5) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -79,13 +95,13 @@ function check_time_arrived() {
 }
 
 function check_state() {
-    // Prendo l'elemento dell'errore
+    // salva in una variabile l'elemento dell'errore
     let errorElement = document.getElementById("state_error");
 
-    // Prendo l'elemento input per dargli o togliergli stile
+    // salva in una variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("state");
 
-    // Verifico se la lunghezza del nome è di almeno 3 caratteri
+    // Verifico se la lunghezza dello stato è di almeno 3 caratteri
     if (input.value.length >= 3 || input.value.length >= 50) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -102,13 +118,13 @@ function check_state() {
 }
 
 function check_region() {
-    // Prendo l'elemento dell'errore
+    // salva in una variabile l'elemento dell'errore
     let errorElement = document.getElementById("region_error");
 
-    // Prendo l'elemento input per dargli o togliergli stile
+    // salva in una variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("region");
 
-    // Verifico se la lunghezza del nome è di almeno 3 caratteri
+    // Verifico se la lunghezza della regione è di almeno 3 caratteri
     if (input.value.length >= 3 || input.value.length >= 50) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -125,13 +141,13 @@ function check_region() {
 }
 
 function check_route() {
-    // Prendo l'elemento dell'errore
+    // salva in una variabile l'elemento dell'errore
     let errorElement = document.getElementById("route_error");
 
-    // Prendo l'elemento input per dargli o togliergli stile
+    // salva in una variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("route");
 
-    // Verifico se la lunghezza del nome è di almeno 3 caratteri
+    // Verifico se la lunghezza della via è di almeno 3 caratteri
     if (input.value.length >= 3 || input.value.length >= 50) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -148,14 +164,14 @@ function check_route() {
 }
 
 function check_cap() {
-    // Prendo l'elemento dell'errore
+    // salva in una variabile l'elemento dell'errore
     let errorElement = document.getElementById("cap_error");
 
-    // Prendo l'elemento input per dargli o togliergli stile
+    // salva in una variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("cap");
 
     let input_checker = parseInt(input.value);
-    // Verifico se la lunghezza del nome è di almeno 3 caratteri
+    // Verifico se il cap e un numero intero
     console.log(input_checker)
     if (Number.isInteger(input_checker)) {
         errorElement.classList.remove("error_visible");
@@ -173,9 +189,13 @@ function check_cap() {
 }
 
 function hide_name_error() {
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("name_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("name");
 
+    // Verifico se la lunghezza del nome è di almeno 3 caratteri
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -184,11 +204,14 @@ function hide_name_error() {
 }
 
 function hide_date_error() {
-
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("date_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date")
-    console.log(input.value);
-    if (input.value.length === 5) {
+
+    // Verifico se la lunghezza  è uguale a 10 caratteri
+    if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
@@ -197,9 +220,14 @@ function hide_date_error() {
 
 function hide_time_start_error() {
 
+    // salvo nella variabile l'elemento dell'errore
+
     let errorElement = document.getElementById("time_start_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("time_start")
-    console.log(input.value);
+
+    // Verifico se la lunghezza  è uguale a 5 caratteri
     if (input.value.length === 5) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -209,9 +237,13 @@ function hide_time_start_error() {
 
 function hide_time_arrived_error() {
 
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("time_arrived_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("time_arrived")
-    console.log(input.value);
+
+    // Verifico se la lunghezza  è uguale a 5 caratteri
     if (input.value.length === 5) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -220,9 +252,14 @@ function hide_time_arrived_error() {
 }
 
 function hide_state_error() {
+
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("state_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("state");
 
+    // Verifico se il valore e maggiore di o uguale a tre
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -231,9 +268,16 @@ function hide_state_error() {
 }
 
 function hide_region_error() {
+
+    // salvo nella variabile l'elemento dell'errore
+
     let errorElement = document.getElementById("region_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
+
     let input = document.getElementById("region");
 
+    // Verifico se il valore e maggiore di o uguale a tre
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -242,9 +286,15 @@ function hide_region_error() {
 }
 
 function hide_route_error() {
+
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("route_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
+
     let input = document.getElementById("route");
 
+    // Verifico se il valore e maggiore di o uguale a tre
     if (input.value.length >= 3) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -253,9 +303,17 @@ function hide_route_error() {
 }
 
 function hide_cap_error() {
+
+    // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("cap_error");
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("cap");
+
+    // salvo nella variabile il valore intero dell'input
     let input_checker = parseInt(input.value);
+
+    // Verifico se e un numero positivo
     if (Number.isInteger(input_checker)) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -264,7 +322,10 @@ function hide_cap_error() {
 }
 
 
+// salvo nella variabile il bottone di creazioner dell'input
 const createButton = document.getElementById("create_step_btn")
+
+// in caso di click del bottone
 createButton.addEventListener('click', function (event) {
     const btnLoading = document.getElementById("btn_loading");
     btnLoading.classList.remove("error_invisible")
@@ -303,28 +364,21 @@ createButton.addEventListener('click', function (event) {
         btnLoading.classList.add("error_invisible")
         createButton.classList.remove("error_invisible")
     }
-    // Controllo lo stato
+    // Controllo della regione
     if (!check_region()) {
         event.preventDefault();
         btnLoading.classList.add("error_invisible")
         createButton.classList.remove("error_invisible")
     }
 
-    // Controllo lo stato
+    // Controllo della via 
     if (!check_route()) {
         event.preventDefault();
         btnLoading.classList.add("error_invisible")
         createButton.classList.remove("error_invisible")
     }
 
-    // Controllo lo stato
-    if (!check_state()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo lo stato
+    // Controllo del cap
     if (!check_cap()) {
         event.preventDefault();
         btnLoading.classList.add("error_invisible")
@@ -332,8 +386,10 @@ createButton.addEventListener('click', function (event) {
     }
 });
 
-
+// salvo nella variabile il bottone di creazioner dell'input 
 const editButton = document.getElementById("edit_step_btn")
+
+// in caso di click del bottone
 createButton.addEventListener('click', function (event) {
     const btnLoading = document.getElementById("btn_loading");
     btnLoading.classList.remove("error_invisible")

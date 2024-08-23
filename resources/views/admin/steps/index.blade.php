@@ -7,11 +7,14 @@
         <div class="header_step d-flex justify-content-between align-items-center py-3">
             <h2>Itinerari {{ count($steps) }}</h2>
 
-            {{-- se clicci renderizza alla pagina di creazione dell'itinerario --}}
-            <a href="{{ route('admin.steps.create') }}" class="btn" style="color: white; background-color:#E25B07">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-            </a>
         </div>
+
+
+        {{-- se clicci renderizza alla pagina di creazione dell'itinerario --}}
+        <a href="{{ route('admin.steps.create') }}" class="btn mb-3" style="color: white; background-color:#E25B07">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span class="ps-1">Aggiungi itinerario</span>
+        </a>
 
         {{-- partial for message of session --}}
         @include('partials.session')
@@ -109,7 +112,7 @@
 
                 </tbody>
             </table>
-            {{ $steps->links('pagination::semantic-ui') }}
+            {{ $steps->links('pagination::bootstrap-5') }}
         </div>
 
     </div>

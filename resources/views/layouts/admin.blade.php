@@ -41,6 +41,13 @@
             background-color: rgba(245, 245, 245, 0.679);
         }
 
+        .container_loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
         #btn_load_page {
             background-color: #E25B07;
             color: white;
@@ -113,6 +120,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        {{-- se clicco vai alle note --}}
+                        <a class="nav-link" href="{{ route('admin.notes.index') }}" style="color: #E25B07">
+
+                            <i class="fa-solid fa-note-sticky nav-icon" style="color: #E25B07"></i> NOTE
+                        </a>
+                    </li>
 
                     <li class="nav-item">
 

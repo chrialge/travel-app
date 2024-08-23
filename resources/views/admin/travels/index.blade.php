@@ -5,13 +5,16 @@
 
         {{-- header --}}
         <div class="header_travels d-flex justify-content-between align-items-center py-4">
-            <h2>Viaggi</h2>
+            <h2>Viaggi {{ count($travels) }}</h2>
 
-            {{-- se clicci ti renderizza alla pagina di creazione del viaggio --}}
-            <a href="{{ route('admin.travels.create') }}" class="btn" style="color: white; background-color:#E25B07">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
-            </a>
+
         </div>
+
+        {{-- se clicci ti renderizza alla pagina di creazione del viaggio --}}
+        <a href="{{ route('admin.travels.create') }}" class="btn mb-3" style="color: white; background-color:#E25B07">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <span class="ps-1">Aggiungi viaggio</span>
+        </a>
 
         {{-- partial for message of session --}}
         @include('partials.session')

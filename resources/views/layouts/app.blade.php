@@ -38,6 +38,14 @@
             display: block;
             filter: blur(50%);
             background-color: rgba(245, 245, 245, 0.679);
+
+        }
+
+        .container_loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         #btn_load_page {
@@ -54,7 +62,7 @@
 
     {{-- loading for app --}}
     <div id="loading">
-        <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="container_loader">
             <button id="btn_load_page" class="btn" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 <span role="status">Loading...</span>

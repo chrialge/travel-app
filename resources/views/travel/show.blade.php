@@ -17,7 +17,7 @@
     </section>
 
     {{-- travels front section --}}
-    <section id="travels_front" class="py-5" style="padding-left: 10px">
+    <section id="travels_front" class="py-5" style="padding-left: 10px; padding-right: 10px">
 
         <div class="container bg-white py-3 rounded-3">
 
@@ -58,7 +58,7 @@
             </div>
 
             {{-- step container --}}
-            <div class="row gap-2 justify-content-between px-1">
+            <div id="steps_container_row" class="row gap-2 justify-content-between px-1">
                 @forelse ($steps as $step)
                     {{-- card step --}}
                     <div class="card card_step p-0" style="width: 18rem;">

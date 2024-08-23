@@ -5,8 +5,8 @@ function check_name() {
     // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("name");
 
-    // Verifico se la lunghezza del nome è di almeno 3 caratteri
-    if (input.value.length >= 3 || input.value.length >= 50) {
+    // Verifico se la lunghezza del nome è di almeno 3 caratteri e non oltre i 100 caratteri
+    if (input.value.length >= 3 && input.value.length <= 100) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.border = "";
@@ -22,9 +22,14 @@ function check_name() {
 }
 
 function check_date_start() {
+
+    // Prendo l'elemento dell'errore
     let errorElement = document.getElementById("date_start_error");
+
+    // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date_start");
 
+    // Verifico se la lunghezza della data è di 10 caratteri
     if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -41,9 +46,13 @@ function check_date_start() {
 }
 
 function check_date_finish() {
+    // Prendo l'elemento dell'errore
     let errorElement = document.getElementById("date_finish_error");
+
+    // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date_finish");
 
+    // Verifico se la lunghezza del nome è di almeno 3 caratteri
     if (input.value.length === 10) {
         console.log('ciao')
         errorElement.classList.remove("error_visible");
@@ -63,10 +72,14 @@ function check_date_finish() {
 
 // Funzione per nascondere l'errore del nome
 function hide_name_error() {
+    // Prendo l'elemento dell'errore
     let errorElement = document.getElementById("name_error");
+
+    // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("name");
 
-    if (input.value.length >= 3) {
+    // Verifico se la lunghezza del nome è di almeno 3 caratteri e non oltre i 100 caratteri
+    if (input.value.length >= 3 && input.value.length <= 100) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.border = "";
@@ -74,10 +87,13 @@ function hide_name_error() {
 }
 
 function hide_date_start_error() {
-
+    // Prendo l'elemento dell'errore
     let errorElement = document.getElementById("date_start_error");
+
+    // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date_start")
-    console.log(input.value);
+
+    // Verifico se la lunghezza del nome è di almeno 10 caratteri
     if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -86,17 +102,24 @@ function hide_date_start_error() {
 }
 
 function hide_date_finish_error() {
-
+    // Prendo l'elemento dell'errore
     let errorElement = document.getElementById("date_finish_error");
+
+    // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date_finish")
-    console.log(input.value);
+
+    // Verifico se la lunghezza del nome è di almeno 10 caratteri
     if (input.value.length === 10) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.border = "";
     }
 }
-const createButton = document.getElementById("create_travel_btn")
+
+// Salvo in una variabile il bottone di creazione e modifica del viaggio
+const createButton = document.getElementById("travel_btn")
+
+// se clicco sul bottone
 createButton.addEventListener('click', function (event) {
     const btnLoading = document.getElementById("btn_loading");
     btnLoading.classList.remove("error_invisible")
@@ -122,3 +145,5 @@ createButton.addEventListener('click', function (event) {
         createButton.classList.remove("error_invisible")
     }
 });
+
+
