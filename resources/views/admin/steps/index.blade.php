@@ -28,7 +28,7 @@
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">Viaggio</th>
-                        <th scope="col">Data</th>
+                        <th scope="col" class="tupla_invisible">Data</th>
                         <th scope="col" style="width: 150px; text-align: center;">Azioni</th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                         <tr class="">
                             <td scope="row">{{ $step->name }}</td>
                             <td>{{ $step->travel->name }}</td>
-                            <td>{{ date_format(new DateTime($step->date), 'd/m/Y') }}</td>
+                            <td class="tupla_invisible">{{ date_format(new DateTime($step->date), 'd/m/Y') }}</td>
                             <td class="">
                                 <div class="d-flex justify-content-center flex-wrap gap-1">
 

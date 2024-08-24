@@ -3,9 +3,20 @@
 @section('content')
     <div class="container-xl">
 
+
+
         {{-- header --}}
-        <div class="header_travels d-flex justify-content-between align-items-center py-4">
-            <h2>Viaggi {{ count($travels) }}</h2>
+        <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
+            <h1>Viaggi {{ count($travels) }}</h1>
+
+            <form id="search_form" role="search" type="get" action="{{ route('admin.search') }}">
+                <label for="search">Cerca per nome</label>
+                <input id="search" name="searchable" type="search" placeholder="Cerca..." aria-label="cerca itinerari"
+                    autofocus required />
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
 
 
         </div>
@@ -118,7 +129,7 @@
 
                 </tbody>
             </table>
-            {{ $travels->links('pagination::semantic-ui') }}
+            {{ $travels->links('pagination::bootstrap-5') }}
         </div>
         {{-- C:\MAMP\htdocs\lavarel\travel-app\resources\views\vendor\pagination\.blade.php --}}
     </div>

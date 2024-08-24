@@ -243,4 +243,15 @@ class TravelController extends Controller
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }
+
+
+    public function search()
+    {
+        $search_text = $_GET['searchable'];
+        $travels = Travel::where('name', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('date_start', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('date_finish', 'LIKE', '%' . $search_text . '%')->paginate(5);
+
+        return view('admin.travels.index', compact('travels'));
+    }
 }

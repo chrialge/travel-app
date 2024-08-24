@@ -17,6 +17,7 @@ class NoteSeeder extends Seeder
         $newNote = new Note();
         $newNote->customer_name = 'Christian';
         $newNote->slug = Str::slug($newNote->customer_name, '-');
+        $newNote->step_id = 1;
         $newNote->customer_lastname = 'Algieri';
         $newNote->customer_email = 'Cricco@gmail.com';
         $newNote->note = "Bellisimo itinerario";

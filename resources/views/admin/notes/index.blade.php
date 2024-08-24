@@ -13,13 +13,13 @@
 
         {{-- table with notes  --}}
         <div class="table-responsive">
-            <table class="table table-primary">
+            <table class="table table-striped table-hover">
 
                 {{-- header of table --}}
-                <thead>
+                <thead class="table-dark" style="letter-spacing: 1px">
                     <tr>
                         <th scope="col">Nome e Cognome</th>
-                        <th scope="col">Email</th>
+                        <th scope="col" class="tupla_invisible">Email</th>
                         <th scope="col">Dell'itinerario</th>
                         <th scope="col" style="width: 110px; text-align: center;">Azioni</th>
                     </tr>
@@ -30,9 +30,9 @@
                     @forelse ($notes as $note)
                         <tr class="">
                             <td scope="row">{{ $note->customer_name . ' ' . $note->customer_lastname }}</td>
-                            <td>{{ $note->customer_email }}</td>
+                            <td class="tupla_invisible">{{ $note->customer_email }}</td>
                             @if ($note->step_id)
-                                <td>{{ $note->steps }}</td>
+                                <td>{{ $note->step->name }}</td>
                             @else
                                 <td>N\A</td>
                             @endif

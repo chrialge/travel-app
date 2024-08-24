@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,12 @@ class Travel extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'user_id', 'slug', 'date_start', 'date_finish', 'image', 'content'];
+
+    protected $searchable = [
+        'name',
+        'date_start',
+        'date_finish'
+    ];
 
     /**
      * Get the user that owns the Travel

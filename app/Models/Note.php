@@ -18,6 +18,6 @@ class Note extends Model
      */
     public function step(): BelongsTo
     {
-        return $this->belongsTo(Step::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(Step::class);
     }
 }

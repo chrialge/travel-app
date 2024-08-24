@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('notes', function (Blueprint $table) {
             $table->unsignedBigInteger('step_id')->after('id')->nullable();
+
             $table->foreign('step_id')->references('id')->on('steps');
         });
     }
