@@ -3,6 +3,35 @@
 @section('content')
     <div class="container-xl py-4 h-100">
 
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="{{ route('admin.travels.index') }}" style="color:#1e1e1e">
+                    Viaggi
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    {{ $travel->slug }}
+                </a>
+            </li>
+        </ul>
+
         {{-- travel_container --}}
         <div class="travels_container d-flex justify-content-between py-5 gap-4">
 
@@ -27,7 +56,7 @@
                     <h2 class="color_orange">{{ $travel->name }}</h2>
 
                     {{-- se clicci renderizza alla pagfina index del viaggio --}}
-                    <a href="{{ route('admin.travels.index') }}" class="btn btn-dark btn_return">
+                    <a href="#" onclick="history.back()" class="btn btn-dark btn_return">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -63,8 +92,8 @@
             <div class="bar_date d-flex ">
                 @foreach ($dateArray as $index => $dates)
                     @foreach ($dates as $date)
-                        <a href="{{ route('admin.travels.show', [$travel, $date['value']]) }}" id="date-{{ $index }}"
-                            class="date_container text-decoration-none text-white">
+                        <a href="{{ route('admin.travels.show', [$travel, $date['value']]) }}"
+                            id="date-{{ $index }}" class="date_container text-decoration-none text-white">
                             {{ $date['format'] }}
                         </a>
                     @endforeach

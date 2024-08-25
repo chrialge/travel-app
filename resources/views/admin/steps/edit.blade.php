@@ -2,9 +2,42 @@
 
 @section('content')
     <div class="container py-4">
+
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="{{ route('admin.steps.index') }}" style="color:#1e1e1e">
+                    Itinerari
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    Modifica
+                </a>
+            </li>
+        </ul>
+
+        {{-- header --}}
         <div class="header_create_step d-flex justify-content-between align-items-center">
             <h2>Modifica l'Itinerario {{ Ucwords($step->name) }}</h2>
-            <a href="{{ route('admin.steps.index') }}" class="btn btn-dark">
+
+            {{-- se clicco mi renderizza alla pagina precedente --}}\
+            <a href="#" onclick="history.back()" class="btn btn-dark">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
         </div>

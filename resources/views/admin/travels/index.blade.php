@@ -1,7 +1,26 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container-xl">
+    <div class="container-xl py-4">
+
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    Viaggi
+                </a>
+            </li>
+        </ul>
 
 
 
@@ -9,14 +28,22 @@
         <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
             <h1>Viaggi {{ count($travels) }}</h1>
 
-            <form id="search_form" role="search" type="get" action="{{ route('admin.search') }}">
-                <label for="search">Cerca per nome</label>
-                <input id="search" name="searchable" type="search" placeholder="Cerca..." aria-label="cerca itinerari"
-                    autofocus required />
-                <button type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
+            <div class="d-flex gap-3" style="flex-wrap: wrap;">
+                <form id="search_form" role="search" type="get" action="{{ route('admin.search.travels') }}">
+                    <label for="search">Cerca per nome</label>
+                    <input id="search" name="searchable" type="search" placeholder="Cerca..."
+                        aria-label="cerca itinerari" autofocus required />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </div>
+
+
 
 
         </div>

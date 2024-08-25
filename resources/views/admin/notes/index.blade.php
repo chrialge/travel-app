@@ -3,9 +3,44 @@
 @section('content')
     <div class="container py-4">
 
-        {{-- header of notes --}}
-        <div class="header_step d-flex justify-content-between align-items-center py-3">
-            <h2>Note {{ count($notes) }}</h2>
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    Note
+                </a>
+            </li>
+        </ul>
+
+        {{-- header --}}
+        <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
+            <h1>Note {{ count($notes) }}</h1>
+
+            <div class="d-flex gap-3" style="flex-wrap: wrap;">
+                <form id="search_form" role="search" type="get" action="{{ route('admin.search.notes') }}">
+                    <label for="search">Cerca per nome</label>
+                    <input id="search" name="searchable" type="search" placeholder="Cerca..."
+                        aria-label="cerca itinerari" autofocus required />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <a href="{{ route('admin.notes.index') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </div>
+
         </div>
 
         {{-- partial for message of session --}}
@@ -90,7 +125,7 @@
                         </tr>
                     @empty
                         <tr class="">
-                            <td scope="row" colspan="4">Scusa non hai un itinerario</td>
+                            <td scope="row" colspan="4">Scusa non hai una nota</td>
                         </tr>
                     @endforelse
 

@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use Mockery\Undefined;
 
 class StepController extends Controller
 {
@@ -222,5 +223,28 @@ class StepController extends Controller
             return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
+    }
+
+    /**
+     * funzione che cerca gli itinerari che corrispondono al valore della chiave searchable
+     */
+    public function search()
+    {
+        session_start();
+
+        if (isset($_GET['searchable'])) {
+            $search_text = $_GET['searchable'];
+            $_SESSION['search'] = $search_text;
+        } else {
+            // dd($_SESSION);
+            $search_text = $_SESSION['search'];
+        }
+
+        $steps = Step::where('name', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('date', 'LIKE', '%' . $search_text . '%')
+            ->orWhereRelation('travel', 'name',  'LIKE', '%' . $search_text . '%')->paginate(6);
+
+
+        return view('admin.steps.index', compact('steps'));
     }
 }

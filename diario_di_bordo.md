@@ -1,4 +1,4 @@
--   sistemare le note eprofile tradure in italiano la sezione profile aggiungere favicon, sistemare show dell'itinerario
+-   aggiungere un bottone per il refresh e aggiungere il cerca per itinerario e note, aggiungere breadcrumb
 -   readme.md da sistemare
 -   tomtomapi
 -   deploy

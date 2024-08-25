@@ -82,4 +82,28 @@ class NoteController extends Controller
         // ritorna alla pagina index
         return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
     }
+
+    /**
+     * funzione che cerca le note che corrispondono al valore della chiave searchable
+     */
+    public function search()
+    {
+        session_start();
+
+        if (isset($_GET['searchable'])) {
+            $search_text = $_GET['searchable'];
+            $_SESSION['search'] = $search_text;
+        } else {
+            // dd($_SESSION);
+            $search_text = $_SESSION['search'];
+        }
+
+        $notes = Note::where('customer_name', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('customer_lastname', 'LIKE', '%' . $search_text . '%')
+            ->orWhere('customer_email', 'LIKE', '%' . $search_text . '%')
+            ->orWhereRelation('step', 'name',  'LIKE', '%' . $search_text . '%')->paginate(6);
+
+
+        return view('admin.notes.index', compact('notes'));
+    }
 }

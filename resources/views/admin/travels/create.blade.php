@@ -1,15 +1,44 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container" style="background-color: transparent; ">
+    <div class="container py-4" style="background-color: transparent; ">
+
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="{{ route('admin.travels.index') }}" style="color:#1e1e1e">
+                    Viaggi
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    Creazione
+                </a>
+            </li>
+        </ul>
 
         {{-- INTESTAZIONE  --}}
         <div class="header_travels d-flex justify-content-between align-items-center py-4"
             style="background-color: transparent">
             <h2>Nuovo Viaggio</h2>
 
-            {{-- bottone che porta alla pagina index di travel --}}
-            <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+            {{-- bottone che porta alla pagina precednte --}}
+            <a href="#" onclick="history.back()" class="btn btn-dark">
                 <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
             </a>
         </div>

@@ -28,3 +28,29 @@ if (document.readyState === "loading" || document.readyState === "interactive") 
     document.getElementById('loading').style.display = 'none';
 }
 
+// const API_KEY = 'k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd';
+// const APPLICATION_NAME = 'TravelBoo';
+// const APPLICATION_VERSION = '1.0';
+
+// const GOLDEN_GATE_BRIDGE = { lng: -122.47483, lat: 37.80776 };
+
+// var map = tt.map({
+//     key: API_KEY,
+//     container: 'tom_tom',
+//     center: GOLDEN_GATE_BRIDGE,
+//     zoom: 12
+// });
+
+// tt.services.fuzzySearch({
+//     key: API_KEY,
+//     query: 'Golden Gate Bridge'
+// })
+//     .go()
+//     .then(function (response) {
+//         map = tt.map({
+//             key: API_KEY,
+//             container: 'tom_tom',
+//             center: response.results[0].position,
+//             zoom: 12
+//         });
+//     });

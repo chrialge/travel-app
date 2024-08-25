@@ -3,9 +3,44 @@
 @section('content')
     <div class="container py-4">
 
-        {{-- header step --}}
-        <div class="header_step d-flex justify-content-between align-items-center py-3">
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    Itinerari
+                </a>
+            </li>
+        </ul>
+
+
+        {{-- header --}}
+        <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
             <h2>Itinerari {{ count($steps) }}</h2>
+
+            <div class="d-flex gap-3" style="flex-wrap: wrap;">
+                <form id="search_form" role="search" type="get" action="{{ route('admin.search.steps') }}">
+                    <label for="search">Cerca per nome</label>
+                    <input id="search" name="searchable" type="search" placeholder="Cerca..."
+                        aria-label="cerca itinerari" autofocus required />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <a href="{{ route('admin.steps.index') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </div>
 
         </div>
 

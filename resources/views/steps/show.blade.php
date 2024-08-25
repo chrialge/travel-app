@@ -62,7 +62,11 @@
                 </div>
 
                 {{-- right container --}}
-                <div class="tom_tom"></div>
+                <div id="tom_tom">
+                    <img src="{{ route('image') }}" alt="">
+                    {{-- {{ $response }} --}}
+                    {{--  --}}
+                </div>
 
             </div>
 
@@ -274,6 +278,9 @@
 
 
         <script src="{{ asset('js/note_validation.js') }}"></script>
+        <link rel='stylesheet' type='text/css'
+            href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 
     </section>
 @endsection

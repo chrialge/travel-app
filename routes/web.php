@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\TravelController;
 use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\CreateNoteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowImageConteroller;
 use App\Http\Controllers\ShowTravelController;
 use App\Http\Controllers\VoteController;
 use App\Models\Travel;
@@ -36,6 +37,8 @@ Route::get('/steps/{step:slug}', [ShowStepController::class, 'show'])->name('ste
 
 Route::post('/steps/notes', [CreateNoteController::class, 'index'])->name('note');
 
+route::get('/image', [ShowImageConteroller::class, 'showImage'])->name('image');
+
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
@@ -45,7 +48,9 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/travels', TravelController::class)->parameters(['travels' => 'travel:slug']);
         Route::resource('/steps', StepController::class)->parameters(['steps' => 'step:slug']);
         Route::resource('/notes', NoteController::class)->parameters(['notes' => 'note:slug']);
-        Route::get('/search', [TravelController::class, 'search'])->name('search');
+        Route::get('/search-travels', [TravelController::class, 'search'])->name('search.travels');
+        Route::get('/search-steps', [StepController::class, 'search'])->name('search.steps');
+        Route::get('/search-notes', [NoteController::class, 'search'])->name('search.notes');
     });
 
 Route::middleware('auth')->group(function () {

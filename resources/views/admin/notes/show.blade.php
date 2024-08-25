@@ -3,6 +3,35 @@
 @section('content')
     <div class="container py-4  gap-3">
 
+        {{-- percorso di file / breadcrumb --}}
+        <ul class="d-flex gap-2 list-unstyled">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" style="color:#1e1e1e">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="{{ route('admin.notes.index') }}" style="color:#1e1e1e">
+                    Note
+                </a>
+            </li>
+            <li>
+                <span class="text-white">
+                    /
+                </span>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none text-white">
+                    {{ $note->slug }}
+                </a>
+            </li>
+        </ul>
+
         <div class="d-flex justify-content-end mb-3">
             <a href="{{ route('admin.notes.index') }}" class="btn btn-dark">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>

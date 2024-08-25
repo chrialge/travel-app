@@ -245,9 +245,21 @@ class TravelController extends Controller
     }
 
 
+    /**
+     * funzione che cerca i viaggi che corrispondono al valore della chiave searchable
+     */
     public function search()
     {
-        $search_text = $_GET['searchable'];
+        session_start();
+
+        if (isset($_GET['searchable'])) {
+            $search_text = $_GET['searchable'];
+            $_SESSION['search'] = $search_text;
+        } else {
+            // dd($_SESSION);
+            $search_text = $_SESSION['search'];
+        }
+
         $travels = Travel::where('name', 'LIKE', '%' . $search_text . '%')
             ->orWhere('date_start', 'LIKE', '%' . $search_text . '%')
             ->orWhere('date_finish', 'LIKE', '%' . $search_text . '%')->paginate(5);
