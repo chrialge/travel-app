@@ -62,9 +62,8 @@
                 </div>
 
                 {{-- right container --}}
-                <div id="tom_tom">
-                    <img src="{{ route('image') }}" alt="">
-                    {{-- {{ $response }} --}}
+                <div id="tom_tom" data-longitude="{{ $longitude }}" data-latitude="{{ $latitude }}">
+                    {{-- <img src="{{ 'data:image/png;base64,' . base64_encode($gesu) }}" alt="" style="width: 100%"> --}}
                     {{--  --}}
                 </div>
 
@@ -276,6 +275,7 @@
             </div>
         </div>
 
+        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps-web.min.js'></script>
 
         <script src="{{ asset('js/note_validation.js') }}"></script>
         <link rel='stylesheet' type='text/css'

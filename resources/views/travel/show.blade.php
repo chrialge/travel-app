@@ -41,10 +41,10 @@
             {{-- info del viaggio --}}
             <div class="info_travel">
                 <span>
-                    <strong>Durata:</strong>
-                    {{ $travel->date_start }}
-                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    {{ $travel->date_finish }}
+                    <strong class="pe-1">Durata: </strong>
+                    {{ date_format(new DateTime($travel->date_start), 'd/m/Y') }}
+                    <i class="fa fa-arrow-circle-right px-1" aria-hidden="true"></i>
+                    {{ date_format(new DateTime($travel->date_finish), 'd/m/Y') }}
                 </span>
                 <p>
                     <strong class="color_orange">Descrizione: </strong> <br>
@@ -75,14 +75,6 @@
                             <span class=" card-text">
                                 {{ date_format(new DateTime($step->date), 'd M') }}
                             </span>
-                            <p class="card-text">
-                                <strong>Description: </strong>
-                                @if ($step->description)
-                                    {{ $step->description }}
-                                @else
-                                    N/A
-                                @endif
-                            </p>
                         </div>
 
                         {{-- parte for rating --}}
@@ -99,14 +91,26 @@
                             <li class="list-group-item d-flex justify-content-between">
                                 <div class="conatiner_stars d-flex gap-1">
                                     @for ($i = 1; $i < 6; $i++)
-                                        <div onclick="rating({{ $i }}, {{ $step->id }})"
-                                            id="rating{{ $i }}" class="star-rating-{{ $step->id }} stars"
-                                            role="rating">
+                                        @if ($i <= round($step->votes->avg('vote')))
+                                            <div onclick="rating({{ $i }}, {{ $step->id }})"
+                                                id="rating{{ $i }}"
+                                                class="star-rating-{{ $step->id }} stars" role="rating"
+                                                style="color: orange">
 
-                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
 
 
-                                        </div>
+                                            </div>
+                                        @else
+                                            <div onclick="rating({{ $i }}, {{ $step->id }})"
+                                                id="rating{{ $i }}"
+                                                class="star-rating-{{ $step->id }} stars" role="rating">
+
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+
+
+                                            </div>
+                                        @endif
                                     @endfor
                                 </div>
 
@@ -114,7 +118,7 @@
                                 <form action="{{ route('vote', $step) }}" method="post" class="">
                                     @csrf
                                     <input class="d-none" type="number" name="vote" id="vote-{{ $step->id }}">
-                                    <button type="submit" class="border-0 bg-white">
+                                    <button type="submit" class="border-0 btn_confirm_star">
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                     </button>
 

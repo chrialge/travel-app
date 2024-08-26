@@ -48,9 +48,6 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/travels', TravelController::class)->parameters(['travels' => 'travel:slug']);
         Route::resource('/steps', StepController::class)->parameters(['steps' => 'step:slug']);
         Route::resource('/notes', NoteController::class)->parameters(['notes' => 'note:slug']);
-        Route::get('/search-travels', [TravelController::class, 'search'])->name('search.travels');
-        Route::get('/search-steps', [StepController::class, 'search'])->name('search.steps');
-        Route::get('/search-notes', [NoteController::class, 'search'])->name('search.notes');
     });
 
 Route::middleware('auth')->group(function () {

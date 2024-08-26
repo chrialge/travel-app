@@ -14,6 +14,8 @@
     {{-- faviicon --}}
     <link rel="icon" type="image/png" href="{{ asset('storage/img/logo.png') }}" />
 
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps.css'>
+
     {{-- fontawesone --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -70,7 +72,7 @@
         <div class="container_loader">
             <button id="btn_load_page" class="btn" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                <span role="status">Loading...</span>
+                <span role="status">Caricamento...</span>
             </button>
         </div>
     </div>

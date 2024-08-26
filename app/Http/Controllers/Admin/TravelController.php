@@ -27,6 +27,7 @@ class TravelController extends Controller
         // variabile con tutti i viaggi nel db in ordine discendente in base chi si e loggato
         $travels = Travel::where('user_id', $id)->orderByDesc('id')->paginate(5);
 
+
         // rispedisce alla pagina inde di travel con tutti i viaggi
         return view('admin.travels.index', compact('travels', 'id'));
     }
@@ -242,28 +243,5 @@ class TravelController extends Controller
             return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
-    }
-
-
-    /**
-     * funzione che cerca i viaggi che corrispondono al valore della chiave searchable
-     */
-    public function search()
-    {
-        session_start();
-
-        if (isset($_GET['searchable'])) {
-            $search_text = $_GET['searchable'];
-            $_SESSION['search'] = $search_text;
-        } else {
-            // dd($_SESSION);
-            $search_text = $_SESSION['search'];
-        }
-
-        $travels = Travel::where('name', 'LIKE', '%' . $search_text . '%')
-            ->orWhere('date_start', 'LIKE', '%' . $search_text . '%')
-            ->orWhere('date_finish', 'LIKE', '%' . $search_text . '%')->paginate(5);
-
-        return view('admin.travels.index', compact('travels'));
     }
 }

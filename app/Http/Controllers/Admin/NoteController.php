@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateNoteRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Step;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Travel;
 
 class NoteController extends Controller
 {
@@ -16,8 +18,36 @@ class NoteController extends Controller
      */
     public function index()
     {
+
+        // variabile che salva l'id dell'utente che si e loggato
+        $id = Auth::id();
+        //salva in una variabile i viaggi in base all'id dell'utente attualmente collegato
+        $travels = Travel::where('user_id', $id)->get();
+
+        // creo una variabile con un array vuoto
+        $range = [];
+
+        // itero i viaggi
+        foreach ($travels as $travel) {
+
+            // pusho tutti gli id dei viaggi in range
+            array_push($range, $travel->id);
+        }
+
+        //salva in una variabile i viaggi in base all'id dell'utente attualmente collegato
+        $steps = Step::whereIn('travel_id', $range)->get();
+
+        // creo una variabile con un array vuoto
+        $range_steps = [];
+
+        // itero i viaggi
+        foreach ($steps as $step) {
+
+            // pusho tutti gli id dei viaggi in range
+            array_push($range_steps, $step->id);
+        }
         // renderizza alla pagina index delle note e passo le note
-        return view('admin.notes.index', ['notes' => Note::OrderByDesc('id')->paginate(7)]);
+        return view('admin.notes.index', ['notes' => Note::whereIn('step_id', $range_steps)->OrderByDesc('id')->paginate(7)]);
     }
 
     /**
@@ -81,29 +111,5 @@ class NoteController extends Controller
 
         // ritorna alla pagina index
         return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
-    }
-
-    /**
-     * funzione che cerca le note che corrispondono al valore della chiave searchable
-     */
-    public function search()
-    {
-        session_start();
-
-        if (isset($_GET['searchable'])) {
-            $search_text = $_GET['searchable'];
-            $_SESSION['search'] = $search_text;
-        } else {
-            // dd($_SESSION);
-            $search_text = $_SESSION['search'];
-        }
-
-        $notes = Note::where('customer_name', 'LIKE', '%' . $search_text . '%')
-            ->orWhere('customer_lastname', 'LIKE', '%' . $search_text . '%')
-            ->orWhere('customer_email', 'LIKE', '%' . $search_text . '%')
-            ->orWhereRelation('step', 'name',  'LIKE', '%' . $search_text . '%')->paginate(6);
-
-
-        return view('admin.notes.index', compact('notes'));
     }
 }

@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="rating">
-
+                        <span class="pe-1">Voto: </span>
                         {{-- @dd(round($step->votes->avg('vote'))) --}}
                         @for ($i = 0; $i < round($step->votes->avg('vote'), 0); $i++)
                             <i class="fa fa-star" aria-hidden="true" style="color: #E25B07"></i>
@@ -96,6 +96,7 @@
                         @for ($i = round($step->votes->avg('vote')); $i < 5; $i++)
                             <i class="fa fa-star" aria-hidden="true" style="color: white"></i>
                         @endfor
+                        <span class="ps-1"> {{ round($step->votes->avg('vote'), 0) }}/5</span>
                     </div>
 
                     <p>

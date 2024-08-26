@@ -26,6 +26,9 @@
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
 
+    @livewireStyles
+
+
     <style>
         #app {
             display: none;
@@ -68,7 +71,7 @@
         <div class="d-flex justify-content-center align-items-center h-100">
             <button id="btn_load_page" class="btn" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                <span role="status">Loading...</span>
+                <span role="status">Caricamento...</span>
             </button>
         </div>
     </div>
@@ -92,7 +95,7 @@
 
                     <li class="nav-item">
                         {{-- se clicco va alla sezione del profilo --}}
-                        <a class="nav-link" href="{{ url('profile') }}">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">
                             <div class="avatar me-2 nav-icon">
                                 <img class="avatar-img" src="{{ asset('storage/img/user.png') }}" alt="user@email.com">
                                 <span class="avatar-status bg-success"></span>
@@ -167,7 +170,7 @@
         </main>
     </div>
 
-
+    @livewireScripts
 </body>
 
 </html>
