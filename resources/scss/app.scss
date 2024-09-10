@@ -633,6 +633,7 @@
 }
 
 #map_step {
+    margin: 30px 0;
     width: 100%;
     aspect-ratio: 1;
 }
@@ -651,4 +652,36 @@
 .ll {
     width: 80%;
     right: 10px;
+}
+@media (max-width: 500px) {
+    #app > main > div.sidebar.sidebar-narrow-unfoldable {
+        display: none;
+    }
+    #app > main > div.container_admin {
+        width: 100%;
+        margin: 0;
+    }
+    #app > main > div#siderbar_phone_container {
+        display: block;
+    }
+}
+
+#siderbar_phone_container {
+    display: none;
+    padding: 5px;
+    border-radius: 10px;
+    width: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    & > img {
+        width: 100%;
+        filter: drop-shadow(0 0 0.75rem white);
+    }
+
+    &:hover {
+        transition: all ease-in-out 0.3s;
+        background-color: white;
+    }
 }

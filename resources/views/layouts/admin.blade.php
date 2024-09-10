@@ -32,6 +32,7 @@
 
     <style>
         #app {
+
             display: none;
         }
 
@@ -44,8 +45,9 @@
             min-height: 100vh;
             height: 100%;
             display: block;
-            filter: blur(50%);
+
             background-color: rgba(245, 245, 245, 0.679);
+
         }
 
         .container_loader {
@@ -58,9 +60,33 @@
         #btn_load_page {
             background-color: #E25B07;
             color: white;
+            box-shadow: 2px 2px 5px black display: inline-block;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
             border: none;
-            font-size: 20px;
-            box-shadow: 2px 2px 5px black
+            border-radius: 0.375rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .spinner_border {
+            border: 0.2em solid currentcolor;
+            border-right-color: transparent;
+        }
+
+        .spinner_border {
+            font-family: "Lilita One", sans-serif;
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            vertical-align: -0.125em;
+            border-radius: 50%;
+            animation: 0.75s linear infinite spinner-border;
         }
     </style>
 </head>
@@ -70,8 +96,8 @@
     {{-- loading for app --}}
     <div id="loading">
         <div class="d-flex justify-content-center align-items-center h-100">
-            <button id="btn_load_page" class="btn" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <button id="btn_load_page" type="button" disabled>
+                <span class="spinner_border" aria-hidden="true"></span>
                 <span role="status">Caricamento...</span>
             </button>
         </div>
@@ -82,8 +108,12 @@
 
         <main class="d-flex">
 
+            {{-- sidebar for phone --}}
+            <div id="siderbar_phone_container">
+                <img src="{{ asset('storage/img/logo.png') }}" alt="">
+            </div>
             {{-- siderbar --}}
-            <div class="sidebar sidebar-narrow-unfoldable ">
+            <div id="sidebar_pc" class="sidebar sidebar-narrow-unfoldable ">
 
                 {{-- header of siderbar --}}
                 <div class="sidebar-header border-bottom">
@@ -169,6 +199,8 @@
             </div>
 
         </main>
+
+
     </div>
 
     @livewireScripts

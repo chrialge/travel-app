@@ -15,7 +15,7 @@ let arrayLong = lngpos.split(',');
 let arrayLat = latpos.split(',');
 console.log(arrayLat, arrayLong);
 if (lngpos === '' || lngpos === " " || latpos === '' || latpos === ' ') {
-
+    document.getElementById('map_step').style.display = 'none';
 } else {
     console.log(tomtomEl, lngpos, latpos)
     tt.setProductInfo(APPLICATION_NAME, APPLICATION_VERSION);
