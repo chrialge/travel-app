@@ -28,6 +28,7 @@
 
     @livewireStyles
 
+    @yield('script')
 
     <style>
         #app {

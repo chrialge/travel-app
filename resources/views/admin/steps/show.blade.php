@@ -50,7 +50,7 @@
 
                 {{-- se esiste l'immagine dell'itinerario --}}
                 @if ($step->image)
-                    <img class="w-100" src="{{ asset('strorage/' . $step->image) }}"
+                    <img class="w-100" src="{{ asset('storage/' . $step->image) }}"
                         alt="imagine dell'itinerario {{ $step->name }}">
                     @else{{-- altrimenti --}}
                     <img class="w-100" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
@@ -112,6 +112,27 @@
             </div>
         </div>
 
+        <div id="map_step" class="map_step_back" data-lon="{{ $longitude }}" data-lat="{{ $latitude }}">
+            <div id="poiBoxInfo" class="poi">
+                <div id="poiname"></div><br>
+                <div class="image_poi">
+                    <img src="{{ asset('storage/img/planning.png') }}" alt="">
+                </div>
+                <div id="poicategories"></div><br>
+                <div id="poiphone">
+
+                </div>
+                <br>
+
+                <div id="poiaddress">
+
+                </div>
+                <br>
+                <div id="url"></div><br>
+                <img id="currentPhoto">
+            </div>
+        </div>
+
         @if (count($step->notes) == 1)
             <section id="show_notes" class="px-1">
                 @if (count($step->notes) > 1)
@@ -169,4 +190,10 @@
 
 
     </div>
+@endsection
+
+@section('script')
+    @vite(['resources/js/map.js'])
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 @endsection

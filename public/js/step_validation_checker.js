@@ -94,99 +94,13 @@ function check_time_arrived() {
     }
 }
 
-function check_state() {
-    // salva in una variabile l'elemento dell'errore
-    let errorElement = document.getElementById("state_error");
 
-    // salva in una variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("state");
 
-    // Verifico se la lunghezza dello stato è di almeno 3 caratteri
-    if (input.value.length >= 3 || input.value.length >= 50) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
 
-        return true;
-    } else {
-        errorElement.classList.remove("error_invisible");
-        errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
 
-        return false;
-    }
-}
 
-function check_region() {
-    // salva in una variabile l'elemento dell'errore
-    let errorElement = document.getElementById("region_error");
 
-    // salva in una variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("region");
 
-    // Verifico se la lunghezza della regione è di almeno 3 caratteri
-    if (input.value.length >= 3 || input.value.length >= 50) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-
-        return true;
-    } else {
-        errorElement.classList.remove("error_invisible");
-        errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
-
-        return false;
-    }
-}
-
-function check_route() {
-    // salva in una variabile l'elemento dell'errore
-    let errorElement = document.getElementById("route_error");
-
-    // salva in una variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("route");
-
-    // Verifico se la lunghezza della via è di almeno 3 caratteri
-    if (input.value.length >= 3 || input.value.length >= 50) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-
-        return true;
-    } else {
-        errorElement.classList.remove("error_invisible");
-        errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
-
-        return false;
-    }
-}
-
-function check_cap() {
-    // salva in una variabile l'elemento dell'errore
-    let errorElement = document.getElementById("cap_error");
-
-    // salva in una variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("cap");
-
-    let input_checker = parseInt(input.value);
-    // Verifico se il cap e un numero intero
-    console.log(input_checker)
-    if (Number.isInteger(input_checker)) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-
-        return true;
-    } else {
-        errorElement.classList.remove("error_invisible");
-        errorElement.classList.add("error_visible");
-        input.style.borderColor = "red";
-
-        return false;
-    }
-}
 
 function hide_name_error() {
     // salvo nella variabile l'elemento dell'errore
@@ -251,75 +165,6 @@ function hide_time_arrived_error() {
     }
 }
 
-function hide_state_error() {
-
-    // salvo nella variabile l'elemento dell'errore
-    let errorElement = document.getElementById("state_error");
-
-    // salvo nella variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("state");
-
-    // Verifico se il valore e maggiore di o uguale a tre
-    if (input.value.length >= 3) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-    }
-}
-
-function hide_region_error() {
-
-    // salvo nella variabile l'elemento dell'errore
-
-    let errorElement = document.getElementById("region_error");
-
-    // salvo nella variabile l'elemento input per dargli o togliergli stile
-
-    let input = document.getElementById("region");
-
-    // Verifico se il valore e maggiore di o uguale a tre
-    if (input.value.length >= 3) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-    }
-}
-
-function hide_route_error() {
-
-    // salvo nella variabile l'elemento dell'errore
-    let errorElement = document.getElementById("route_error");
-
-    // salvo nella variabile l'elemento input per dargli o togliergli stile
-
-    let input = document.getElementById("route");
-
-    // Verifico se il valore e maggiore di o uguale a tre
-    if (input.value.length >= 3) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-    }
-}
-
-function hide_cap_error() {
-
-    // salvo nella variabile l'elemento dell'errore
-    let errorElement = document.getElementById("cap_error");
-
-    // salvo nella variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("cap");
-
-    // salvo nella variabile il valore intero dell'input
-    let input_checker = parseInt(input.value);
-
-    // Verifico se e un numero positivo
-    if (Number.isInteger(input_checker)) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.borderColor = "";
-    }
-}
 
 
 // salvo nella variabile il bottone di creazioner dell'input
@@ -358,32 +203,6 @@ createButton.addEventListener('click', function (event) {
         createButton.classList.remove("error_invisible")
     }
 
-    // Controllo lo stato
-    if (!check_state()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-    // Controllo della regione
-    if (!check_region()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo della via 
-    if (!check_route()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo del cap
-    if (!check_cap()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
 });
 
 // salvo nella variabile il bottone di creazioner dell'input 
@@ -422,37 +241,4 @@ createButton.addEventListener('click', function (event) {
         createButton.classList.remove("error_invisible")
     }
 
-    // Controllo lo stato
-    if (!check_state()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-    // Controllo lo stato
-    if (!check_region()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo lo stato
-    if (!check_route()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo lo stato
-    if (!check_state()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo lo stato
-    if (!check_cap()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
 });

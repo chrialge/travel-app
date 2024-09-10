@@ -1,6 +1,143 @@
 @extends('layouts.app')
 @section('content')
     @include('partials.session')
+    <style>
+        .tt-side-panel__header {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
+            z-index: 2;
+        }
+
+        .tt-filters-container.tail-select-container .select-handle.disabled::after {
+            background-image: none;
+        }
+
+        .result-card {
+            background-color: #ffffff;
+        }
+
+        .basic-info-container {
+            padding: 15px;
+        }
+
+        .poi-name {
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        .data-label {
+            color: #808080;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .contact .data-label {
+            color: #626262;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        .reviews .data-label {
+            margin-top: 25px;
+        }
+
+        .reviews-container {
+            color: #444444;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .review-item {
+            margin-top: 15px;
+        }
+
+        .website-item {
+            margin-top: 5px;
+        }
+
+        .website-item a {
+            color: #1692e4;
+        }
+
+        .review-text {
+            color: #808080;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .data-segment {
+            border-bottom: 1px solid rgba(0, 0, 0, .14);
+            padding: 0 15px 15px;
+            width: 100%;
+        }
+
+        .address,
+        .hours-container,
+        .phone-number {
+            color: #505050;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .popup-container {
+            font-family: Gotham, Helvetica, Arial, sans-serif;
+            margin: -30px -10px -15px;
+        }
+
+        .popup-container .popup-text {
+            padding: 0 17px 10px;
+        }
+
+        .popup-container .popup-text .poi-name {
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .popup-container img {
+            width: 100%;
+        }
+
+        .time-range {
+            float: right;
+        }
+
+        .hours-range {
+            margin-top: 5px;
+        }
+
+        .social-media-icon {
+            background-size: 14px;
+            float: left;
+            height: 16px;
+            margin-top: 2px;
+            padding-top: 3px;
+            width: 16px;
+        }
+
+        .website-link {
+            display: inline-block;
+            overflow: hidden;
+            padding-left: 7px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 260px;
+        }
+
+        .foursquare-text {
+            background-color: #f2f2f2;
+            bottom: 0;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, .22);
+            color: #4a4c4c;
+            font-size: 12px;
+            line-height: 1.5;
+            padding: 2px 0;
+            text-align: center;
+            width: 100%;
+            z-index: 2;
+        }
+    </style>
+
 
     {{-- jumbotron section --}}
     <section id="jumbotron">
@@ -24,13 +161,13 @@
                 {{ $step->name }}
             </h2>
 
-            <div class="container_step_front d-flex p-2">
+            <div class="container_step_front d-flex p-2" style="flex-wrap: wrap">
 
                 {{-- left container --}}
                 <div class="img_container_step">
 
                     {{-- img --}}
-                    <img class="card-image-top p-2 " src="{{ asset('storage/img/no-img.png') }}"
+                    <img class="card-image-top p-2 w-100" src="{{ asset('storage/img/no-img.png') }}"
                         alt="immagine di deafult dell'itinerario">
 
                     {{-- info dell'itinerario --}}
@@ -62,13 +199,37 @@
                 </div>
 
                 {{-- right container --}}
-                <div id="tom_tom" data-longitude="{{ $longitude }}" data-latitude="{{ $latitude }}">
-                    {{-- <img src="{{ 'data:image/png;base64,' . base64_encode($gesu) }}" alt="" style="width: 100%"> --}}
-                    {{--  --}}
+
+                <div class="map_container">
+                    <div class="tt-side-panel w-100 py-2">
+                        <div class="tt-side-panel_header w-100">
+
+                        </div>
+                    </div>
+                    <div id="tom_tom" data-longitude="{{ $longitude }}" data-latitude="{{ $latitude }}">
+                        <div id="poiBoxInfo" class="poi">
+                            <div id="poiname"></div><br>
+                            <div class="image_poi">
+                                <img src="{{ asset('storage/img/planning.png') }}" alt="">
+                            </div>
+                            <div id="poicategories"></div><br>
+                            <div id="poiphone">
+
+                            </div>
+                            <br>
+
+                            <div id="poiaddress">
+
+                            </div>
+                            <br>
+                            <div id="url"></div><br>
+                            <img id="currentPhoto">
+                        </div>
+                    </div>
                 </div>
 
-            </div>
 
+            </div>
             {{-- haeder della parte delle note  --}}
             <h3 class="pt-4" style="color: #1e1e1e;">
                 Note
@@ -275,9 +436,11 @@
             </div>
         </div>
 
-        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.1/maps/maps-web.min.js'></script>
+
 
         <script src="{{ asset('js/note_validation.js') }}"></script>
+
+
         <link rel='stylesheet' type='text/css'
             href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
         <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>

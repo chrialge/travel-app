@@ -36,7 +36,7 @@
         <div class="header_create_step d-flex justify-content-between align-items-center">
             <h2>Modifica l'Itinerario {{ Ucwords($step->name) }}</h2>
 
-            {{-- se clicco mi renderizza alla pagina precedente --}}\
+            {{-- se clicco mi renderizza alla pagina precedente --}}
             <a href="#" onclick="history.back()" class="btn btn-dark">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
@@ -109,8 +109,9 @@
                 <small id="dateHelper" class="form-text text-muted">Inserisci la data dell'itinerario</small>
             </div>
 
-            {{-- campo time_start di step --}}
-            <div class="d-flex row-cols-2 gap-2">
+            <div class="d-flex row row-cols-1 row-cols-sm-2">
+                {{-- campo time_start di step --}}
+
                 <div class="mb-3">
                     <label for="time_start" class="form-label">Ora d'inizio *</label>
                     <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time"
@@ -149,11 +150,14 @@
                     @error('time_arrived')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
-                    <small id="dateHelper" class="form-text text-muted">Inserisci l'ora di fine dell'itinerario</small>
+                    <small id="dateHelper" class="form-text text-muted">Inserisci l'ora di fine
+                        dell'itinerario</small>
                 </div>
+
+
+
+
             </div>
-
-
             {{-- campo image di step --}}
             <div class="mb-3">
                 <label for="image" class="form-label">scegli l'immagine</label>
@@ -170,84 +174,32 @@
             </div>
 
             {{-- campi per location di step --}}
-            <div class="location_container d-flex row-cols-2 row mb-3">
+            <div class="map_container_step">
+                <div class="tt-side-panel w-100 py-2">
+                    <div class="tt-side-panel_header w-100">
 
-                {{-- campo di state per location of step --}}
-                <div class="state">
-                    <label for="state" class="form-label">Stato *</label>
-                    <input onkeyup="hide_state_error()" onblur="check_state()" type="text"
-                        class="form-control @error('state') is-invalid @enderror" name="state" id="state"
-                        aria-describedby="stateHelper" value="{{ old('state') }}" placeholder="" required />
-
-                    {{-- span di errore lato front  --}}
-                    <span id="state_error" class="text-danger error_invisible" role="alert">
-                        Lo stato e obbligatoria
-                    </span>
-
-                    {{-- errore lato back --}}
-                    @error('state')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <small id="stateHelper" class="form-text text-muted">Inserisci lo stato dell'itinerario</small>
+                    </div>
                 </div>
+                <div id="map_step">
+                    <div id="poiBoxInfo" class="poi">
+                        <div id="poiname"></div><br>
+                        <div class="image_poi">
+                            <img src="{{ asset('storage/img/planning.png') }}" alt="">
+                        </div>
+                        <div id="poicategories"></div><br>
+                        <div id="poiphone">
 
-                {{-- campo di region per location of step --}}
-                <div class="region">
-                    <label for="region" class="form-label">Regione *</label>
-                    <input onkeyup="hide_region_error()" onblur="check_region()" type="text"
-                        class="form-control @error('region') is-invalid @enderror" name="region" id="region"
-                        aria-describedby="regiionHelper" value="{{ old('region') }}" placeholder="" required />
+                        </div>
+                        <br>
 
-                    {{-- span di errore lato front  --}}
-                    <span id="region_error" class="text-danger error_invisible" role="alert">
-                        La regione e obbligatoria
-                    </span>
+                        <div id="poiaddress">
 
-                    {{-- errore lato back --}}
-                    @error('region')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <small id="regiionHelper" class="form-text text-muted">Inserisci la regione dell'itinerario</small>
+                        </div>
+                        <br>
+                        <div id="url"></div><br>
+                        <img id="currentPhoto">
+                    </div>
                 </div>
-
-                {{-- campo di route per location of step --}}
-                <div class="route">
-                    <label for="route" class="form-label">Via *</label>
-                    <input onkeyup="hide_route_error()" onblur="check_route()" type="text"
-                        class="form-control @error('route') is-invalid @enderror" name="route" id="route"
-                        aria-describedby="routeHelper" value="{{ old('route') }}" placeholder="" required />
-
-                    {{-- span di errore lato front  --}}
-                    <span id="route_error" class="text-danger error_invisible" role="alert">
-                        La via e obbligatoria
-                    </span>
-
-                    {{-- errore lato back --}}
-                    @error('route')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <small id="routeHelper" class="form-text text-muted">Inserisci la via dell'itinerario</small>
-                </div>
-
-                {{-- campo di cap per location of step --}}
-                <div class="cap">
-                    <label for="cap" class="form-label">cap *</label>
-                    <input onkeyup="hide_cap_error()" onblur="check_cap()" type="number"
-                        class="form-control @error('cap') is-invalid @enderror" name="cap" id="cap"
-                        aria-describedby="capHelper" value="{{ old('cap') }}" placeholder="" required />
-
-                    {{-- span di errore lato front  --}}
-                    <span id="cap_error" class="text-danger error_invisible" role="alert">
-                        il cap e obbligatoria e deve essere un intero
-                    </span>
-
-                    {{-- errore lato back --}}
-                    @error('cap')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <small id="capHelper" class="form-text text-muted">Inserisci il cap dell'itinerario</small>
-                </div>
-
             </div>
 
             {{-- campo description di step --}}
@@ -276,4 +228,11 @@
         </form>
         <script src="{{ asset('js/step_validation_checker.js') }}"></script>
     </div>
+@endsection
+
+
+@section('script')
+    @vite(['resources/js/map_search.js'])
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 @endsection

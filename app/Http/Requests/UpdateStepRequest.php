@@ -28,10 +28,7 @@ class UpdateStepRequest extends FormRequest
             'travel_id' => 'required|exists:travel,id',
             'time_start' => 'required|',
             'time_arrived' => 'required|',
-            'state' => 'required',
-            'region' => 'required',
-            'route' => 'required',
-            'cap' => 'required|integer',
+            'location' => 'nullable',
             'description' => 'nullable',
         ];
     }

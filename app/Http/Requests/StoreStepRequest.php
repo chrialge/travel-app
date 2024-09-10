@@ -28,10 +28,7 @@ class StoreStepRequest extends FormRequest
             'travel_id' => 'required|exists:travel,id',
             'time_start' => 'required|size: 5',
             'time_arrived' => 'nullable|size: 5',
-            'state' => 'required',
-            'region' => 'required',
-            'route' => 'required',
-            'cap' => 'required|integer',
+            'location' => 'nullable',
             'description' => 'nullable',
         ];
     }

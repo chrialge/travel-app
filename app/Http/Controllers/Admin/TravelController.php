@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Gate;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Models\Step;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class TravelController extends Controller
 {
@@ -91,6 +93,8 @@ class TravelController extends Controller
         // se l'id dell'utente e uguale a quello del viaggio
         if (Gate::allows('travel_checker', $travel)) {
 
+
+
             // creo una varibile con un array vuoto
             $dateArray = [];
 
@@ -135,7 +139,41 @@ class TravelController extends Controller
             }
 
             // salvo nella variabile gl'itinerari che hanno la data ugule a varaible e con l'id del viaggio selezionato
-            $step = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();
+            $steps = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();
+
+
+            $dd = Http::get('https://api.tomtom.com/style/1/sprite/20.3.2-3/sprite@2x.png?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd&traffic_incidents=incidents_s1&traffic_flow=flow_relative0-dark');
+            // dd($response);
+
+            $client = new Client();
+            $arrayLong = '';
+            $arrayLat = '';
+            foreach ($steps as $step) {
+                $address = urlencode($step->location);
+                $response = $client->get('https://api.tomtom.com/search/2/geocode/%27.' . $address . '.%27.json', [
+                    'query' => [
+                        'key' => 'k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd',
+                        'limit' => 1
+                    ]
+                ]);
+                error_log(print_r($response, true));
+                // dd($response->getBody(), $response);
+                $data = json_decode($response->getBody(), true);
+                // dd($data);
+                $latitude = $data['results'][0]['position']['lat'];
+                if ($arrayLat === '') {
+                    $arrayLat = $latitude;
+                } else {
+                    $arrayLat .= ',' . $latitude;
+                }
+                $longitude = $data['results'][0]['position']['lon'];
+                if ($arrayLong === '') {
+                    $arrayLong = $longitude;
+                } else {
+                    $arrayLong .= ',' . $longitude;
+                }
+            }
+
 
             //salvo in una variabile il dato trasformato in datTime
             $format = new DateTime($varaiable);
@@ -150,7 +188,7 @@ class TravelController extends Controller
             ];
 
             // renderizzo alla pagina show del viaggio passando il viaggio, le date del viaggio, l'itineraio della data selezionat e la data selezionata
-            return view('admin.travels.show', compact('travel', 'dateArray', 'step', 'dateActive'));
+            return view('admin.travels.show', compact('travel', 'dateArray', 'steps', 'dateActive', 'arrayLong', 'arrayLat'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }

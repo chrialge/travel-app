@@ -29,6 +29,7 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 
+
     <style>
         #app {
             display: none;
@@ -176,6 +177,7 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 
 </html>

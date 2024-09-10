@@ -133,7 +133,7 @@
             <div class="container_step d-flex flex-column gap-3">
 
 
-                @foreach ($step as $step)
+                @foreach ($steps as $step)
                     {{-- card of step --}}
                     <div class="step_card d-flex justify-content-between align-items-center">
 
@@ -187,6 +187,33 @@
             </div>
 
         </div>
+        <div id="map_step" class="map_step_back" data-lon="{{ $arrayLong }}" data-lat="{{ $arrayLat }}">
+            <div id="poiBoxInfo" class="poi">
+                <div id="poiname"></div><br>
+                <div class="image_poi">
+                    <img src="{{ asset('storage/img/planning.png') }}" alt="">
+                </div>
+                <div id="poicategories"></div><br>
+                <div id="poiphone">
+
+                </div>
+                <br>
+
+                <div id="poiaddress">
+
+                </div>
+                <br>
+                <div id="url"></div><br>
+                <img id="currentPhoto">
+            </div>
+        </div>
         <script src="{{ asset('js/bar_date.js') }}"></script>
     </div>
+@endsection
+
+
+@section('script')
+    @vite(['resources/js/map_routing.js'])
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 @endsection

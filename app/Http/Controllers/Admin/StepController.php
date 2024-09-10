@@ -8,11 +8,11 @@ use App\Http\Requests\UpdateStepRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Travel;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use GuzzleHttp\Client;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
-use Mockery\Undefined;
+use Illuminate\Support\Facades\Http;
 
 class StepController extends Controller
 {
@@ -76,7 +76,6 @@ class StepController extends Controller
             // viene inserita l'immagine nello storage
             $val_data['image'] = Storage::disk('public')->put('uploads/images', $val_data['image']);
         } else {
-            $val_data['image'];
         };
 
         // variabile che fa checker o salva il numero di travel con lo stesso nome
@@ -92,8 +91,7 @@ class StepController extends Controller
             $slug = Str::slug($val_data['name'], '-');
         }
 
-        // salvo nella chiave location lo stato, la regione, la via e il cap
-        $val_data['location'] =  $val_data['state'] . ', ' . $val_data['region'] . ', Via' . $val_data['route'] . ', ' . $val_data['cap'];
+
 
         //salva lo slug nella nella key slug 
         $val_data['slug'] = $slug;
@@ -110,6 +108,24 @@ class StepController extends Controller
      */
     public function show(Step $step)
     {
+
+        $dd = Http::get('https://api.tomtom.com/style/1/sprite/20.3.2-3/sprite@2x.png?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd&traffic_incidents=incidents_s1&traffic_flow=flow_relative0-dark');
+        // dd($response);
+
+        $client = new Client();
+        $address = urlencode($step->location);
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/%27.' . $address . '.%27.json', [
+            'query' => [
+                'key' => 'k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd',
+                'limit' => 1
+            ]
+        ]);
+        error_log(print_r($response, true));
+        // dd($response->getBody(), $response);
+        $data = json_decode($response->getBody(), true);
+        // dd($data);
+        $latitude = $data['results'][0]['position']['lat'];
+        $longitude = $data['results'][0]['position']['lon'];
         // // salvo il viaggio dell'itinerario
         // $travel = Travel::where('id', $step->travel_id)->get();
 
@@ -117,7 +133,7 @@ class StepController extends Controller
         if (Gate::allows('step_checker', $step)) {
 
             // renderizza alla pagina show dell'itinerario e passo il singolo itinerario
-            return view('admin.steps.show', compact('step'));
+            return view('admin.steps.show', compact('step', 'latitude', 'longitude'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }
@@ -186,8 +202,6 @@ class StepController extends Controller
             //salva lo slug nella nella key slug 
             $val_data['slug'] = $slug;
 
-            // salvo nella chiave location lo stato, la regione, la via e il cap
-            $val_data['location'] =  $val_data['state'] . ', ' . $val_data['region'] . ', Via' . $val_data['route'] . ', ' . $val_data['cap'];
 
             // modifica travel con i nuovi dati
             $step->update($val_data);
