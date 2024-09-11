@@ -139,7 +139,7 @@ class TravelController extends Controller
             }
 
             // salvo nella variabile gl'itinerari che hanno la data ugule a varaible e con l'id del viaggio selezionato
-            $steps = Step::where('date', $varaiable)->where('travel_id', $travel->id)->get();
+            $steps = Step::where('date', $varaiable)->where('travel_id', $travel->id)->orderBy('time_start', 'asc')->get();
 
 
             $dd = Http::get('https://api.tomtom.com/style/1/sprite/20.3.2-3/sprite@2x.png?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd&traffic_incidents=incidents_s1&traffic_flow=flow_relative0-dark');
@@ -186,9 +186,17 @@ class TravelController extends Controller
                 'value' => $varaiable,
                 'format' => $format
             ];
+            $timeArray = '';
+            foreach ($steps as $step) {
+                if ($timeArray === '') {
+                    $timeArray = $step->time_start;
+                } else {
+                    $timeArray .= ',' . $step->time_start;
+                }
+            }
 
             // renderizzo alla pagina show del viaggio passando il viaggio, le date del viaggio, l'itineraio della data selezionat e la data selezionata
-            return view('admin.travels.show', compact('travel', 'dateArray', 'steps', 'dateActive', 'arrayLong', 'arrayLat'));
+            return view('admin.travels.show', compact('travel', 'dateArray', 'steps', 'dateActive', 'arrayLong', 'arrayLat', 'timeArray'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }

@@ -37,9 +37,15 @@
             <h2>{{ $step->name }}</h2>
 
             {{-- renderizza alla pagina precedente --}}
-            <a href="#" onclick="history.back()" class="btn btn-dark">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            </a>
+            <div class="action_btn">
+                <a href="#" onclick="history.back()" class="btn btn-dark">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+                <a href="{{ route('admin.steps.edit', $step) }}" class="btn btn-warning">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+            </div>
+
         </div>
 
         {{-- step_container --}}

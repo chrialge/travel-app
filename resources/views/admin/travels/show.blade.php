@@ -150,10 +150,16 @@
                                 <div class="name_step">
                                     {{ $step->name }}
                                 </div>
-                                <div class="vote">
-                                    @for ($i = 0; $i < 5; $i++)
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    @endfor
+                                <div class="location">
+                                    {{ $step->location }}
+                                </div>
+
+                                <div class="time">
+                                    <span>da:
+                                        {{ date_format(new DateTime($step->time_start), 'H:i') }}</span>
+                                    <span>a:
+                                        {{ date_format(new DateTime($step->time_arrived), 'H:i') }}</span>
+
                                 </div>
                             </div>
                         </div>
@@ -187,7 +193,8 @@
             </div>
 
         </div>
-        <div id="map_step" class="map_step_back" data-lon="{{ $arrayLong }}" data-lat="{{ $arrayLat }}">
+        <div id="map_step" class="map_step_back" data-lon="{{ $arrayLong }}" data-lat="{{ $arrayLat }}"
+            data-time="{{ $timeArray }}">
             <div id="poiBoxInfo" class="poi">
                 <div id="poiname"></div><br>
                 <div class="image_poi">
