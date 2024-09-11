@@ -107,6 +107,8 @@
                                                     @csrf
                                                     @method('DELETE')
 
+                                                    <input type="text" class="d-none" value="no" name="no-page"
+                                                        id="no-page">
                                                     {{-- se clicco cancello l'itinerario --}}
                                                     <button type="submit" class="btn btn-danger">Cancella</button>
                                                 </form>

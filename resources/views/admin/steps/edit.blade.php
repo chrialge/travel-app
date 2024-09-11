@@ -73,7 +73,7 @@
             <div class="mb-3">
                 <label for="travel_id" class="form-label">Viaggi *</label>
                 <select class="form-select form-select-lg @error('travel_id') is-invalid @enderror" name="travel_id"
-                    id=" travel_id">
+                    id="travel_id">
                     <option selected disabled>Select one</option>
                     @foreach ($travels as $travel)
                         <option value="{{ $travel->id }}"
@@ -95,7 +95,8 @@
                 <label for="date" class="form-label">Data *</label>
                 <input onkeyup="hide_date_error()" onblur="check_date()" type="date"
                     class="form-control @error('date') is-invalid @enderror" name="date" id="date"
-                    aria-describedby="dateHelper" value="{{ old('date', $step->date) }}" placeholder="" required />
+                    aria-describedby="dateHelper"
+                    value="{{ old('date', date_format(new DateTime($step->date), 'd/m/Y')) }}" required />
 
                 {{-- span di errore lato front  --}}
                 <span id="date_error" class="text-danger error_invisible" role="alert">
@@ -108,6 +109,7 @@
                 @enderror
                 <small id="dateHelper" class="form-text text-muted">Inserisci la data dell'itinerario</small>
             </div>
+
 
             <div class="d-flex row row-cols-1 row-cols-sm-2">
                 {{-- campo time_start di step --}}
@@ -232,6 +234,8 @@
 
 
 @section('script')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @vite(['resources/js/map_search.js'])
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>

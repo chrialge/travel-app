@@ -32,6 +32,10 @@
             </li>
         </ul>
 
+
+        {{-- partial for message of session --}}
+        @include('partials.session')
+
         {{-- travel_container --}}
         <div class="travels_container d-flex justify-content-between py-5 gap-4">
 
@@ -169,6 +173,56 @@
                             <a href="{{ route('admin.steps.show', $step) }}" class="btn btn-dark btn_return">
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </a>
+
+                            {{-- se clicco mi apre la modale di cancellazione dell'itinerario --}}
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#modalId-{{ $step->id }}">
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-{{ $step->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-{{ $step->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                    role="document">
+                                    <div class="modal-content">
+
+                                        {{-- header of modal --}}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitleId-{{ $step->id }}">
+                                                Attenzione!
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        {{-- body of modal --}}
+                                        <div class="modal-body">
+                                            Sei sicuro di cancellare il viaggio, la cancellazione sara
+                                            irreversibile.
+                                        </div>
+
+                                        {{-- footer of modal --}}
+                                        <div class="modal-footer">
+                                            <form action="{{ route('admin.steps.destroy', $step) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="text" class=" d-none" name="no-page" id="no-page"
+                                                    value="{{ $travel->id }}">
+
+                                                <input type="text" class=" d-none" name="travel_id" id="travel_id"
+                                                    value="si">
+
+                                                {{-- se clicco cancello l'itinerario --}}
+                                                <button type="submit" class="btn btn-danger">Cancella</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -179,7 +233,7 @@
 
                     {{-- renderizza alla pagina di creazione dell'itinerario --}}
                     <a class="container d-flex justify-content-center align-items-center gap-2"
-                        href="{{ route('admin.steps.create', $travel->id) }}">
+                        href="{{ route('admin.steps.create', [$travel->id, $dateActive['value']]) }}">
                         <div class="plus">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </div>

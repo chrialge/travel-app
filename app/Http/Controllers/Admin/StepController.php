@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
+use DateTime;
+use Carbon\Carbon;
+
 
 class StepController extends Controller
 {
@@ -50,7 +54,33 @@ class StepController extends Controller
     public function create()
     {
         //salvo in una variabile l'id del viaggio
-        $travel_id = key($_GET);
+        $travel_id = array_key_first($_GET);
+
+        // salvo in una variabile la data se passo dallo show del viaggio
+        $date = array_key_last($_GET);
+        $date = explode('-', $date);
+        $string = $date[2] . '/' . $date[1] . '/' . $date[0];
+        $date = $string;
+
+        // inizio la session
+        session_start();
+
+        // se la data e salvata
+        if ($date !== null) {
+            // dd($_GET, $travel_id, $date);
+
+
+            // salvo l'id del viaggio
+            $_SESSION['travel-id'] = $travel_id;
+
+            // salvo la risposta se devo riotornare allo show del viaggio
+            $_SESSION['travel-page'] = 'si';
+        } else {
+            // salvo la risposta se devo riotornare allo show del viaggio
+            $_SESSION['travel-page'] = 'no';
+        }
+
+
 
         // salvo in una variabile l'id dell'utente attualmente collegato
         $id = Auth::id();
@@ -59,7 +89,7 @@ class StepController extends Controller
         $travels = Travel::where('user_id', $id)->get();
 
         // renderizzo alla pagina di creazione degl'itinerari e passo i viaggi 
-        return view('admin.steps.create', compact('travels', 'travel_id'));
+        return view('admin.steps.create', compact('travels', 'travel_id', 'date'));
     }
 
     /**
@@ -96,8 +126,21 @@ class StepController extends Controller
         //salva lo slug nella nella key slug 
         $val_data['slug'] = $slug;
 
+        $val_data['date'] = str_replace('/', '-', $val_data['date']);
+        $date = date_format(new DateTime($val_data['date']), 'Y-m-d');
+        $val_data['date'] = $date;
+        dd($val_data['date'], $date);
         // salvo nella variabile l'itinerario creato
         $newStep = Step::create($val_data);
+
+        session_start();
+
+        if ($_SESSION['travel-page'] === 'si') {
+
+            $travel = Travel::where('id', $_SESSION['travel-id'])->first();
+
+            return to_route('admin.travels.show', compact('travel'))->with('message', "Hai creato l'itineraio $newStep->name");
+        }
 
         // renderizzo alla pagina index dell'itinerario con un messaggio per la session
         return to_route('admin.steps.index')->with('message', "Hai creato l'itineraio $newStep->name");
@@ -154,9 +197,10 @@ class StepController extends Controller
 
             // salvo in una varibile tutti i viaggi dell'utente attaulmente collegato
             $travels = Travel::where('user_id', $id)->get();
+            $date_active = date_format(new DateTime($step->date), 'd/m/Y');
 
             // renderizzo alla pagina di modifica dell'itinerario e passo gl'itinerari e viaggi
-            return view('admin.steps.edit', compact('step', 'travels'));
+            return view('admin.steps.edit', compact('step', 'travels', 'date_active'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }
@@ -215,7 +259,7 @@ class StepController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Step $step)
+    public function destroy(Step $step, Request $request)
     {
         // se l'itinerario e quello creato dall'utente attualmente collegato
         if (Gate::allows('step_checker', $step)) {
@@ -232,6 +276,20 @@ class StepController extends Controller
 
             // cancello step
             $step->delete();
+
+            // inizializo page
+            session_start();
+            // se devo ritornare alla pagina show del viaggio
+            if ($request['no-page'] === 'no') {
+
+                $_SESSION['travel-page'] = 'no';
+                // renderizzo alla pagina precedente con un messaggio per la session
+                return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
+            } else if ($request['no-page'] === 'si') {
+
+                $travel = Travel::where('id', $request['travel_id'])->first();
+                return to_route('admin.travels.show', compact('travel'))->with('message', "Hai cancellato il viaggio: $name");
+            }
 
             // renderizzo alla pagina precedente con un messaggio per la session
             return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");

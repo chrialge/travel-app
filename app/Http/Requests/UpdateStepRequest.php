@@ -23,7 +23,7 @@ class UpdateStepRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:100',
-            'date' => 'required|date',
+            'date' => 'required',
             'image' => 'nullable|image',
             'travel_id' => 'required|exists:travel,id',
             'time_start' => 'required|',

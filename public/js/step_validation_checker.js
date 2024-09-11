@@ -1,3 +1,7 @@
+// // import flatpickr from "flatpickr";
+
+
+
 function check_name() {
     // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("name_error");
@@ -22,6 +26,7 @@ function check_name() {
 }
 
 function check_date() {
+
 
     // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("date_error");
@@ -117,12 +122,15 @@ function hide_name_error() {
     }
 }
 
+
 function hide_date_error() {
+    console.log(document.getElementById('travel_id'));
     // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("date_error");
 
     // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date")
+
 
     // Verifico se la lunghezza  è uguale a 10 caratteri
     if (input.value.length === 10) {
