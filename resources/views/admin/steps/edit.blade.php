@@ -116,10 +116,11 @@
 
                 <div class="mb-3">
                     <label for="time_start" class="form-label">Ora d'inizio *</label>
-                    <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time"
+                    <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time_start"
                         class="form-control @error('time_start') is-invalid @enderror" name="time_start" id="time_start"
                         aria-describedby="time_startHelper" value="{{ old('time_start', $step->time_start) }}"
-                        placeholder="" required />
+                        data-timestart="{{ date_format(new DateTime($step->time_start), 'H:i') }}" placeholder=""
+                        required />
 
                     {{-- span di errore lato front  --}}
                     <span id="time_start_error" class="text-danger error_invisible" role="alert">
@@ -138,10 +139,11 @@
                 {{-- campo time_end di step --}}
                 <div class="mb-3">
                     <label for="time_arrived" class="form-label">Ora di fine *</label>
-                    <input onkeyup="hide_time_arrived_error()" onblur="check_time_arrived()" type="time"
+                    <input onkeyup="hide_time_arrived_error()" onblur="check_time_arrived()" type="time_arrived"
                         class="form-control @error('time_arrived') is-invalid @enderror" name="time_arrived"
                         id="time_arrived" aria-describedby="dateHelper"
-                        value="{{ old('time_arrived', $step->time_arrived) }}" placeholder="" required />
+                        value="{{ old('time_arrived', $step->time_arrived) }}" placeholder="" required
+                        data-timearrived="{{ date_format(new DateTime($step->time_arrived), 'H:i') }}" />
 
                     {{-- span di errore lato front  --}}
                     <span id="time_arrived_error" class="text-danger error_invisible" role="alert">
@@ -218,15 +220,21 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div id="compiled_field"
+                class=" text-danger text-center btn btn-dark border-danger border-2 w-100 w-sm-50 error_invisible">
+                <h5>Inserisci tutti i campi obbligatori *</h5>
+            </div>
+            <div class="container_button d-flex justify-content-center pt-2">
+                {{-- bottone di creazione --}}
+                <button id="edit_step_btn" type="submit" class="btn btn-warning">
+                    <span>MODIFICA UN ITINERARIO</span>
+                </button>
+                {{-- bottone di attesa --}}
+                <button id="btn_loading" type="submit" class="btn btn-warning error_invisible" disabled>
+                    <span>Attendi ...</span>
+                </button>
+            </div>
 
-            {{-- bottone di creazione --}}
-            <button id="edit_step_btn" type="submit" class="btn btn-warning">
-                <span>MODIFICA UN ITINERARIO</span>
-            </button>
-            {{-- bottone di attesa --}}
-            <button id="btn_loading" type="submit" class="btn btn-warning error_invisible" disabled>
-                <span>Attendi ...</span>
-            </button>
 
 
 

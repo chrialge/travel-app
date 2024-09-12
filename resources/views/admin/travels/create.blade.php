@@ -73,40 +73,24 @@
 
             {{-- campo date start di travel --}}
             <div class="mb-3">
-                <label for="date_start" class="form-label">Data d'inizio *</label>
-                <input onkeyup="hide_date_start_error()" onblur="check_date_start()" type="date"
-                    class="form-control @error('date_start') is-invalid @enderror" name="date_start" id="date_start"
-                    aria-describedby="date_startHelper" value="{{ old('date_start') }}" placeholder="" required />
+                <label for="date_range" class="form-label">Durata *</label>
+
+                <input onkeyup="hide_date_range_error()" onblur="check_date_range()" type="date"
+                    class="form-control @error('date_range') is-invalid @enderror" name="date_range" id="date_range"
+                    aria-describedby="date_rangeHelper" value="{{ old('date_range') }}" placeholder="" required />
+
+
 
                 {{-- span di errore lato front  --}}
-                <span id="date_start_error" class="text-danger error_invisible" role="alert">
+                <span id="date_range_error" class="text-danger error_invisible" role="alert">
                     La data d'inizio e obbligatoria
                 </span>
 
                 {{-- errore lato back --}}
-                @error('date_start')
+                @error('date_range')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                <small id="date_startHelper" class="form-text text-muted">Inserisci la data d'inizio del viaggio</small>
-            </div>
-
-            {{-- campo date_finish di travel --}}
-            <div class="mb-3">
-                <label for="date_finish" class="form-label">Data di fine *</label>
-                <input onkeyup="hide_date_finish_error()" onblur="check_date_finish()" type="date"
-                    class="form-control @error('date_finish') is-invalid @enderror" name="date_finish" id="date_finish"
-                    aria-describedby="date_startHelper" value="{{ old('date_finish') }}" placeholder="" required />
-
-                {{-- errore lato back --}}
-                <span id="date_finish_error" class="text-danger error_invisible" role="alert">
-                    La data di fine e obbligatoria
-                </span>
-
-                {{-- errore lato back --}}
-                @error('date_finish')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-                <small id="date_finishHelper" class="form-text text-muted">Inserisci la data di fine del viaggio</small>
+                <small id="date_rangeHelper" class="form-text text-muted">Inserisci la data d'inizio del viaggio</small>
             </div>
 
             {{-- campo image di travel --}}
@@ -133,16 +117,26 @@
                 @enderror
             </div>
 
-            {{-- bottone di creazione --}}
-            <button id="travel_btn" type="submit" class="btn btn-primary">
-                <span>CREA UN VIAGGIO</span>
-            </button>
-            {{-- bottone di attesa --}}
-            <button id="btn_loading" type="submit" class="btn btn-primary error_invisible" disabled>
-                <span>Attendi ...</span>
-            </button>
+            <div class="container_button d-flex justify-content-center pt-2">
+                {{-- bottone di creazione --}}
+                <button id="travel_btn" type="submit" class="btn btn-primary">
+                    <span>CREA UN VIAGGIO</span>
+                </button>
+                {{-- bottone di attesa --}}
+                <button id="btn_loading" type="submit" class="btn btn-primary error_invisible" disabled>
+                    <span>Attendi ...</span>
+                </button>
+            </div>
+
 
         </form>
-        <script src="{{ asset('js/travel_validation_checker.js') }}"></script>
+
     </div>
+@endsection
+
+@section('script')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @vite(['resources/js/calendar_range.js'])
+    <script src="{{ asset('js/travel_validation_checker.js') }}"></script>
 @endsection

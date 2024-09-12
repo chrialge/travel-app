@@ -14,6 +14,35 @@ let calendar = flatpickr("input[type='date']", {
 
 })
 
+if (document.getElementById("time_start")) {
+
+    const time_start = document.getElementById("time_start").dataset.timestart;
+    const time_arrived = document.getElementById("time_arrived").dataset.timearrived;
+    console.log(time_start, time_arrived)
+    let timeStart = flatpickr("input[type='time_start']", {
+
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+
+        maxTime: time_arrived,
+    })
+
+    let timeArrived = flatpickr("input[type='time_arrived']", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minTime: time_start,
+
+
+    })
+    console.log(document.getElementById("time_start"))
+}
+
+
+
 let eleselect = document.getElementById('travel_id')
 let dateel = document.getElementById('date');
 dateel.addEventListener('click', function (e) {

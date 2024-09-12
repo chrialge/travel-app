@@ -77,6 +77,18 @@ class TravelController extends Controller
 
         // salvo l'user_id
         $val_data['user_id'] = Auth::id();
+        $dates = explode(" to ", $val_data['date_range']);
+        $begin = explode('/', $dates[0]);
+        $begin = $begin[2] . '-' . $begin[1] . '-' . $begin[0];
+        $val_data['date_start'] = $begin;
+
+        $end = explode('/', $dates[1]);
+        $end = $end[2] . '-' . $end[1] . '-' . $end[0];
+        $val_data['date_finish'] = $end;
+
+
+
+
 
         // crea un nuovo viaggio e lo inserisce nel db
         $travel = Travel::create($val_data);
@@ -254,6 +266,15 @@ class TravelController extends Controller
 
             //salva lo slug nella nella key slug 
             $val_data['slug'] = $slug;
+
+            $dates = explode(" to ", $val_data['date_range']);
+            $begin = explode('/', $dates[0]);
+            $begin = $begin[2] . '-' . $begin[1] . '-' . $begin[0];
+            $val_data['date_start'] = $begin;
+
+            $end = explode('/', $dates[1]);
+            $end = $end[2] . '-' . $end[1] . '-' . $end[0];
+            $val_data['date_finish'] = $end;
 
             // modifica travel con i nuovi dati
             $travel->update($val_data);

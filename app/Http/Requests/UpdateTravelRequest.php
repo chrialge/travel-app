@@ -23,8 +23,7 @@ class UpdateTravelRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:100',
-            'date_start' => 'required|date',
-            'date_finish' => 'required|date',
+            'date_range' => 'required|',
             'image' => 'nullable|image',
             'content' => 'nullable',
         ];

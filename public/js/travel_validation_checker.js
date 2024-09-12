@@ -21,16 +21,17 @@ function check_name() {
     }
 }
 
-function check_date_start() {
+function check_date_range() {
 
     // Prendo l'elemento dell'errore
-    let errorElement = document.getElementById("date_start_error");
+    let errorElement = document.getElementById("date_range_error");
 
     // Prendo l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("date_start");
+    let input = document.getElementById("date_range");
 
     // Verifico se la lunghezza della data è di 10 caratteri
-    if (input.value.length === 10) {
+
+    if (input.value.length === 24) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
@@ -45,30 +46,6 @@ function check_date_start() {
     }
 }
 
-function check_date_finish() {
-    // Prendo l'elemento dell'errore
-    let errorElement = document.getElementById("date_finish_error");
-
-    // Prendo l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("date_finish");
-
-    // Verifico se la lunghezza del nome è di almeno 3 caratteri
-    if (input.value.length === 10) {
-        console.log('ciao')
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.border = "";
-
-        return true;
-    } else {
-        console.log('addio')
-        errorElement.classList.remove("error_invisible");
-        errorElement.classList.add("error_visible");
-        input.style.border = "2px solid red";
-
-        return false;
-    }
-}
 
 // Funzione per nascondere l'errore del nome
 function hide_name_error() {
@@ -86,35 +63,22 @@ function hide_name_error() {
     }
 }
 
-function hide_date_start_error() {
+function hide_date_range_error() {
     // Prendo l'elemento dell'errore
-    let errorElement = document.getElementById("date_start_error");
+    let errorElement = document.getElementById("date_range_error");
 
     // Prendo l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("date_start")
+    let input = document.getElementById("date_range")
 
     // Verifico se la lunghezza del nome è di almeno 10 caratteri
-    if (input.value.length === 10) {
+    if (input.value.length === 24) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.border = "";
     }
 }
 
-function hide_date_finish_error() {
-    // Prendo l'elemento dell'errore
-    let errorElement = document.getElementById("date_finish_error");
 
-    // Prendo l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("date_finish")
-
-    // Verifico se la lunghezza del nome è di almeno 10 caratteri
-    if (input.value.length === 10) {
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        input.style.border = "";
-    }
-}
 
 // Salvo in una variabile il bottone di creazione e modifica del viaggio
 const createButton = document.getElementById("travel_btn")
@@ -132,14 +96,7 @@ createButton.addEventListener('click', function (event) {
     }
 
     // Controllo del cognome
-    if (!check_date_start()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-
-    // Controllo dell'email
-    if (!check_date_finish()) {
+    if (!check_date_range()) {
         event.preventDefault();
         btnLoading.classList.add("error_invisible")
         createButton.classList.remove("error_invisible")

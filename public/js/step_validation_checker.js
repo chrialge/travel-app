@@ -1,5 +1,6 @@
-let count = 0
-const compiled_field = document.getElementById("compiled_field")
+let count = 0;
+const compiledField = document.getElementById('compiled_field')
+
 function check_name() {
     // salvo nella variabile l'elemento dell'errore
     let errorElement = document.getElementById("name_error");
@@ -9,23 +10,27 @@ function check_name() {
 
     // Verifico se la lunghezza del nome è di almeno 3 caratteri
     if (input.value.length >= 3 || input.value.length >= 50) {
-        if (compiled_field.style.display === "none") {
-            count--
-            console.log(count)
 
-        } else if (count === 0) {
-            console.log(count)
+        if (count === 1) {
+            compiledField.classList.add('error_invisible')
+            count--;
 
-            compiled_field.classList.remove("error_invisible")
+        } else if (count > 1) {
+            count--;
         }
+
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
+
         return true;
     } else {
+
         errorElement.classList.remove("error_invisible");
         errorElement.classList.add("error_visible");
         input.style.borderColor = "red";
+
+
 
         return false;
     }
@@ -42,14 +47,13 @@ function check_date() {
 
     // Verifico se la lunghezza e uguale a 10
     if (input.value.length === 10) {
-        if (compiled_field.style.display === "none") {
-            count--
-            console.log(count)
 
-        } else if (count === 0) {
-            compiled_field.classList.remove("error_invisible")
-            console.log(count)
+        if (count === 1) {
+            compiledField.classList.add('error_invisible')
+            count--;
 
+        } else if (count > 1) {
+            count--;
         }
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -75,15 +79,15 @@ function check_time_start() {
 
     // Verifico se la lunghezza e uguale a 5
     if (input.value.length === 5) {
-        if (compiled_field.style.display === "none") {
-            count--
-            console.log(count)
 
-        } else if (count === 0) {
-            compiled_field.classList.remove("error_invisible")
-            console.log(count)
+        if (count === 1) {
+            compiledField.classList.add('error_invisible')
+            count--;
 
+        } else if (count > 1) {
+            count--;
         }
+
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
@@ -109,16 +113,6 @@ function check_time_arrived() {
 
     // Verifico se la lunghezza e uguale a 5
     if (input.value.length === 5) {
-
-        if (compiled_field.style.display === "none") {
-            count--
-            console.log(count)
-
-        } else if (count === 0) {
-            compiled_field.classList.remove("error_invisible")
-            console.log(count)
-
-        }
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
@@ -144,15 +138,17 @@ function check_location() {
     // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("location");
     if (input.value.length >= 3) {
-        if (compiled_field.style.display === "none") {
-            count--
-            console.log(count)
 
-        } else if (count === 0) {
-            compiled_field.classList.remove("error_invisible")
-            console.log(count)
+        if (count === 1) {
+            compiledField.classList.add('error_invisible')
+            count--;
+            console.log(count, 'deve scomparire')
 
+        } else if (count > 1) {
+            count--;
+            console.log(count, 'non deve scomparire')
         }
+
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         borderel.style.borderColor = "";
@@ -170,25 +166,7 @@ function check_location() {
 }
 
 
-function hide_location_error() {
-    // salvo nella variabile l'elemento dell'errore
-    let errorElement = document.getElementById("location_error");
 
-    let borderel = document.querySelector('div.tt-search-box-input-container');
-
-
-    // salvo nella variabile l'elemento input per dargli o togliergli stile
-    let input = document.getElementById("location");
-
-    if (input.value.length >= 3) {
-
-        errorElement.classList.remove("error_visible");
-        errorElement.classList.add("error_invisible");
-        borderel.style.borderColor = "";
-
-        return true;
-    }
-}
 
 
 
@@ -201,14 +179,23 @@ function hide_name_error() {
 
     // Verifico se la lunghezza del nome è di almeno 3 caratteri
     if (input.value.length >= 3) {
+        if (count === 1) {
+            count--;
+            compiledField.classList.add('error_invisible')
+        }
+
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
-        console.log(count)
-
     } else {
-        console.log('bella')
+        if (count === 0) {
+            count++;
+            compiledField.classList.remove('error_invisible')
+        }
     }
+
+
+
 }
 
 
@@ -223,9 +210,20 @@ function hide_date_error() {
 
     // Verifico se la lunghezza  è uguale a 10 caratteri
     if (input.value.length === 10) {
+        if (count === 1) {
+            count--;
+            compiledField.classList.add('error_invisible')
+        }
+
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
+    } else {
+        if (count === 0) {
+            count++;
+            compiledField.classList.remove('error_invisible')
+            console.log(count, compiledField, 'non e giusta ')
+        }
     }
 }
 
@@ -240,9 +238,19 @@ function hide_time_start_error() {
 
     // Verifico se la lunghezza  è uguale a 5 caratteri
     if (input.value.length === 5) {
+        if (count === 1) {
+            count--;
+            compiledField.classList.add('error_invisible')
+        }
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
+    } else {
+        if (count === 0) {
+            count++;
+            compiledField.classList.remove('error_invisible')
+            console.log(count, compiledField, 'non e giusta ')
+        }
     }
 }
 
@@ -256,9 +264,54 @@ function hide_time_arrived_error() {
 
     // Verifico se la lunghezza  è uguale a 5 caratteri
     if (input.value.length === 5) {
+        if (count === 1) {
+            count--;
+            compiledField.classList.add('error_invisible')
+        }
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
+    } else {
+        if (count === 0) {
+            count++;
+            compiledField.classList.remove('error_invisible')
+            console.log(count, compiledField, 'non e giusta ')
+        }
+    }
+}
+
+function hide_location_error() {
+    // salvo nella variabile l'elemento dell'errore
+    let errorElement = document.getElementById("location_error");
+
+    let borderel = document.querySelector('div.tt-search-box-input-container');
+
+
+    // salvo nella variabile l'elemento input per dargli o togliergli stile
+    let input = document.getElementById("location");
+
+    if (input.value.length >= 3) {
+
+        if (count === 1) {
+            count--;
+            compiledField.classList.add('error_invisible')
+            console.log(count, 'deve scomparire')
+
+        }
+        console.log(count)
+
+        errorElement.classList.remove("error_visible");
+        errorElement.classList.add("error_invisible");
+        borderel.style.borderColor = "";
+
+        return true;
+    } else {
+        if (count === 0) {
+            console.log(count, 'non deve scomparire')
+            count++;
+            compiledField.classList.remove('error_invisible')
+            console.log(count, compiledField, 'non e giusta ')
+        }
     }
 }
 
@@ -278,7 +331,7 @@ if (document.getElementById("create_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
+            compiledField.classList.remove("error_invisible")
             count++;
         }
 
@@ -287,7 +340,7 @@ if (document.getElementById("create_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
+            compiledField.classList.remove("error_invisible")
             count++;
         }
 
@@ -296,7 +349,7 @@ if (document.getElementById("create_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
+            compiledField.classList.remove("error_invisible")
             count++;
         }
 
@@ -305,7 +358,7 @@ if (document.getElementById("create_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
+            compiledField.classList.remove("error_invisible")
             count++;
         }
 
@@ -313,7 +366,7 @@ if (document.getElementById("create_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
+            compiledField.classList.remove("error_invisible")
             count++;
         }
 
@@ -335,8 +388,7 @@ if (document.getElementById("edit_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
-            count++;
+
         }
 
         // Controllo della data
@@ -344,8 +396,7 @@ if (document.getElementById("edit_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
-            count++;
+
         }
 
         // Controllo dell'ora d'inizio
@@ -353,8 +404,7 @@ if (document.getElementById("edit_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
-            count++;
+
         }
 
         // Controllo dell'ora di fine
@@ -362,16 +412,14 @@ if (document.getElementById("edit_step_btn")) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
-            count++;
+
         }
 
         if (!check_location()) {
             event.preventDefault();
             btnLoading.classList.add("error_invisible")
             createButton.classList.remove("error_invisible")
-            compiled_field.classList.remove("error_invisible")
-            count++;
+
         }
 
     });
