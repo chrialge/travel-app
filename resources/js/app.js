@@ -38,19 +38,21 @@ if (document.readyState === "loading" || document.readyState === "interactive") 
 
 
 
+if (document.getElementById('siderbar_phone_container')) {
+    document.getElementById('siderbar_phone_container').addEventListener('click', (e) => {
 
-document.getElementById('siderbar_phone_container').addEventListener('click', (e) => {
+        e.preventDefault();
 
-    e.preventDefault();
+        const sidebarPcEl = document.getElementById('sidebar_pc');
+        sidebarPcEl.classList.remove('sidebar-narrow-unfoldable')
+        if (sidebarPcEl.style.display === 'flex') {
 
-    const sidebarPcEl = document.getElementById('sidebar_pc');
-    sidebarPcEl.classList.remove('sidebar-narrow-unfoldable')
-    if (sidebarPcEl.style.display === 'flex') {
+            sidebarPcEl.style.display = 'none';
+        } else {
+            sidebarPcEl.style.display = 'flex'
+        }
 
-        sidebarPcEl.style.display = 'none';
-    } else {
-        sidebarPcEl.style.display = 'flex'
-    }
+    })
+}
 
-})
 

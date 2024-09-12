@@ -114,7 +114,7 @@
                 {{-- campo time_start di step --}}
                 <div class="mb-3">
                     <label for="time_start" class="form-label">Ora d'inizio *</label>
-                    <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time"
+                    <input onkeyup="hide_time_start_error()" onblur="check_time_start()" type="time_start"
                         class="form-control @error('time_start') is-invalid @enderror" name="time_start" id="time_start"
                         aria-describedby="time_startHelper" value="{{ old('time_start') }}" placeholder="" required />
 
@@ -135,7 +135,7 @@
                 {{-- campo time_end di step --}}
                 <div class="mb-3">
                     <label for="time_arrived" class="form-label">Ora di fine *</label>
-                    <input onkeyup="hide_time_arrived_error()" onblur="check_time_arrived()" type="time"
+                    <input onkeyup="hide_time_arrived_error()" onblur="check_time_arrived()" type="time_arrived"
                         class="form-control @error('time_arrived') is-invalid @enderror" name="time_arrived"
                         id="time_arrived" aria-describedby="dateHelper" value="{{ old('time_arrived') }}" placeholder=""
                         required />

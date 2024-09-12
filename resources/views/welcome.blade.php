@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     {{-- jumbotron section --}}
     <section id="jumbotron">
         <div class="p-5 text-center">
@@ -28,35 +27,35 @@
             <span class="separeted"></span>
 
             <div class="row gap-2 justify-content-between">
-                @for ($i = 0; $i < 4; $i++)
-                    @foreach ($travels as $travel)
-                        {{-- card --}}
-                        <div class="card p-0" style="width: 18rem;">
 
-                            {{-- se esiste l'immagine del viaggio --}}
-                            @if ($travel->image)
-                                <img class="card-img-top" src="{{ asset('storage/' . $travel->image) }}"
-                                    alt="Immagine del viaggio {{ $travel->name }}">
-                            @else
-                                <img class="card-img-top" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
-                                    alt="immagine di default del viaggio">
-                            @endif
+                @foreach ($travels as $travel)
+                    {{-- card --}}
+                    <div class="card p-0" style="width: 18rem;">
 
-                            {{-- card body --}}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $travel->name }}</h5>
-                                <p class="card-text">
-                                    <strong>Durata: </strong>
-                                    {{ date_format(new DateTime($travel->date_start), 'd/m/Y') }} a
-                                    {{ date_format(new DateTime($travel->date_finish), 'd/m/Y') }}
-                                </p>
+                        {{-- se esiste l'immagine del viaggio --}}
+                        @if ($travel->image)
+                            <img class="card-img-top" src="{{ asset('storage/' . $travel->image) }}"
+                                alt="Immagine del viaggio {{ $travel->name }}">
+                        @else
+                            <img class="card-img-top" src="{{ asset('storage/img/img-deafult-travel.jpg') }}"
+                                alt="immagine di default del viaggio">
+                        @endif
 
-                                {{-- se clicci ti renderizza alla pagina del singolo viaggio --}}
-                                <a href="{{ route('travel', $travel) }}" class="btn btn-primary">Itinerari</a>
-                            </div>
+                        {{-- card body --}}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $travel->name }}</h5>
+                            <p class="card-text">
+                                <strong>Durata: </strong>
+                                {{ date_format(new DateTime($travel->date_start), 'd/m/Y') }} a
+                                {{ date_format(new DateTime($travel->date_finish), 'd/m/Y') }}
+                            </p>
+
+                            {{-- se clicci ti renderizza alla pagina del singolo viaggio --}}
+                            <a href="{{ route('travel', $travel) }}" class="btn btn-primary">Itinerari</a>
                         </div>
-                    @endforeach
-                @endfor
+                    </div>
+                @endforeach
+
 
 
 

@@ -2,24 +2,34 @@
     {{-- header --}}
     <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
 
-        <h1>Viaggi {{ $travels->total() }}</h1>
+        @if ($travels->count() >= 1)
+            @if ($travels->count() === 1)
+                <h1>Viaggio 1</h1>
+            @else
+                <h1>Viaggi {{ $travels->total() }}</h1>
+            @endif
 
-        <div class="d-flex gap-3" style="flex-wrap: wrap;">
+            <div class="d-flex gap-3" style="flex-wrap: wrap;">
 
-            <form id="search_form" role="search">
-                <label for="search">Cerca per nome</label>
-                <input wire:model.live="search" id="search" type="search" placeholder="Cerca..."
-                    aria-label="cerca itinerari" autofocus required />
-                <button type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <form id="search_form" role="search">
+                    <label for="search">Cerca per nome</label>
+                    <input wire:model.live="search" id="search" type="search" placeholder="Cerca..."
+                        aria-label="cerca itinerari" autofocus required />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
 
-            </form>
+                </form>
 
-            <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
-                <i class="fa-solid fa-rotate"></i>
-            </a>
-        </div>
+                <a href="{{ route('admin.travels.index') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </div>
+        @else
+            <h1>Nessun Viaggio</h1>
+
+
+        @endif
 
 
 
@@ -134,6 +144,8 @@
 
             </tbody>
         </table>
-        {{ $travels->links('pagination::bootstrap-5') }}
+        @if ($travels->count() >= 1)
+            {{ $travels->links('pagination::bootstrap-5') }}
+        @endif
     </div>
 </div>

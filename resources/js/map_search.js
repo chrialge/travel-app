@@ -13,11 +13,9 @@ document.getElementById('poiBoxInfo').style.display = 'none';
 
 tt.setProductInfo(APPLICATION_NAME, APPLICATION_VERSION);
 
-let gg = document.querySelector('.tt-search-box-input');
 // gg.setAttribute("id", "location")
 // gg.setAttribute("onblur", "check_location()")
 // gg.setAttribute("onkeyup", "hide_location_error()")
-console.log(gg)
 
 
 
@@ -223,7 +221,7 @@ map.on('load', function () {
 
 
 let searchInputEl = document.querySelector('.tt-search-box');
-console.log(searchInputEl);
+
 
 
 ttSearchBox.on('tomtom.searchbox.resultselected', function (event) {
@@ -236,8 +234,6 @@ ttSearchBox.on('tomtom.searchbox.resultselected', function (event) {
 
 
 
-    console.log(searchInputEl);
-    console.log(event.data.result);
     if (event.data.result.type === 'POI') {
         displayPOIInformation(event.data.result.address.freeformAddress, event.data.result.position)
         moveMap(event.data.result.position);

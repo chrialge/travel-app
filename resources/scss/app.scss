@@ -211,7 +211,7 @@
                     .input-group,
                     .input-group-text,
                     input {
-                        background-color: transparent;
+                        background-color: transparent !important;
                         border: 0;
                         color: #e25b07;
                     }
@@ -685,4 +685,13 @@
         transition: all ease-in-out 0.3s;
         background-color: white;
     }
+}
+
+.card-img-top {
+    aspect-ratio: 14/9;
+}
+
+input,
+.active {
+    background-color: rgb(250, 247, 247) !important;
 }

@@ -1,11 +1,13 @@
 import flatpickr from "flatpickr";
 
 let dateValue = document.getElementById('date').value
-let dateDataValue = document.getElementById('date').dataset.value
-dateValue = dateDataValue;
-console.log(dateDataValue, dateValue)
-dateDataValue = dateDataValue.split('-');
-dateValue = dateDataValue[2] + '/' + dateDataValue[1] + '/' + dateDataValue[0]
+if (document.getElementById('date').dataset.value) {
+    let dateDataValue = document.getElementById('date').dataset.value
+    dateValue = dateDataValue;
+    dateDataValue = dateDataValue.split('-');
+    dateValue = dateDataValue[2] + '/' + dateDataValue[1] + '/' + dateDataValue[0]
+}
+
 
 
 let calendar = flatpickr("input[type='date']", {
@@ -14,11 +16,49 @@ let calendar = flatpickr("input[type='date']", {
 
 })
 
+let time_start = flatpickr("input[type='time_start']", {
+    theme: "light",
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    time_24hr: true,
+    minTime: "00:00"
+})
+
+let time_arrived = flatpickr("input[type='time_arrived']", {
+    theme: "dark",
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    time_24hr: true,
+    maxTime: "23:59"
+
+})
+
+
+
+document.getElementById("time_start").addEventListener('blur', function (e) {
+    const value = document.getElementById("time_arrived").value;
+
+    time_start.set('maxTime', value);
+
+
+
+})
+
+document.getElementById("time_arrived").addEventListener('blur', function (e) {
+    const value = document.getElementById("time_start").value;
+
+    time_arrived.set('minTime', value);
+
+
+
+})
+
 if (document.getElementById("time_start")) {
 
     const time_start = document.getElementById("time_start").dataset.timestart;
     const time_arrived = document.getElementById("time_arrived").dataset.timearrived;
-    console.log(time_start, time_arrived)
     let timeStart = flatpickr("input[type='time_start']", {
 
         enableTime: true,
@@ -38,7 +78,6 @@ if (document.getElementById("time_start")) {
 
 
     })
-    console.log(document.getElementById("time_start"))
 }
 
 

@@ -127,7 +127,7 @@ class StepController extends Controller
         $val_data['date'] = str_replace('/', '-', $val_data['date']);
         $date = date_format(new DateTime($val_data['date']), 'Y-m-d');
         $val_data['date'] = $date;
-        dd($val_data['date'], $date);
+
         // salvo nella variabile l'itinerario creato
         $newStep = Step::create($val_data);
 

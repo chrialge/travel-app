@@ -1,3 +1,4 @@
+
 let count = 0;
 const compiledField = document.getElementById('compiled_field')
 
@@ -77,8 +78,13 @@ function check_time_start() {
     // salvo nella variabile l'elemento input per dargli o togliergli stile
     let input = document.getElementById("time_start");
 
+
+
+
+
     // Verifico se la lunghezza e uguale a 5
     if (input.value.length === 5) {
+
 
         if (count === 1) {
             compiledField.classList.add('error_invisible')
@@ -113,6 +119,7 @@ function check_time_arrived() {
 
     // Verifico se la lunghezza e uguale a 5
     if (input.value.length === 5) {
+
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
         input.style.borderColor = "";
@@ -379,7 +386,7 @@ if (document.getElementById("edit_step_btn")) {
     const editButton = document.getElementById("edit_step_btn")
 
     // in caso di click del bottone
-    createButton.addEventListener('click', function (event) {
+    editButton.addEventListener('click', function (event) {
         const btnLoading = document.getElementById("btn_loading");
         btnLoading.classList.remove("error_invisible")
         createButton.classList.add("error_invisible")

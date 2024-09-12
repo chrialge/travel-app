@@ -199,14 +199,8 @@
                 </div>
 
                 {{-- right container --}}
-
                 <div class="map_container">
-                    <div class="tt-side-panel w-100 py-2">
-                        <div class="tt-side-panel_header w-100">
-
-                        </div>
-                    </div>
-                    <div id="tom_tom" data-longitude="{{ $longitude }}" data-latitude="{{ $latitude }}">
+                    <div id="map_step" class="map_step_back" data-lon="{{ $longitude }}" data-lat="{{ $latitude }}">
                         <div id="poiBoxInfo" class="poi">
                             <div id="poiname"></div><br>
                             <div class="image_poi">
@@ -227,6 +221,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
             </div>
@@ -438,12 +433,14 @@
 
 
 
-        <script src="{{ asset('js/note_validation.js') }}"></script>
-
-
-        <link rel='stylesheet' type='text/css'
-            href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 
     </section>
+@endsection
+
+@section('script')
+    @vite(['resources/js/map.js'])
+    <script src="{{ asset('js/note_validation.js') }}"></script>
+
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 @endsection

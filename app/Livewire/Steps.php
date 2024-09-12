@@ -34,10 +34,17 @@ class Steps extends Component
             array_push($range, $travel->id);
         }
 
+
+
+
         // salvo in una variabile tutti gli itinerari che hanno gli id dei viaggi, vengo ordinati in ordine decrescente
-        $steps = Step::where('name', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('date', 'LIKE', '%' . $this->search . '%')
-            ->orWhereRelation('travel', 'name',  'LIKE', '%' . $this->search . '%')->orderByDesc('id')->paginate(6);
+        $steps = Step::where(function ($query) {
+            $query->where('name', 'LIKE', '%' . $this->search . '%')
+                ->orWhere('date', 'LIKE', '%' . $this->search . '%')
+                ->orWhereRelation('travel', 'name',  'LIKE', '%' . $this->search . '%');
+        })->whereIn('travel_id', $range)->orderByDesc('id')->paginate(6);
+
+
         return view('livewire.steps', compact('steps'));
     }
 }

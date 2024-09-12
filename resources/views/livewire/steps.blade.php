@@ -1,28 +1,38 @@
 <div>
     {{-- header --}}
     <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
-        <h2>Itinerari {{ $steps->total() }}</h2>
+
+        @if ($steps->count() >= 1)
+
+            @if ($steps->count() === 1)
+                <h2>Itinerario 1</h2>
+            @else
+                <h2>Itinerarii {{ $steps->total() }}</h2>
+            @endif
 
 
-        <div class="d-flex gap-3" style="flex-wrap: wrap;">
+            <div class="d-flex gap-3" style="flex-wrap: wrap;">
 
-            <form id="search_form" role="search">
-                <label for="search">Cerca per nome</label>
-                <input wire:model.live="search" id="search" type="search" placeholder="Cerca..."
-                    aria-label="cerca itinerari" autofocus required />
-                <button type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <form id="search_form" role="search">
+                    <label for="search">Cerca per nome</label>
+                    <input wire:model.live="search" id="search" type="search" placeholder="Cerca..."
+                        aria-label="cerca itinerari" autofocus required />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
 
-            </form>
-
-
+                </form>
 
 
-            <a href="{{ route('admin.steps.index') }}" class="btn btn-dark">
-                <i class="fa-solid fa-rotate"></i>
-            </a>
-        </div>
+
+
+                <a href="{{ route('admin.steps.index') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </div>
+        @else
+            <h2>Nessun Itinerario</h2>
+        @endif
 
     </div>
 
@@ -131,6 +141,8 @@
 
             </tbody>
         </table>
-        {{ $steps->links('pagination::bootstrap-5') }}
+        @if ($steps->count() >= 1)
+            {{ $steps->links('pagination::bootstrap-5') }}
+        @endif
     </div>
 </div>

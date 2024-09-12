@@ -1,23 +1,34 @@
 <div>
     {{-- header --}}
     <div class="header_travels d-flex justify-content-between align-items-center py-4" style="flex-wrap: wrap">
-        <h1>Note {{ $notes->total() }}</h1>
 
-        <div class="d-flex gap-3" style="flex-wrap: wrap;">
-            <form id="search_form" role="search">
-                <label for="search">Cerca per nome</label>
-                <input wire:model.live="search" id="search" type="search" placeholder="Cerca..."
-                    aria-label="cerca itinerari" autofocus required />
-                <button type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+        @if ($notes->count() >= 1)
 
-            </form>
+            @if ($notes->count() === 1)
+                <h2>Nota 1</h2>
+            @else
+                <h2>Note {{ $notes->total() }}</h2>
+            @endif
 
-            <a href="{{ route('admin.notes.index') }}" class="btn btn-dark">
-                <i class="fa-solid fa-rotate"></i>
-            </a>
-        </div>
+
+            <div class="d-flex gap-3" style="flex-wrap: wrap;">
+                <form id="search_form" role="search">
+                    <label for="search">Cerca per nome</label>
+                    <input wire:model.live="search" id="search" type="search" placeholder="Cerca..."
+                        aria-label="cerca itinerari" autofocus required />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                </form>
+
+                <a href="{{ route('admin.notes.index') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-rotate"></i>
+                </a>
+            </div>
+        @else
+            <h2>Nessuna nota</h2>
+        @endif
 
     </div>
 
@@ -110,6 +121,9 @@
 
             </tbody>
         </table>
-        {{ $notes->links('pagination::bootstrap-5') }}
+        @if ($notes->count() >= 1)
+            {{ $notes->links('pagination::bootstrap-5') }}
+        @endif
+
     </div>
 </div>
