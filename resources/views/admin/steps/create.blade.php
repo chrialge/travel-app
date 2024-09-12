@@ -95,7 +95,8 @@
                 <label for="date" class="form-label">Data *</label>
                 <input onkeyup="hide_date_error()" onblur="check_date()" type="date"
                     class="form-control @error('date') is-invalid @enderror" name="date" id="date"
-                    aria-describedby="dateHelper" value="{{ old('date', $date) }}" placeholder="" required />
+                    aria-describedby="dateHelper" value="{{ old('date', $date) }}"
+                    data-value="{{ $date !== '' ? $date : '' }}" placeholder="" required />
 
                 {{-- span di errore lato front  --}}
                 <span id="date_error" class="text-danger error_invisible" role="alert">
@@ -171,9 +172,14 @@
             {{-- campi per location di step --}}
             <div class="map_container_step">
                 <div class="tt-side-panel w-100 py-2">
+                    <label for="location" class="pb-2">Localita *</label>
                     <div class="tt-side-panel_header w-100">
 
                     </div>
+                    {{-- span di errore lato front  --}}
+                    <span id="location_error" class="text-danger error_invisible" role="alert">
+                        La Localia e Obbligatoria
+                    </span>
                 </div>
                 <div id="map_step">
                     <div id="poiBoxInfo" class="poi">
@@ -207,15 +213,21 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div id="compiled_field"
+                class=" text-danger text-center btn btn-dark border-danger border-2 w-100 w-sm-50 error_invisible">
+                <h5>Inserisci tutti i campi obbligatori *</h5>
+            </div>
+            <div class="container_button d-flex justify-content-center pt-2">
+                {{-- bottone di creazione --}}
+                <button id="create_step_btn" type="submit" class="btn btn-primary">
+                    <span>CREA UN ITINERARIO</span>
+                </button>
+                {{-- bottone di attesa --}}
+                <button id="btn_loading" type="submit" class="btn btn-primary error_invisible" disabled>
+                    <span>Attendi ...</span>
+                </button>
+            </div>
 
-            {{-- bottone di creazione --}}
-            <button id="create_step_btn" type="submit" class="btn btn-primary">
-                <span>CREA UN ITINERARIO</span>
-            </button>
-            {{-- bottone di attesa --}}
-            <button id="btn_loading" type="submit" class="btn btn-primary error_invisible" disabled>
-                <span>Attendi ...</span>
-            </button>
 
 
 
@@ -228,7 +240,7 @@
 @section('script')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    @vite(['resources/js/map_search.js'])
+    @vite(['resources/js/map_search.js', 'resources/js/calendar.js'])
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 @endsection

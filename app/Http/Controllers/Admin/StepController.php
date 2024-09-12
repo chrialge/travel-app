@@ -58,9 +58,7 @@ class StepController extends Controller
 
         // salvo in una variabile la data se passo dallo show del viaggio
         $date = array_key_last($_GET);
-        $date = explode('-', $date);
-        $string = $date[2] . '/' . $date[1] . '/' . $date[0];
-        $date = $string;
+
 
         // inizio la session
         session_start();

@@ -577,7 +577,7 @@
 
 .tt-search-box {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
     div.tt-search-box-input-container {
         padding: 0 5px;
@@ -667,6 +667,7 @@
 }
 
 #siderbar_phone_container {
+    z-index: 99;
     display: none;
     padding: 5px;
     border-radius: 10px;

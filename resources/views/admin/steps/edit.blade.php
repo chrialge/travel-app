@@ -95,8 +95,8 @@
                 <label for="date" class="form-label">Data *</label>
                 <input onkeyup="hide_date_error()" onblur="check_date()" type="date"
                     class="form-control @error('date') is-invalid @enderror" name="date" id="date"
-                    aria-describedby="dateHelper"
-                    value="{{ old('date', date_format(new DateTime($step->date), 'd/m/Y')) }}" required />
+                    aria-describedby="dateHelper" value="{{ old('date') }}"
+                    data-value="{{ date_format(new DateTime($step->date), 'd/m/Y') }}" required />
 
                 {{-- span di errore lato front  --}}
                 <span id="date_error" class="text-danger error_invisible" role="alert">
@@ -178,9 +178,14 @@
             {{-- campi per location di step --}}
             <div class="map_container_step">
                 <div class="tt-side-panel w-100 py-2">
+                    <label id="search_location" for="location" class="pb-2"
+                        data-location="{{ $step->location }}">Localita *</label>
                     <div class="tt-side-panel_header w-100">
 
                     </div>
+                    <span id="location_error" class="text-danger error_invisible" role="alert">
+                        La Localia e Obbligatoria
+                    </span>
                 </div>
                 <div id="map_step">
                     <div id="poiBoxInfo" class="poi">
@@ -236,7 +241,7 @@
 @section('script')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    @vite(['resources/js/map_search.js'])
+    @vite(['resources/js/map_search.js', 'resources/js/calendar.js'])
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css'>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
 @endsection

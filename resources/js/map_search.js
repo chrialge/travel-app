@@ -1,5 +1,4 @@
-console.log('ciao')
-document.getElementById('poiBoxInfo').style.display = 'none';
+
 
 import tt from '@tomtom-international/web-sdk-maps';
 import cc from '@tomtom-international/web-sdk-services';
@@ -10,7 +9,16 @@ const APPLICATION_NAME = 'TravelBoo';
 const APPLICATION_VERSION = '1.0';
 
 
+document.getElementById('poiBoxInfo').style.display = 'none';
+
 tt.setProductInfo(APPLICATION_NAME, APPLICATION_VERSION);
+
+let gg = document.querySelector('.tt-search-box-input');
+// gg.setAttribute("id", "location")
+// gg.setAttribute("onblur", "check_location()")
+// gg.setAttribute("onkeyup", "hide_location_error()")
+console.log(gg)
+
 
 
 var markerHeight = 50, markerRadius = 10, linearOffset = 25;
@@ -193,14 +201,23 @@ map.on('dragend', function () {
 })
 
 map.on('load', function () {
+
     hidePoiInfo();
     document.querySelector('.tt-side-panel_header').appendChild(ttSearchBox.getSearchBoxHTML());
     let options = ttSearchBox.getOptions()
     options.searchOptions.boundingBox = map.getBounds();
     ttSearchBox.updateOptions(options);
-})
-ttSearchBox.on('tomtom.searchbox.resultselected', function (event) {
-    console.log(event.data)
+    let gg = document.querySelector('.tt-search-box-input');
+    gg.setAttribute("id", "location")
+    gg.setAttribute("onblur", "check_location()")
+    gg.setAttribute("onkeyup", "hide_location_error()")
+    if (document.getElementById('search_location')) {
+        const location = document.getElementById('search_location').dataset.location
+        gg.value = location
+    }
+
+
+
 })
 
 
@@ -213,6 +230,12 @@ ttSearchBox.on('tomtom.searchbox.resultselected', function (event) {
     let searchInputEl = document.querySelector('.tt-search-box-input');
 
     searchInputEl.setAttribute("name", "location");
+    searchInputEl.setAttribute("id", "location")
+    searchInputEl.setAttribute("onblur", "check_location()")
+    searchInputEl.setAttribute("onkeyup", "hide_location_error()")
+
+
+
     console.log(searchInputEl);
     console.log(event.data.result);
     if (event.data.result.type === 'POI') {
@@ -232,3 +255,4 @@ var moveMap = function (lgnlat) {
     let dd = ttSearchBox.getOptions();
     console.log(dd)
 }
+

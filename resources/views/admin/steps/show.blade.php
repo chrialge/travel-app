@@ -70,26 +70,26 @@
                 {{-- informazioni dello step --}}
                 <div class="step_info d-flex flex-column gap-2">
                     <span>
-                        <strong>Del viaggio: </strong>
+                        <strong class="pe-1">Del viaggio: </strong>
                         {{ $step->travel->name }}
                     </span>
                     <span>
-                        <strong>Data: </strong>
-                        {{ $step->date }}
+                        <strong class="pe-1">Data: </strong>
+                        {{ date_format(new DateTime($step->date), 'd/m/Y') }}
                     </span>
                     <span>
-                        <strong>Indirizzo: </strong>
+                        <strong class="pe-1">Indirizzo: </strong>
                         {{ $step->location }}
                     </span>
 
                     <div class="time_container d-flex justify-content-between">
                         <span>
-                            <strong>Inizia: </strong>
-                            {{ $step->time_start }}
+                            <strong class="pe-1">Inizia: </strong>
+                            {{ date_format(new DateTime($step->time_start), 'H:i') }}
                         </span>
                         <span>
-                            <strong>Finisce: </strong>
-                            {{ $step->time_arrived }}
+                            <strong class="pe-1">Finisce: </strong>
+                            {{ date_format(new DateTime($step->time_arrived), 'H:i') }}
                         </span>
                     </div>
 
