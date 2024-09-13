@@ -1,18 +1,22 @@
 let index = localStorage.getItem('date')
+const barDateEl = document.querySelectorAll(".date_container");
 
-
+console.log(index, barDateEl)
 if (index) {
+    console.log('ciao ')
     let dateId = 'date-' + index;
     let dateActive = document.getElementById(dateId);
     localStorage.setItem('date', index)
 
+
     // gli do la classe active
-    dateActive.classList.add('active')
+    dateActive.classList.add('active_date')
 } else {
+    console.log('bau')
     let dateActive = document.getElementById('date-0');
     localStorage.setItem('date', 0)
     // gli do la classe active
-    dateActive.classList.add('active')
+    dateActive.classList.add('active_date')
 }
 
 
@@ -36,13 +40,13 @@ for (let index = 0; index < dateEl.length; index++) {
             e.preventDefault();
         } else {
             // rimuove la classe active al vecchio contenitore
-            dateActive.classList.remove('active')
+            dateActive.classList.remove('active_date')
 
 
             // date active adesso diventa il contenitore cliccato
             dateActive = date
             // aggiungo la classe active al contenitore cliccato
-            date.classList.add('active')
+            date.classList.add('active_date')
             localStorage.setItem('date', index);
         }
 

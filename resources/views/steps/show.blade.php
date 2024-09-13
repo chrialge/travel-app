@@ -153,7 +153,7 @@
     </section>
 
     {{-- step front section --}}
-    <section id="step_front" class="py-5" style="padding-left: 10px">
+    <section id="step_front" class="py-5">
         <div class="container py-4">
 
             {{-- header step front --}}
@@ -161,7 +161,7 @@
                 {{ $step->name }}
             </h2>
 
-            <div class="container_step_front d-flex p-2" style="flex-wrap: wrap">
+            <div class="container_step_front d-flex " style="flex-wrap: wrap">
 
                 {{-- left container --}}
                 <div class="img_container_step">
@@ -199,7 +199,7 @@
                 </div>
 
                 {{-- right container --}}
-                <div class="map_container">
+                <div class="map_container map_container_step_front">
                     <div id="map_step" class="map_step_back" data-lon="{{ $longitude }}" data-lat="{{ $latitude }}">
                         <div id="poiBoxInfo" class="poi">
                             <div id="poiname"></div><br>

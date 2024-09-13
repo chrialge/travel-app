@@ -118,7 +118,7 @@
                     @endif
 
                     {{-- data seguente --}}
-                    <a href="" id="date-new" class="date_container text-decoration-none text-white active">
+                    <a href="" id="date-new" class="date_container text-decoration-none text-white active_date">
                         {{ $dateActive['format'] }}
                     </a>
 

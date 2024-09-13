@@ -29,6 +29,8 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 
+    @yield('script')
+
 
     <style>
         #app {

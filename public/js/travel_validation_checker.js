@@ -29,8 +29,7 @@ function check_date_range() {
     // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date_range");
 
-    // Verifico se la lunghezza della data è di 10 caratteri
-
+    // Verifico se la lunghezza della data è di 24 caratteri
     if (input.value.length === 24) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -70,7 +69,7 @@ function hide_date_range_error() {
     // Prendo l'elemento input per dargli o togliergli stile
     let input = document.getElementById("date_range")
 
-    // Verifico se la lunghezza del nome è di almeno 10 caratteri
+    // Verifico se la lunghezza del nome è di almeno 24 caratteri
     if (input.value.length === 24) {
         errorElement.classList.remove("error_visible");
         errorElement.classList.add("error_invisible");
@@ -84,23 +83,26 @@ function hide_date_range_error() {
 const createButton = document.getElementById("travel_btn")
 
 // se clicco sul bottone
-createButton.addEventListener('click', function (event) {
-    const btnLoading = document.getElementById("btn_loading");
-    btnLoading.classList.remove("error_invisible")
-    createButton.classList.add("error_invisible")
-    // Controllo del nome
-    if (!check_name()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
+if (createButton) {
+    createButton.addEventListener('click', function (event) {
+        const btnLoading = document.getElementById("btn_loading");
+        btnLoading.classList.remove("error_invisible")
+        createButton.classList.add("error_invisible")
+        // Controllo del nome
+        if (!check_name()) {
+            event.preventDefault();
+            btnLoading.classList.add("error_invisible")
+            createButton.classList.remove("error_invisible")
+        }
 
-    // Controllo del cognome
-    if (!check_date_range()) {
-        event.preventDefault();
-        btnLoading.classList.add("error_invisible")
-        createButton.classList.remove("error_invisible")
-    }
-});
+        // Controllo del cognome
+        if (!check_date_range()) {
+            event.preventDefault();
+            btnLoading.classList.add("error_invisible")
+            createButton.classList.remove("error_invisible")
+        }
+    });
+}
+
 
 

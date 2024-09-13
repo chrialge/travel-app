@@ -1,6 +1,6 @@
-@import "~bootstrap/scss/bootstrap";
+@use "~bootstrap/scss/bootstrap";
 // Import all of CoreUI's CSS
-@import "@coreui/coreui/scss/coreui";
+@use "@coreui/coreui/scss/coreui";
 
 * {
     font-family: "Lilita One", sans-serif;
@@ -40,7 +40,7 @@
     border-top-right-radius: 5px;
 }
 
-.active {
+.active_date {
     background-color: #1e1e1e;
 }
 .container_step {
@@ -366,9 +366,11 @@
 
 #step_front {
     background: linear-gradient(45deg, #e25b07, #eda353);
+    padding: 0 5px;
 
     .container {
         background-color: white;
+        border-radius: 15px;
     }
 }
 
@@ -561,11 +563,28 @@
     width: 50%;
     min-height: 100%;
     position: relative;
-    & > #tom_tom {
+    & > #map_step {
         width: 100%;
-        aspect-ratio: 1;
+        min-height: calc(100% - 100px);
+
+        margin: 0;
+
+        & > #poiBoxInfo {
+            overflow-y: auto;
+
+            & > #url > a {
+                color: white;
+
+                &:hover {
+                    transition: all ease-in-out 0.1s;
+                    font-size: 15px;
+                    color: rgb(215, 213, 213);
+                }
+            }
+        }
     }
 }
+
 @media (max-width: 1000px) {
     .img_container_step {
         width: 100%;
@@ -664,6 +683,12 @@
     #app > main > div#siderbar_phone_container {
         display: block;
     }
+
+    #step_front {
+        .container {
+            padding: 0 3px 10px;
+        }
+    }
 }
 
 #siderbar_phone_container {
@@ -694,4 +719,8 @@
 input,
 .active {
     background-color: rgb(250, 247, 247) !important;
+}
+
+.sidebar.sidebar-narrow-unfoldable {
+    z-index: 100000;
 }
