@@ -19,16 +19,12 @@ class Travels extends Component
         $id = Auth::id();
 
         // variabile con tutti i viaggi nel db in ordine discendente in base chi si e loggato
-
         $travels = Travel::where(function ($query) {
             $query->where('name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('date_start', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('date_finish', 'LIKE', '%' . $this->search . '%');
         })->where('user_id', $id)->orderByDesc('id')->paginate(5);
-        // $travels = $travels->intersect(Travel::where('user_id', $id)->orderByDesc('id')->paginate(5));
-        // $travels = $travels->all();
-        // $travels = $travels->paginate(5);
-        // dd($travels, $id);
+
         return view('livewire.travels', compact('travels'));
     }
 }

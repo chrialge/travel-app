@@ -94,13 +94,14 @@
 
             {{-- la barra della data per dispositivi come tablet e pc --}}
             <div class="bar_date d-flex ">
-                @foreach ($dateArray as $index => $dates)
-                    @foreach ($dates as $date)
-                        <a href="{{ route('admin.travels.show', [$travel, $date['value']]) }}"
-                            id="date-{{ $index }}" class="date_container text-decoration-none text-white">
-                            {{ $date['format'] }}
-                        </a>
-                    @endforeach
+
+                @foreach ($dateArray as $index => $date)
+                    {{-- @dd($date[0]) --}}
+                    <a href="{{ route('admin.travels.show', [$travel, $date[0]['value']]) }}"
+                        id="date-{{ $index }}"
+                        class="date_container text-decoration-none text-white {{ $date[0]['visible'] === 'yes' ? 'active_date' : '' }}">
+                        {{ $date[0]['format'] }}
+                    </a>
                 @endforeach
             </div>
 
@@ -246,29 +247,31 @@
 
             </div>
 
-        </div>
-        <div id="map_step" class="map_step_back" data-lon="{{ $arrayLong }}" data-lat="{{ $arrayLat }}"
-            data-time="{{ $timeArray }}">
-            <div id="poiBoxInfo" class="poi">
-                <div id="poiname"></div><br>
-                <div class="image_poi">
-                    <img src="{{ asset('storage/img/planning.png') }}" alt="">
-                </div>
-                <div id="poicategories"></div><br>
-                <div id="poiphone">
+            <div id="map_step" class="map_step_back" data-lon="{{ $arrayLong }}" data-lat="{{ $arrayLat }}"
+                data-time="{{ $timeArray }}">
+                <div id="poiBoxInfo" class="poi">
+                    <div id="poiname"></div><br>
+                    <div class="image_poi">
+                        <img src="{{ asset('storage/img/planning.png') }}" alt="">
+                    </div>
+                    <div id="poicategories"></div><br>
+                    <div id="poiphone">
 
-                </div>
-                <br>
+                    </div>
+                    <br>
 
-                <div id="poiaddress">
+                    <div id="poiaddress">
 
+                    </div>
+                    <br>
+                    <div id="url"></div><br>
+                    <img id="currentPhoto">
                 </div>
-                <br>
-                <div id="url"></div><br>
-                <img id="currentPhoto">
             </div>
+
         </div>
-        <script src="{{ asset('js/bar_date.js') }}"></script>
+
+
     </div>
 @endsection
 

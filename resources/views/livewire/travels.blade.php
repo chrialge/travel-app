@@ -65,9 +65,12 @@
             <tbody>
                 @forelse ($travels as $travel)
                     <tr class="">
+
                         <td scope="row">{{ $travel->name }}</td>
-                        <td>{{ date_format(date_create($travel->date_start), 'd/m/Y') }}
-                            {{ date_format(date_create($travel->date_finish), 'd/m/Y') }}</td>
+                        <td>
+                            {{ date_format(date_create($travel->date_start), 'd/m/Y') }}
+                            {{ date_format(date_create($travel->date_finish), 'd/m/Y') }}
+                        </td>
 
                         <td class="" style="min-height: 100%">
                             <div class="justify-content-center d-flex gap-1 flex-wrap">
@@ -133,6 +136,8 @@
 
 
                         </td>
+
+
                     </tr>
 
                 @empty

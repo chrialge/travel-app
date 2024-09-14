@@ -46,8 +46,7 @@ class Notes extends Component
             array_push($range_steps, $step->id);
         }
 
-
-
+        //query per prendere le note richieste
         $notes = Note::where(function ($query) {
             $query->where('customer_name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('customer_lastname', 'LIKE', '%' . $this->search . '%')

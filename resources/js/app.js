@@ -1,5 +1,6 @@
 // importo bootstrap
 import './bootstrap';
+import * as bootstrap from 'bootstrap';
 // importo lo stile
 import '~resources/scss/app.scss';
 // importo la globale per le immagini

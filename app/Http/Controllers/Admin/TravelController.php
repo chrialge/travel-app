@@ -77,18 +77,19 @@ class TravelController extends Controller
 
         // salvo l'user_id
         $val_data['user_id'] = Auth::id();
+
+        // prendo le due date e le saparo ma nello stesso array
         $dates = explode(" to ", $val_data['date_range']);
+
+        // setto la data di inizio per il database
         $begin = explode('/', $dates[0]);
         $begin = $begin[2] . '-' . $begin[1] . '-' . $begin[0];
         $val_data['date_start'] = $begin;
 
+        // setto la data di fine per il database
         $end = explode('/', $dates[1]);
         $end = $end[2] . '-' . $end[1] . '-' . $end[0];
         $val_data['date_finish'] = $end;
-
-
-
-
 
         // crea un nuovo viaggio e lo inserisce nel db
         $travel = Travel::create($val_data);
@@ -116,14 +117,19 @@ class TravelController extends Controller
             // formato la data come quella italiana
             $travel->date_start =  $begin->format('d/m/Y');
 
-            // salvo nella variabile la data formattata
-            $varaiable = $begin->format('Y-m-d');
+
 
             // se la data viene passata
             if ($_GET) {
 
+
                 // salvo nella variabile il dato passato
                 $varaiable = key($_GET);
+            } else {
+                // salvo nella variabile la data formattata
+
+
+                $varaiable = $begin->format('Y-m-d');
             }
 
             // salvo nella variabile la dat di fine del viaggio trasformato in dateTime
@@ -137,14 +143,30 @@ class TravelController extends Controller
 
                 // creo una variabile con un array vuota
                 $array = [];
+                if ($i->format('Y-m-d') == $varaiable) {
 
-                // setto l'array
-                $array = [
-                    [
-                        "value" => $i->format('Y-m-d'),
-                        "format" => $i->format('d-m'),
-                    ]
-                ];
+
+                    // setto l'array
+                    $array = [
+                        [
+                            "value" => $i->format('Y-m-d'),
+                            "format" => $i->format('d-m'),
+                            "visible" => 'yes'
+                        ]
+                    ];
+                } else {
+
+                    // setto l'array
+                    $array = [
+                        [
+                            "value" => $i->format('Y-m-d'),
+                            "format" => $i->format('d-m'),
+                            "visible" => 'no'
+
+                        ]
+                    ];
+                }
+
 
                 // pusho l'array in dateArray
                 array_push($dateArray, $array);
@@ -157,32 +179,62 @@ class TravelController extends Controller
             $dd = Http::get('https://api.tomtom.com/style/1/sprite/20.3.2-3/sprite@2x.png?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd&traffic_incidents=incidents_s1&traffic_flow=flow_relative0-dark');
             // dd($response);
 
+            // creo un istanza per la classe client
             $client = new Client();
+
+            // inizializzo la variabile che conterrano le longitudini
             $arrayLong = '';
+            // inizializzo la variabile che conterrano le latitudini
             $arrayLat = '';
+            //inizializzo la varibile che conterra le date
+            $timeArray = '';
+
+            // ciclo per gli itinerari
             foreach ($steps as $step) {
+
+                // prendo l'indirizzo
                 $address = urlencode($step->location);
+
+                // faccio la chiamata pi a tomtom per darmi le latitudine e longitudine
                 $response = $client->get('https://api.tomtom.com/search/2/geocode/%27.' . $address . '.%27.json', [
                     'query' => [
                         'key' => 'k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd',
                         'limit' => 1
                     ]
                 ]);
+
+                // stampera un messaggio in caso di errore 
                 error_log(print_r($response, true));
-                // dd($response->getBody(), $response);
+
+                // decodifica la risposta json in un array
                 $data = json_decode($response->getBody(), true);
-                // dd($data);
+
+                // prendo la latitudine
                 $latitude = $data['results'][0]['position']['lat'];
+
+                // se la varibile e vuota
                 if ($arrayLat === '') {
+
                     $arrayLat = $latitude;
-                } else {
+                } else { //altrimenti
                     $arrayLat .= ',' . $latitude;
                 }
+
+                // prendo la longitudine
                 $longitude = $data['results'][0]['position']['lon'];
+
+                // se la varibile e vuota
                 if ($arrayLong === '') {
                     $arrayLong = $longitude;
-                } else {
+                } else { //altrimenti
                     $arrayLong .= ',' . $longitude;
+                }
+
+                // se la variabile e vuota
+                if ($timeArray === '') {
+                    $timeArray = $step->time_start;
+                } else { //altrimenti
+                    $timeArray .= ',' . $step->time_start;
                 }
             }
 
@@ -198,14 +250,6 @@ class TravelController extends Controller
                 'value' => $varaiable,
                 'format' => $format
             ];
-            $timeArray = '';
-            foreach ($steps as $step) {
-                if ($timeArray === '') {
-                    $timeArray = $step->time_start;
-                } else {
-                    $timeArray .= ',' . $step->time_start;
-                }
-            }
 
             // renderizzo alla pagina show del viaggio passando il viaggio, le date del viaggio, l'itineraio della data selezionat e la data selezionata
             return view('admin.travels.show', compact('travel', 'dateArray', 'steps', 'dateActive', 'arrayLong', 'arrayLat', 'timeArray'));
@@ -264,14 +308,15 @@ class TravelController extends Controller
                 $slug = Str::slug($val_data['name'], '-');
             }
 
-            //salva lo slug nella nella key slug 
-            $val_data['slug'] = $slug;
-
+            // prendo le due date e le saparo ma nello stesso array
             $dates = explode(" to ", $val_data['date_range']);
+
+            // setto la data di inizio per il database
             $begin = explode('/', $dates[0]);
             $begin = $begin[2] . '-' . $begin[1] . '-' . $begin[0];
             $val_data['date_start'] = $begin;
 
+            // setto la data di fine per il database
             $end = explode('/', $dates[1]);
             $end = $end[2] . '-' . $end[1] . '-' . $end[0];
             $val_data['date_finish'] = $end;

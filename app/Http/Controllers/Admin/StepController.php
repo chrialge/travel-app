@@ -119,24 +119,31 @@ class StepController extends Controller
             $slug = Str::slug($val_data['name'], '-');
         }
 
-
-
         //salva lo slug nella nella key slug 
         $val_data['slug'] = $slug;
 
+        // prendo la stringa passata e rimpiazzo il carattere
         $val_data['date'] = str_replace('/', '-', $val_data['date']);
+
+        // trasformo la stringa in una data
         $date = date_format(new DateTime($val_data['date']), 'Y-m-d');
+
+        // e salvo il valore nella chiave date
         $val_data['date'] = $date;
 
         // salvo nella variabile l'itinerario creato
         $newStep = Step::create($val_data);
 
+        // inizio la sessione
         session_start();
 
+        // se la pagina precedente era dallo show di travel btn "aggiungi itinerario"
         if ($_SESSION['travel-page'] === 'si') {
 
+            // prendo il singolo viaggio per andare alla pagina di travel
             $travel = Travel::where('id', $_SESSION['travel-id'])->first();
 
+            // renderizza alla pagina show di travel
             return to_route('admin.travels.show', compact('travel'))->with('message', "Hai creato l'itineraio $newStep->name");
         }
 
@@ -149,29 +156,32 @@ class StepController extends Controller
      */
     public function show(Step $step)
     {
-
-        $dd = Http::get('https://api.tomtom.com/style/1/sprite/20.3.2-3/sprite@2x.png?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd&traffic_incidents=incidents_s1&traffic_flow=flow_relative0-dark');
-        // dd($response);
-
-        $client = new Client();
-        $address = urlencode($step->location);
-        $response = $client->get('https://api.tomtom.com/search/2/geocode/%27.' . $address . '.%27.json', [
-            'query' => [
-                'key' => 'k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd',
-                'limit' => 1
-            ]
-        ]);
-        error_log(print_r($response, true));
-        // dd($response->getBody(), $response);
-        $data = json_decode($response->getBody(), true);
-        // dd($data);
-        $latitude = $data['results'][0]['position']['lat'];
-        $longitude = $data['results'][0]['position']['lon'];
-        // // salvo il viaggio dell'itinerario
-        // $travel = Travel::where('id', $step->travel_id)->get();
-
-        // se l'itinerario e quello creato dall'utente attualmente collegato
+        // controlla se puoi visionare
         if (Gate::allows('step_checker', $step)) {
+
+            // creo una nuova istanza della classe client
+            $client = new Client();
+
+            // prendo la via dell'itinerario
+            $address = urlencode($step->location);
+            // faccio la chiamata
+            $response = $client->get('https://api.tomtom.com/search/2/geocode/%27.' . $address . '.%27.json', [
+                'query' => [
+                    'key' => 'k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd',
+                    'limit' => 1
+                ]
+            ]);
+            // stampera in caso di errore l'errore
+            error_log(print_r($response, true));
+
+            // decodifico la risposta da json in un array
+            $data = json_decode($response->getBody(), true);
+
+            // salvo la latitudine
+            $latitude = $data['results'][0]['position']['lat'];
+
+            // salvo la longitudine
+            $longitude = $data['results'][0]['position']['lon'];
 
             // renderizza alla pagina show dell'itinerario e passo il singolo itinerario
             return view('admin.steps.show', compact('step', 'latitude', 'longitude'));
@@ -184,8 +194,6 @@ class StepController extends Controller
      */
     public function edit(Step $step)
     {
-        // // salvo il viaggio dell'itinerario
-        // $travel = Travel::where('id', $step->travel_id)->get();
 
         // se l'itinerario e quello creato dall'utente attualmente collegato
         if (Gate::allows('step_checker', $step)) {
@@ -195,10 +203,9 @@ class StepController extends Controller
 
             // salvo in una varibile tutti i viaggi dell'utente attaulmente collegato
             $travels = Travel::where('user_id', $id)->get();
-            $date_active = date_format(new DateTime($step->date), 'd/m/Y');
 
             // renderizzo alla pagina di modifica dell'itinerario e passo gl'itinerari e viaggi
-            return view('admin.steps.edit', compact('step', 'travels', 'date_active'));
+            return view('admin.steps.edit', compact('step', 'travels'));
         } //in caso ti esce errore 
         abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }

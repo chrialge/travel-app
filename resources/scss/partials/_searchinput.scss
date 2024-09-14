@@ -1,0 +1,54 @@
+@use "./variable" as *;
+
+#search_form {
+    position: relative;
+    width: 15rem;
+    background: $color-brand;
+    border-radius: $rad;
+
+    input,
+    button {
+        height: $height;
+
+        border: 0;
+        color: $color-dark;
+    }
+    input[type="search"] {
+        outline: 0;
+        width: 100%;
+        background: $color-light;
+        padding: 0 1.6rem;
+        border-radius: $rad;
+        appearance: none;
+        transition: all $dur $bez;
+        transition-property: width, border-radius;
+        z-index: 1;
+        position: relative;
+    }
+    button {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: $btn-width;
+        font-weight: bold;
+        background: $color-brand;
+        border-radius: 0 $rad $rad 0;
+    }
+    input:not(:placeholder-shown) {
+        border-radius: $rad 0 0 $rad;
+        width: calc(100% - $btn-width);
+        + button {
+            display: block;
+        }
+    }
+    label {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+    }
+}

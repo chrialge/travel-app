@@ -1,0 +1,96 @@
+@media (max-width: 991.98px) {
+    .sidebar:not(.sidebar-end) {
+        left: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .container_admin {
+        width: calc(100% - 4rem);
+    }
+    .sidebar-narrow-unfoldable:not(:hover) .nav-icon,
+    .sidebar-narrow .nav-icon {
+        flex: 0 0 calc(4rem - 0.5rem * 2 - 0.5rem * 2);
+    }
+    .sidebar-narrow-unfoldable:not(:hover) .sidebar-nav,
+    .sidebar-narrow .sidebar-nav {
+        --bs-sidebar-nav-link-padding-x: 0.5rem;
+        --bs-sidebar-nav-link-padding-y: 0.75rem;
+    }
+    .sidebar-narrow-unfoldable:not(:hover) .sidebar-header,
+    .sidebar-narrow .sidebar-header {
+        justify-content: center;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .nav-link a {
+        padding: 8px 12px;
+    }
+    .sidebar:not(.sidebar-end):not(.show) {
+        margin-left: 0rem;
+    }
+    .sidebar-narrow-unfoldable:not(:hover),
+    .sidebar-narrow {
+        flex: 0 0 4rem;
+        width: 4rem;
+
+        overflow: visible;
+    }
+}
+
+@media (max-width: 860px) {
+    .travels_container {
+        flex-wrap: wrap;
+        .right_show_travel {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 595px) {
+    .travels_container,
+    .steps_container {
+        margin-left: 0;
+    }
+
+    .step_card {
+        flex-wrap: wrap;
+    }
+    .bar_date {
+        display: none !important;
+    }
+
+    #bar_date_mobile {
+        display: block !important;
+        height: 100%;
+    }
+}
+
+@media (max-width: 772px) {
+    .show_steps {
+        flex-wrap: wrap;
+    }
+    .left_image_show {
+        width: 100%;
+    }
+    .right_info_show {
+        width: 100%;
+    }
+
+    .container_admin {
+        width: calc(100% - 4rem);
+    }
+}
+
+@media (max-width: 775px) {
+    #steps_container_row {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .tupla_invisible {
+        display: none;
+    }
+}
