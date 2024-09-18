@@ -72,17 +72,20 @@ if (lngpos === '' || time === " " || latpos === '') {
 } else {
 
 
-    // try e catch per stampare eventuali errori 
     try {
-        // salvo la risposta
-        const response = await fetch('https://api.tomtom.com/style/2/custom/style/dG9tdG9tQEBAbm9IdVZheUZ6NHFHb004Zzs5OTVmMDNlMC1kOWNlLTRiOWItOGM4ZC00NzE5Nzg3YThjZWQ=/drafts/0.json?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd');
-        // salvo il file Json
-        datiJson = await response.json();
+        (async function () {
+            const response = await Promise.resolve(fetch('https://api.tomtom.com/style/2/custom/style/dG9tdG9tQEBAbm9IdVZheUZ6NHFHb004Zzs5OTVmMDNlMC1kOWNlLTRiOWItOGM4ZC00NzE5Nzg3YThjZWQ=/drafts/0.json?key=k41eUXpkTG7gxEctBAJDidKJ6MYAEIwd'));
+            datiJson = await response.json();
+            console.log(response, datiJson);
+
+        }());
+
     } catch (error) {
         console.error(error);
         // Expected output: ReferenceError: nonExistentFunction is not defined
         // (Note: the exact output may be browser-dependent)
     }
+    console.log(datiJson);
 
     // setto la mappa
     var map = tt.map({
