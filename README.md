@@ -30,4 +30,6 @@ se hai gia un account al posto di register clicci login
 
 che ti manda alla pagina per accedere
 
-![Uploading Screenshot 2024-09-18 194816.png…]()
+![Screenshot 2024-09-18 194816](https://github.com/user-attachments/assets/421c966e-bb2f-458b-93cc-15a01f4fe183)
+
+
