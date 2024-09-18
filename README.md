@@ -15,3 +15,19 @@ Questa app e fata iteramente con:
 -   bootstrap
 
 ## lato admin
+
+Se vuoi inserire uno o piu viaggi basta cliccare su register
+
+<img width="1628" alt="Immagine 2024-09-18 195536" src="https://github.com/user-attachments/assets/44faebaf-86a8-4fc3-be64-6709ad9ba11a">
+
+che poi ti renderizza alla pagina di registrazione
+
+![Screenshot 2024-09-18 194514](https://github.com/user-attachments/assets/1bbf328e-7c69-4177-a152-1c5d9bdcc26f)
+
+se hai gia un account al posto di register clicci login
+
+![Screenshot 2024-09-18 194344](https://github.com/user-attachments/assets/c13b2865-92fd-4033-8d6b-048603cb032c)
+
+che ti manda alla pagina per accedere
+
+![Uploading Screenshot 2024-09-18 194816.png…]()
