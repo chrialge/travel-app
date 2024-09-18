@@ -177,6 +177,7 @@ class StepController extends Controller
             // decodifico la risposta da json in un array
             $data = json_decode($response->getBody(), true);
 
+
             // salvo la latitudine
             $latitude = $data['results'][0]['position']['lat'];
 

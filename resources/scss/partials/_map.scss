@@ -1,0 +1,112 @@
+// rule for show info 'POI' of the map
+#poiBoxInfo {
+    padding: 5px;
+    background-color: #1e1e1e77;
+    color: white;
+    width: 40%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+
+    .image_poi {
+        padding: 20px;
+        width: 50%;
+        border-radius: 50%;
+        background-color: white;
+        margin-bottom: 10px;
+        & > img {
+            width: 100%;
+        }
+    }
+}
+// rule of container for map
+.map_container {
+    width: 50%;
+    min-height: 100%;
+    position: relative;
+    & > #map_step {
+        width: 100%;
+        min-height: calc(100% - 100px);
+
+        margin: 0;
+
+        & > #poiBoxInfo {
+            overflow-y: auto;
+
+            & > #url > a {
+                color: white;
+
+                &:hover {
+                    transition: all ease-in-out 0.1s;
+                    font-size: 15px;
+                    color: rgb(215, 213, 213);
+                }
+            }
+        }
+    }
+}
+
+// rule of the map
+#map_step {
+    margin: 30px 0;
+    width: 100%;
+    aspect-ratio: 14/9;
+}
+
+// rule for searchbox of the map
+.tt-search-box {
+    position: relative;
+    margin-bottom: 10px;
+
+    div.tt-search-box-input-container {
+        padding: 0 5px;
+        border-radius: 7px;
+        border: 1px solid transparent;
+        background-color: white;
+        outline: none;
+
+        display: flex;
+        gap: 2px;
+        align-items: center;
+
+        & > input {
+            padding: 5px;
+            flex-grow: 1;
+            color: #1e1e1e;
+            border: 1px solid transparent;
+            outline: none;
+            background-color: white;
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(30, 30, 30, 0.5019607843);
+                border-color: #a13f02;
+            }
+        }
+    }
+    div.tt-search-box-result-list-container {
+        width: 100%;
+        position: absolute;
+        max-height: 400px;
+        overflow-y: auto;
+        z-index: 6;
+        background-color: white;
+        border: 1px solid #1e1e1e;
+
+        & > .tt-search-box-result-list {
+            border-bottom: 1px solid black;
+            cursor: pointer;
+
+            & > .tt-search-box-result-list-address {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 5px;
+                border-bottom: 1px color #1e1e1e;
+                padding: 5px;
+
+                & > .tt-search-box-result-category-icon {
+                    content: url("../../public/storage/img/location-dot-solid.svg");
+                    width: 20px;
+                }
+            }
+        }
+    }
+}

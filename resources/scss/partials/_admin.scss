@@ -1,0 +1,145 @@
+@use "./variable" as *;
+
+// rule general of container of everthing page of admin
+.container_admin {
+    background: linear-gradient(45deg, #e25b07, #eda353);
+    width: 100%;
+    margin-left: 4rem;
+    height: 100%;
+    min-height: 100vh;
+}
+
+// sidebar to back
+
+.sidebar.sidebar-narrow-unfoldable {
+    z-index: 100000;
+}
+
+.sidebar {
+    height: 100vh;
+    background-color: #1e1e1e;
+
+    .nav-item {
+        & > a .nav-link {
+            color: #e25b07 !important;
+            & > i {
+                color: #e25b07 !important;
+            }
+        }
+    }
+}
+
+#siderbar_phone_container {
+    z-index: 99;
+    display: none;
+    padding: 5px;
+    border-radius: 10px;
+    width: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    & > img {
+        width: 100%;
+        filter: drop-shadow(0 0 0.75rem white);
+    }
+
+    &:hover {
+        transition: all ease-in-out 0.3s;
+        background-color: white;
+    }
+}
+
+//rule container of step in admin/travels/show.blade.php
+.right_show_travel {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px #e25b07;
+    width: 500px;
+
+    .color_orange {
+        color: #e25b07;
+    }
+}
+
+.container_step {
+    border: 5px solid $color-dark;
+    border-radius: 10px;
+    padding: 10px;
+    & > .step_card {
+        background-color: $color-light;
+        padding: 10px 10px;
+        border: 1px solid $color-dark;
+        border: inherit;
+        border-radius: 10px;
+
+        .img_step {
+            width: 100px;
+            & > img {
+                width: 100%;
+            }
+        }
+    }
+    .step_add {
+        background-color: $color-light;
+        padding: 10px;
+        border-radius: 10px;
+        & > .container {
+            cursor: pointer;
+            text-decoration: none;
+            color: $color-dark;
+            font-weight: bold;
+        }
+    }
+}
+
+// rule for admin/steps/show.blade.php
+.right_info_show {
+    width: 80%;
+    max-width: 530px;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+// rule for show of note
+.card_note {
+    padding: 10px;
+    border-radius: 10px;
+    border: 4px solid #1e1e1e;
+
+    background-color: white;
+
+    .top_note {
+        .left {
+            .container_img {
+                & > img {
+                    width: 80px;
+                }
+            }
+        }
+    }
+}
+
+// rule for date to back
+.bar_date {
+    color: white;
+    padding-left: 15px;
+}
+.date_container {
+    padding: 10px;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.active_date {
+    background-color: #1e1e1e;
+}
+
+#bar_date_mobile {
+    display: none;
+    margin-left: 20px;
+}

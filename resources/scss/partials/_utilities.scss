@@ -1,0 +1,94 @@
+.error_invisible {
+    display: none;
+}
+.error_visible {
+    display: block;
+}
+
+.card-img-top {
+    aspect-ratio: 14/9;
+}
+
+input,
+.active {
+    background-color: rgb(250, 247, 247) !important;
+}
+
+// rule for button return in admin
+.btn_return {
+    border: 0;
+    background-color: #e25b07;
+
+    &:hover {
+        transition: all ease-in-out 0.5s;
+        background-color: #a13f02;
+    }
+}
+
+// rule for separate to front
+.separeted {
+    display: block;
+    border-bottom: 3px solid #1e1e1e;
+    margin-bottom: 10px;
+}
+
+// rule for start to front
+.stars {
+    cursor: pointer;
+}
+.stars:hover {
+    scale: 1.2;
+}
+
+.btn_confirm_star {
+    background-color: white;
+
+    &:hover {
+        transition: all ease-in-out 0.5s;
+        background-color: green;
+        color: white;
+    }
+}
+
+// pagination
+.page_item_custom {
+    background-color: white;
+    color: #e25b07;
+
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #e25b07;
+
+    &:hover {
+        background-color: #1e1e1e;
+        transition: all ease-in-out 0.5s;
+    }
+}
+.other_page {
+    background-color: white;
+    color: #e25b07;
+    text-decoration: none;
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > a {
+        text-decoration: none;
+        cursor: pointer;
+        color: #e25b07;
+    }
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem #1e1e1e80;
+    border-color: #a13f02;
+}

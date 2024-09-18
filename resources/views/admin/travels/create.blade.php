@@ -138,5 +138,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @vite(['resources/js/calendar_range.js'])
+    <script src="{{ asset('../../../js/calendar_range.js') }}"></script>
     <script src="{{ asset('js/travel_validation_checker.js') }}"></script>
 @endsection

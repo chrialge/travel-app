@@ -240,7 +240,7 @@
             {{-- separatore --}}
             <span class="separeted my-3"></span>
 
-            <div class="notes w-50 ps-3">
+            <div class="notes  ps-3">
                 @forelse ($step->notes as $note)
                     {{-- container of note --}}
                     <div class="note_container d-flex gap-2 mb-2">

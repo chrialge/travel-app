@@ -1,7 +1,73 @@
+// rule for navbar to front
+.navbar {
+    color: #e25b07;
+    background-color: #1e1e1e;
+}
+
+// rule for jumbotron to front
 #jumbotron {
     height: 600px;
     background-image: url("../../public/storage/img/jumbotron.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+// rule travel/show.blade.php
+
+#travels_front {
+    background: linear-gradient(45deg, #e25b07, #eda353);
+}
+
+.card_step {
+    box-shadow: 2px 2px 5px black;
+}
+
+// rule steps/show.blade.php
+#step_front {
+    background: linear-gradient(45deg, #e25b07, #eda353);
+    padding: 0 5px;
+
+    .container {
+        background-color: white;
+        border-radius: 15px;
+
+        .img_container_step {
+            width: 50%;
+        }
+
+        .right_note {
+            background-color: #dee2e6;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .modal_note {
+            background-color: #1e1e1e;
+            color: #e25b07;
+            .close_modal {
+                color: #e25b07;
+                border: none;
+                background-color: transparent;
+            }
+            .modal-body {
+                .form-floating > input,
+                .form-floating > textarea {
+                    background-color: transparent;
+                    color: #e25b07;
+                    border-color: #e25b07;
+                }
+                .form-floating > label {
+                    background-color: transparent;
+                    border: 0;
+                    color: #e25b07;
+                }
+
+                .create_note_btn {
+                    background-color: #e25b07;
+                    color: white;
+                }
+            }
+        }
+    }
 }
