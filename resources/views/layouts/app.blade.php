@@ -106,7 +106,7 @@
     </div>
 
     {{-- app --}}
-    <div id="app">
+    <div id="app" style="min-height: 100vh">
 
         {{-- navbar --}}
         <nav class="navbar navbar-expand-md shadow-sm">

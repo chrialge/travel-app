@@ -11,4 +11,6 @@ Questa app e fata iteramente con:
 -   sdk(tomtom, flatpickr)
 -   bootstrap
 
-## lato admin
+## lato utente registrato
+
+se vuoi inserire un viaggio clicca sul bottone registrati

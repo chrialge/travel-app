@@ -2,7 +2,9 @@
 
 // container of layout/account.blade.php
 .account_container {
+    overflow-y: hidden;
     padding-bottom: 50px;
+    min-height: 100vh;
     height: 100%;
     width: 100%;
     display: flex;
@@ -75,8 +77,4 @@
             }
         }
     }
-}
-
-.container_register {
-    height: 100vh;
 }
