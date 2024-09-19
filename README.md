@@ -48,18 +48,41 @@ A destra ce una barra di navigazione cioe ti porta alla pagina principale di ogn
 
 ![Screenshot 2024-09-19 103401](https://github.com/user-attachments/assets/78d0d8d2-c123-49d7-99be-326bfd8e83fd)
 
-questa e la pagina principale dei viaggi in cui hai la possibilita di creare un viaggio, di visualizzare. modificare e cancellare i viaggi gia esistenti,e cercare i viaggi attraverso la barra di ricerca 
+Questa e la pagina principale dei viaggi in cui hai la possibilita di creare un viaggio, di visualizzare. modificare e cancellare i viaggi gia esistenti,e cercare i viaggi attraverso la barra di ricerca 
 
+### Itinerario
 
+![Screenshot 2024-09-19 103420](https://github.com/user-attachments/assets/35efec07-d635-4068-ba1b-bb6a065ae099)
 
+Questa e la pagina principale dei itinerari in cui hai la possibilita di creare uno o piu, di visualizzare. modificare e cancellare i viaggi gia esistenti,e cercare gli itinerari attraverso la barra di ricerca 
 
+### note
 
+![Screenshot 2024-09-19 103433](https://github.com/user-attachments/assets/b8b586ad-314c-4b85-b8a7-3f75fb46dcc6)
 
+Questa e la pagina principale delle note dove puoi visualizzre o cancellare la nota
 
+### profilo
 
+![Screenshot 2024-09-19 103449](https://github.com/user-attachments/assets/c4b13061-3d0e-4472-9425-d8466fe0c8e1)
 
+qui e dove puoi modificare i dati , la password e cancellare del tutto l'account
 
+## latro front
 
+mentre nella parte front si prenta che in prima pagina si mostrano tutti i viaggi ed ogni viaggio cliccando su itinerari puoi visualizzare il vaiggii con i suoi itinerari
+
+![Screenshot 2024-09-19 112154](https://github.com/user-attachments/assets/d94a679c-e6bd-444a-849a-5264a915c5e4)
+
+ti portera alla pagina del singolo viaggio che mostera i dettagli piu tutti gli itinerari poi cliccando su esso ti renderizza al singolo itinerario o se no puoi dare  un voto cliccando il numero di stelle che cliccando diventano gialle e poi se sei sicuro clicci il bottone di fianco alle stelle per confermare 
+
+![Screenshot 2024-09-19 112533](https://github.com/user-attachments/assets/7cc37dc9-6754-41f8-b9f5-2fe68a2689f9)
+
+mostera l'itinerario con i suoi dettagli con la mappa per visuallizare la mappa e sotto puoi aggiungere una nota cliccando su "aggiungi nota" e compilando i campi che ci chiedono, naturalmente sotto ci sono tutte le note per quel viaggio
+
+![Screenshot 2024-09-19 113543](https://github.com/user-attachments/assets/f068a4e3-b28d-4d9e-90e6-1fd9c2db2aec)
+
+![Immagine 2024-09-19 113608](https://github.com/user-attachments/assets/c9625de9-9006-482d-a33c-54a46d028d45)
 
 
 
