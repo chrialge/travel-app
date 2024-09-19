@@ -150,12 +150,12 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}"
-                                    style="color: #E25B07;">{{ __('Login') }}</a>
+                                    style="color: #E25B07;">{{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}"
-                                        style="color: #E25B07;">{{ __('Register') }}</a>
+                                        style="color: #E25B07;">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -177,14 +177,14 @@
 
                                     {{-- se clicci va alla sezione del tuo profilo --}}
                                     <a class="dropdown-item" href="{{ url('profile') }}"
-                                        style="color: #E25B07;">{{ __('Profile') }}</a>
+                                        style="color: #E25B07;">{{ __('Profilo') }}</a>
 
                                     {{-- se clicci logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                         style="color: #E25B07;">
-                                        {{ __('Logout') }}
+                                        {{ __('Disconettiti') }}
                                     </a>
 
 
