@@ -16,20 +16,56 @@ Questa app e fata iteramente con:
 
 ## lato admin
 
-Se vuoi inserire uno o piu viaggi basta cliccare su register
+Per entrare nel lato back ed creare e modificare viaggi bisogna prima effettuare la registrazione
 
-<img width="1628" alt="Immagine 2024-09-18 195536" src="https://github.com/user-attachments/assets/44faebaf-86a8-4fc3-be64-6709ad9ba11a">
+<img width="949" alt="Immagine 2024-09-19 102230" src="https://github.com/user-attachments/assets/cf12436b-b561-41d7-af08-1d214a96dafc">
 
-che poi ti renderizza alla pagina di registrazione
+Dopo aver cliccato sul bottone ti porta alla pagina di registrazione
 
 ![Screenshot 2024-09-18 194514](https://github.com/user-attachments/assets/1bbf328e-7c69-4177-a152-1c5d9bdcc26f)
 
-se hai gia un account al posto di register clicci login
+Mentre se hai gia un account al posto di clicare su registrati basta cliccare accedi
 
-![Screenshot 2024-09-18 194344](https://github.com/user-attachments/assets/c13b2865-92fd-4033-8d6b-048603cb032c)
+<img width="950" alt="Immagine 2024-09-19 102624" src="https://github.com/user-attachments/assets/72a3bea0-2128-48fe-b627-c44343d1112d">
 
-che ti manda alla pagina per accedere
+Dopo aver cliccato ti porta alla pagina per acceder
 
 ![Screenshot 2024-09-18 194816](https://github.com/user-attachments/assets/421c966e-bb2f-458b-93cc-15a01f4fe183)
+
+Dopo aver effetuato ti renderizza nella tu area personale dove ci saranno tre sezioni viaggi, itinerari, note e profilo
+
+![Screenshot 2024-09-19 103251](https://github.com/user-attachments/assets/9c4b019c-09c9-496a-bbc2-3fc01fc99769)
+
+A destra ce una barra di navigazione cioe ti porta alla pagina principale di ogni sezione:
+- quello con l'icona di una casa ti renderizza alla front, poi quello con l'icona di un areo
+- quello con l'icona di un areo ai viaggi
+- quello con l'iconadi puntatore di posizione sono gli itinerari
+- quello con l'icona di un foglio sono le note
+- quello con l'icona dello utente sono le impostazioni sul proprio profilo
+- l'ultimo in fondo e per disconettervi dall'account
+
+### Viaggi
+
+![Screenshot 2024-09-19 103401](https://github.com/user-attachments/assets/78d0d8d2-c123-49d7-99be-326bfd8e83fd)
+
+questa e la pagina principale dei viaggi in cui hai la possibilita di creare un viaggio, di visualizzare. modificare e cancellare i viaggi gia esistenti,e cercare i viaggi attraverso la barra di ricerca 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
