@@ -335,30 +335,25 @@ class TravelController extends Controller
      */
     public function destroy(Travel $travel)
     {
+        // se l'id dell'utente e uguale a quello del viaggio
+        if (Gate::allows('travel_checker', $travel)) {
 
-        // se esiste l'immagine di travel
-        if ($travel->image) {
+            // se esiste l'immagine di travel
+            if ($travel->image) {
 
-            // l'immagine viene cancellata da storage
-            Storage::disk('public')->delete($travel->image);
-        }
+                // l'immagine viene cancellata da storage
+                Storage::disk('public')->delete($travel->image);
+            }
 
-        // variabile che salva il nome di travel+
-        $name = $travel->name;
+            // variabile che salva il nome di travel+
+            $name = $travel->name;
 
-        // cancello travel
-        $travel->delete();
+            // cancello travel
+            $travel->delete();
 
-
-        // renderizzo alla pagina precedente con un messaggio per la session
-        return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
-
-        // // se l'id dell'utente e uguale a quello del viaggio
-        // if (Gate::allows('travel_checker', $travel)) {
-
-
-
-        // } //in caso ti esce errore 
-        // abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
+            // renderizzo alla pagina precedente con un messaggio per la session
+            return redirect()->back()->with('message', "Hai cancellato il viaggio: $name");
+        } //in caso ti esce errore 
+        abort(403, "Non hai l'autorizzazione per accedere a questa pagina");
     }
 }
