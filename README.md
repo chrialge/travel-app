@@ -1,5 +1,7 @@
 # TRAVELBOO
 
+link del sito: `https://travelboo.cc/`
+
 ![Screenshot 2024-09-18 193839](https://github.com/user-attachments/assets/ea2dba99-582e-4a50-9549-384159760725)
 
 E una web app in cui ogni persona registrata puo creare i suoi viaggi con il suo itinerario in base a proprio interesse e in caso cancellare e modificare essi, ha una sezione note dove puo controllare e visualizzare.
